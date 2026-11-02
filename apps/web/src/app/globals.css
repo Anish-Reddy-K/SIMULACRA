@@ -1,24 +1,180 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-heading: var(--font-sans);
+  --font-sans: "IBM Plex Sans Variable", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-surface: var(--surface);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-success: var(--success);
+  --color-hairline: var(--hairline);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+/*
+ * Design tokens (ADR-0009, "Clay & Teal"). Hex values only: tests/contrast.test.ts parses
+ * this file and enforces WCAG ratios (text 4.5:1, control borders and focus ring 3:1).
+ * Neumorphism is for surfaces only; interactive controls always carry a --border outline.
+ */
+:root {
+  --background: #ece7df;
+  --surface: #f3efe9;
+  --foreground: #23201c;
+  --muted-foreground: #5a544c;
+  --card: #f3efe9;
+  --card-foreground: #23201c;
+  --popover: #f3efe9;
+  --popover-foreground: #23201c;
+  --primary: #0f6b63;
+  --primary-foreground: #ffffff;
+  --secondary: #e3ddd3;
+  --secondary-foreground: #23201c;
+  --muted: #e3ddd3;
+  --accent: #e0ebe8;
+  --accent-foreground: #0b4f49;
+  --destructive: #a32d2d;
+  --warning: #7a5200;
+  --warning-soft: #f5e4bf;
+  --success: #1f6b3a;
+  --border: #7d766a;
+  --hairline: #d6cfc4;
+  --input: #7d766a;
+  --ring: #0f6b63;
+  --chart-1: #0f6b63;
+  --chart-2: #7a5200;
+  --chart-3: #5a544c;
+  --chart-4: #3d7a9a;
+  --chart-5: #a32d2d;
+  --radius: 0.75rem;
+  --sidebar: #f3efe9;
+  --sidebar-foreground: #23201c;
+  --sidebar-primary: #0f6b63;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0ebe8;
+  --sidebar-accent-foreground: #0b4f49;
+  --sidebar-border: #d6cfc4;
+  --sidebar-ring: #0f6b63;
+  --neu-dark: rgb(139 124 100 / 0.38);
+  --neu-light: rgb(255 255 255 / 0.9);
+}
+
+.dark {
+  --background: #1f1d1a;
+  --surface: #292622;
+  --foreground: #ece6dc;
+  --muted-foreground: #b3aba0;
+  --card: #292622;
+  --card-foreground: #ece6dc;
+  --popover: #292622;
+  --popover-foreground: #ece6dc;
+  --primary: #4fb5a8;
+  --primary-foreground: #0d1f1d;
+  --secondary: #33302b;
+  --secondary-foreground: #ece6dc;
+  --muted: #33302b;
+  --accent: #28403c;
+  --accent-foreground: #bfe8e2;
+  --destructive: #f08a8a;
+  --warning: #f0b849;
+  --warning-soft: #3b2f14;
+  --success: #6fcf8f;
+  --border: #878074;
+  --hairline: #3a362f;
+  --input: #878074;
+  --ring: #4fb5a8;
+  --chart-1: #4fb5a8;
+  --chart-2: #f0b849;
+  --chart-3: #b3aba0;
+  --chart-4: #7fb4d4;
+  --chart-5: #f08a8a;
+  --sidebar: #292622;
+  --sidebar-foreground: #ece6dc;
+  --sidebar-primary: #4fb5a8;
+  --sidebar-primary-foreground: #0d1f1d;
+  --sidebar-accent: #28403c;
+  --sidebar-accent-foreground: #bfe8e2;
+  --sidebar-border: #3a362f;
+  --sidebar-ring: #4fb5a8;
+  --neu-dark: rgb(0 0 0 / 0.55);
+  --neu-light: rgb(255 255 255 / 0.05);
+}
+
+@utility neu-raised {
+  box-shadow: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light);
+}
+@utility neu-raised-sm {
+  box-shadow: 3px 3px 7px var(--neu-dark), -3px -3px 7px var(--neu-light);
+}
+@utility neu-inset {
+  box-shadow: inset 3px 3px 7px var(--neu-dark), inset -3px -3px 7px var(--neu-light);
+}
+
+@layer base {
+  * {
+    @apply border-hairline outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  html {
+    @apply font-sans;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
