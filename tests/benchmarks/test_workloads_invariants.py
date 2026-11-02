@@ -159,3 +159,12 @@ def test_aggregate_failure_and_timeout_rates() -> None:
     assert (m.valid_rate, m.invalid_json_rate, m.schema_mismatch_rate) == (0.25, 0.25, 0.25)
     assert m.failure_rate == 0.25 and m.timeout_rate == 0.25
     assert m.valid_trials_per_min == 1.0
+
+
+def test_responsiveness_catches_a_model_that_never_buys() -> None:
+    never = [_sample("price_sweep", _d("pass"), persona="p02", price=50) for _ in range(4)]
+    d = {x.name: x for x in score_consistency(never)}
+    assert d["affluent_responsiveness"].passed is False
+    sometimes = [_sample("price_sweep", _d("buy_now"), persona="p02", price=50), *never]
+    d = {x.name: x for x in score_consistency(sometimes)}
+    assert d["affluent_responsiveness"].passed is True

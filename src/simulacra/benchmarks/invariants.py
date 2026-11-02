@@ -12,11 +12,13 @@ from typing import Literal
 from pydantic import BaseModel
 
 from simulacra.benchmarks.metrics import Sample
+from simulacra.benchmarks.personas import AFFLUENT_IDS
 from simulacra.benchmarks.schemas import OwnershipCheck, PurchaseDecision
 
 # Placeholder tolerances: documented, adjustable, to be revisited after Phase 4 baselines.
 PRICE_MONOTONIC_TOLERANCE = 0.25
 PARAPHRASE_MAX_SPREAD = 0.34
+LOWEST_PRICE = 50
 
 
 class Diagnostic(BaseModel):
@@ -96,6 +98,31 @@ def _price_monotonic(samples: list[Sample]) -> Diagnostic:
     )
 
 
+def _responsiveness(samples: list[Sample]) -> Diagnostic:
+    """Guards the other invariants against a degenerate always-refuse model.
+
+    An affluent persona offered the cheapest price must be able to answer buy_now at least
+    once; a model that never buys would otherwise pass every budget check trivially.
+    """
+    items = [
+        (s, d)
+        for s, d in _decisions(samples, "price_sweep")
+        if s.extra.get("persona") in AFFLUENT_IDS and s.extra.get("price") == LOWEST_PRICE
+    ]
+    rate = _buy_rate(items)
+    return Diagnostic(
+        name="affluent_responsiveness",
+        kind="invariant",
+        value=None if rate is None else float(rate > 0),
+        n_valid=len(items),
+        n_total=_total(samples, "price_sweep"),
+        threshold=1.0,
+        passed=None if rate is None else rate > 0,
+        detail="an affluent persona at the lowest price chooses buy_now at least once "
+        "(rules out a model that refuses everything)",
+    )
+
+
 def _paraphrase(samples: list[Sample]) -> Diagnostic:
     by_persona: dict[str, dict[str, list[tuple[Sample, PurchaseDecision]]]] = defaultdict(
         lambda: defaultdict(list)
@@ -167,6 +194,7 @@ def score_consistency(samples: list[Sample]) -> list[Diagnostic]:
         ),
         _price_monotonic(samples),
         _paraphrase(samples),
+        _responsiveness(samples),
         _constraint(
             samples,
             "instruction_conflict",
