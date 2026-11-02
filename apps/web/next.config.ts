@@ -7,6 +7,7 @@ const isDev = process.env.NODE_ENV === "development";
 // In dev, proxy /api to the API so the browser sees one origin either way.
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   images: { unoptimized: true },
   turbopack: {
     rules: {
