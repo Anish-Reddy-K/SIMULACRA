@@ -8,6 +8,11 @@ const isDev = process.env.NODE_ENV === "development";
 const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
+  turbopack: {
+    rules: {
+      "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" },
+    },
+  },
   ...(isDev && {
     async rewrites() {
       return [{ source: "/api/:path*", destination: `${API_ORIGIN}/api/:path*` }];
