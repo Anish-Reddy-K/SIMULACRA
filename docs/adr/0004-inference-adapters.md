@@ -1,6 +1,6 @@
 # ADR-0004: Inference adapters
 
-**Status:** Proposed (Phase 0). Facts below are from vendor docs/secondary sources and **must be verified on the M4 in Phase 3**.
+**Status:** Accepted (Phase 3). The research table below is the Phase 0 snapshot from secondary sources; measured/verified facts are in `docs/runtimes.md`. Amendments from Phase 3: the OpenAI-compatible adapter has a `constrained=False` prompted mode (mlx-lm ignores `response_format`), and vllm-metal remains unverified.
 
 ## Findings (research, Nov 2026)
 | Runtime | Relevant facts | Concern |

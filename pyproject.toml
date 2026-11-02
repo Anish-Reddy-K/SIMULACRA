@@ -51,5 +51,6 @@ plugins = ["pydantic.mypy"]
 files = ["src", "tests"]
 
 [tool.pytest.ini_options]
+markers = ["real: needs real local runtimes"]
 testpaths = ["tests"]
 addopts = "-ra"

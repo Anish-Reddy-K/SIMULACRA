@@ -158,3 +158,17 @@ async def test_generic_openai_server_has_unknown_capabilities() -> None:
     info = await OpenAICompatBackend(client=client(httpx.MockTransport(handler))).info()
     assert info.kind == RuntimeKind.OPENAI_COMPAT
     assert info.capabilities.json_schema is None  # never claimed without a probe
+
+
+async def test_prompted_mode_describes_schema_instead_of_constraining() -> None:
+    seen: dict[str, object] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.update(json.loads(request.content))
+        return httpx.Response(200, content=sse({"choices": [{"delta": {"content": "{}"}}]}))
+
+    backend = OpenAICompatBackend(client=client(httpx.MockTransport(handler)), constrained=False)
+    await backend.generate(REQ)
+    assert "response_format" not in seen
+    last = seen["messages"][-1]  # type: ignore[index]
+    assert last["role"] == "system" and '"type": "object"' in last["content"]

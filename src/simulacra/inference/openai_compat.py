@@ -28,7 +28,11 @@ class OpenAICompatBackend:
         base_url: str = "http://127.0.0.1:8080",
         client: httpx.AsyncClient | None = None,
         api_key: str | None = None,
+        constrained: bool = True,
     ) -> None:
+        # constrained=False is for servers that ignore response_format (e.g. mlx_lm.server):
+        # the schema is described in the prompt instead. Output is still strictly validated.
+        self.constrained = constrained
         self.base_url = base_url.rstrip("/")
         headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
         self._client = client or httpx.AsyncClient(base_url=self.base_url, headers=headers)
@@ -76,9 +80,18 @@ class OpenAICompatBackend:
         return [ModelInfo(name=m["id"]) for m in resp.json().get("data", [])]
 
     async def generate(self, request: GenerationRequest) -> GenerationResult:
+        messages = [m.model_dump() for m in request.messages]
+        if request.json_schema is not None and not self.constrained:
+            messages.append(
+                {
+                    "role": "system",
+                    "content": "Respond with a single JSON object, no other text, matching this "
+                    f"JSON schema: {json.dumps(request.json_schema)}",
+                }
+            )
         body: dict[str, Any] = {
             "model": request.model,
-            "messages": [m.model_dump() for m in request.messages],
+            "messages": messages,
             "stream": True,
             "stream_options": {"include_usage": True},
             "max_tokens": request.max_tokens,
@@ -86,7 +99,7 @@ class OpenAICompatBackend:
         }
         if request.seed is not None:
             body["seed"] = request.seed
-        if request.json_schema is not None:
+        if request.json_schema is not None and self.constrained:
             body["response_format"] = {
                 "type": "json_schema",
                 "json_schema": {"name": "response", "strict": True, "schema": request.json_schema},
