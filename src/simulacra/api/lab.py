@@ -1,6 +1,7 @@
 import asyncio
 import json
 from collections.abc import AsyncIterator
+from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
@@ -21,8 +22,8 @@ from simulacra.benchmarks.recommend import (
 )
 from simulacra.benchmarks.runner import Stage
 from simulacra.benchmarks.service import TargetSpec, execute_run, start_hardware_snapshot
-from simulacra.inference.discovery import Discovery, discover
-from simulacra.inference.types import ModelInfo
+from simulacra.inference.discovery import Discovery, RuntimeReport, discover
+from simulacra.inference.types import ModelInfo, RuntimeInfo, RuntimeKind
 from simulacra.persistence.models import (
     BenchmarkEvent,
     BenchmarkResult,
@@ -43,10 +44,24 @@ def hardware(request: Request) -> HardwareProfile:
     return detect_hardware(request.app.state.settings.data_dir)
 
 
+def _with_mock(found: Discovery, request: Request) -> Discovery:
+    """Tests and demos only: expose the synthetic backend when it is explicitly enabled."""
+    if request.app.state.settings.enable_mock_backend:
+        found.runtimes.append(
+            RuntimeReport(
+                base_url="mock://",
+                running=True,
+                info=RuntimeInfo(kind=RuntimeKind.MOCK, base_url="mock://", version="synthetic"),
+                models=[ModelInfo(name="mock-model")],
+            )
+        )
+    return found
+
+
 @router.get("/runtimes")
-async def runtimes() -> Discovery:
+async def runtimes(request: Request) -> Discovery:
     """Installed runtime binaries and the servers answering right now."""
-    return await discover()
+    return _with_mock(await discover(), request)
 
 
 class RuntimeModel(ModelInfo):
@@ -55,8 +70,8 @@ class RuntimeModel(ModelInfo):
 
 
 @router.get("/models")
-async def models() -> list[RuntimeModel]:
-    found = await discover()
+async def models(request: Request) -> list[RuntimeModel]:
+    found = _with_mock(await discover(), request)
     return [
         RuntimeModel(**m.model_dump(), runtime_base_url=r.base_url, runtime_kind=r.info.kind.value)
         for r in found.runtimes
@@ -84,13 +99,18 @@ class RunSummary(BaseModel):
     targets: list[dict[str, Any]]
 
 
+def _iso(dt: datetime) -> str:
+    """SQLite returns naive datetimes; they are stored as UTC, so say so explicitly."""
+    return (dt if dt.tzinfo else dt.replace(tzinfo=UTC)).isoformat()
+
+
 def _summary(run: BenchmarkRun) -> RunSummary:
     return RunSummary(
         id=run.id,
         stage=run.stage,
         status=run.status,
-        created_at=run.created_at.isoformat(),
-        finished_at=run.finished_at.isoformat() if run.finished_at else None,
+        created_at=_iso(run.created_at),
+        finished_at=_iso(run.finished_at) if run.finished_at else None,
         op=run.op,
         op_done=run.op_done,
         op_total=run.op_total,
