@@ -13,6 +13,7 @@ dependencies = [
   "pydantic>=2.7",
   "pydantic-settings>=2.3",
   "platformdirs>=4.2",
+  "httpx>=0.28.1",
 ]
 
 [project.scripts]

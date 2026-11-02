@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from simulacra import __version__
-from simulacra.api import health
+from simulacra.api import health, lab
 from simulacra.config import Settings, get_settings
 from simulacra.persistence import migrate
 from simulacra.persistence.db import make_engine
@@ -31,6 +31,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="Simulacra", version=__version__, lifespan=lifespan)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
     app.include_router(health.router, prefix="/api/v1")
+    app.include_router(lab.router, prefix="/api/v1")
 
     # Registered last so it never shadows API routes. Absent until `npm run build` has run.
     if settings.web_dir.is_dir():

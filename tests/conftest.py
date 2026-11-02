@@ -20,3 +20,8 @@ def settings(tmp_path: Path) -> Settings:
 def client(settings: Settings) -> Iterator[TestClient]:
     with TestClient(create_app(settings), base_url="http://localhost") as c:
         yield c
+
+
+@pytest.fixture
+def anyio_backend() -> str:
+    return "asyncio"
