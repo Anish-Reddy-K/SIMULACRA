@@ -12,6 +12,15 @@ const ATTRIBUTES = ["age_band", "income_band", "region", "gender", "education", 
 const INTENTS = ["definitely", "probably", "unsure", "probably_not", "definitely_not"];
 const OBJECTIONS = ["price", "trust", "need", "complexity", "privacy", "already_have_alternative", "other"];
 
+function Field({ id, label, children }: { id: string; label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1 text-sm">
+      <label htmlFor={id}>{label}</label>
+      {children}
+    </div>
+  );
+}
+
 function EvidenceLinks({ ids, onOpen }: { ids: number[]; onOpen?: (id: number) => void }) {
   return (
     <span className="flex flex-wrap gap-1">
@@ -122,40 +131,28 @@ export function QueryPanel({ runId, treatments, onOpenTrial }: { runId: number; 
         Structured questions are answered by computing over the stored trials. Nothing is sent to a model.
       </p>
       <div className="grid gap-3 md:grid-cols-3">
-        <label className="flex flex-col gap-1 text-sm">What to measure
-          <select className={select} value={metric} onChange={(e) => setMetric(e.target.value)}>
+        <Field id="q-what-to-measure" label="What to measure"><select id="q-what-to-measure" className={select} value={metric} onChange={(e) => setMetric(e.target.value)}>
             <option value="top2_share">Share who would probably or definitely buy</option>
             <option value="appeal_mean">Average appeal (1-5)</option>
             <option value="objection_share">Share giving a specific objection</option>
             <option value="intent_share">Share with a specific intent</option>
             <option value="count">Number of responses</option>
-          </select>
-        </label>
+          </select></Field>
         {metric === "objection_share" && (
-          <label className="flex flex-col gap-1 text-sm">Objection
-            <select className={select} value={code} onChange={(e) => setCode(e.target.value)}>{OBJECTIONS.map((o) => (<option key={o} value={o}>{codeLabel(o)}</option>))}</select>
-          </label>
+          <Field id="q-objection" label="Objection"><select id="q-objection" className={select} value={code} onChange={(e) => setCode(e.target.value)}>{OBJECTIONS.map((o) => (<option key={o} value={o}>{codeLabel(o)}</option>))}</select></Field>
         )}
         {metric === "intent_share" && (
-          <label className="flex flex-col gap-1 text-sm">Intent
-            <select className={select} value={INTENTS.includes(code) ? code : "probably"} onChange={(e) => setCode(e.target.value)}>{INTENTS.map((o) => (<option key={o} value={o}>{codeLabel(o)}</option>))}</select>
-          </label>
+          <Field id="q-intent" label="Intent"><select id="q-intent" className={select} value={INTENTS.includes(code) ? code : "probably"} onChange={(e) => setCode(e.target.value)}>{INTENTS.map((o) => (<option key={o} value={o}>{codeLabel(o)}</option>))}</select></Field>
         )}
-        <label className="flex flex-col gap-1 text-sm">Break down by
-          <select className={select} value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
+        <Field id="q-break-down-by" label="Break down by"><select id="q-break-down-by" className={select} value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
             <option value="">Everyone</option>{ATTRIBUTES.map((a) => (<option key={a} value={a}>{codeLabel(a)}</option>))}
-          </select>
-        </label>
-        <label className="flex flex-col gap-1 text-sm">Treatment
-          <select className={select} value={treatment} onChange={(e) => setTreatment(e.target.value)}>
+          </select></Field>
+        <Field id="q-treatment" label="Treatment"><select id="q-treatment" className={select} value={treatment} onChange={(e) => setTreatment(e.target.value)}>
             <option value="">All</option>{treatments.map((t) => (<option key={t.idx} value={t.idx}>{t.label}</option>))}
-          </select>
-        </label>
-        <label className="flex flex-col gap-1 text-sm">Only people where
-          <select className={select} value={filterAttr} onChange={(e) => setFilterAttr(e.target.value)}>
+          </select></Field>
+        <Field id="q-only-people-where" label="Only people where"><select id="q-only-people-where" className={select} value={filterAttr} onChange={(e) => setFilterAttr(e.target.value)}>
             <option value="">(no filter)</option>{ATTRIBUTES.map((a) => (<option key={a} value={a}>{codeLabel(a)}</option>))}
-          </select>
-        </label>
+          </select></Field>
         {filterAttr && (
           <label className="flex flex-col gap-1 text-sm">equals
             <input className={select} value={filterValue} onChange={(e) => setFilterValue(e.target.value)} placeholder="e.g. west or 30-44" />
