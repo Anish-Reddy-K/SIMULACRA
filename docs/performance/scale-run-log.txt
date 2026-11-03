@@ -1,0 +1,248 @@
+=== START Mon  2 Nov 2026 20:27:26 EST
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-anishreddy-Code-SIMULACRA/94f6ad2d-d4d2-49d1-a093-c8dfaa964624/scratchpad/scale/mon.py", line 2, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+population 6 ready=ready created in 0.0s
+run 22 planned 100
+  [0s] queued 0/100 err=0 rate=None eta_min=None
+  [10s] running 0/100 err=0 rate=None eta_min=None
+  [60s] running 72/100 err=0 rate=72.5 eta_min=0.4
+  [70s] running 96/100 err=0 rate=82.8 eta_min=0.0
+  [80s] completed 100/100 err=0 rate=None eta_min=None
+SUMMARY {"size": 100, "run": 22, "state": "completed", "wall_s": 80.6, "perf": {"trials": 100, "valid": 100, "valid_per_min": 86.24702001284489, "completion_tokens_per_s": 76.84609483144479, "prompt_tokens_mean": 306.68, "completion_tokens_mean": 53.46, "latency_ms_median": 7828.695083037019, "latency_ms_p95": 11551.887250039726, "trials_with_retry_attempt": 0, "failure_rate": 0.0, "invalid_rate": 0.0, "batch_retries": 0, "database_mb": 6.578125}, "kill": null}
+results computed in 0.01s; totals {'trials': 100, 'valid': 100, 'by_status': {'valid': 100}, 'invalid_rate': 0.0, 'planned': 100}
+comparison endpoint 0.00s
+report created in 0.01s id 3
+population 7 ready=ready created in 0.6s
+run 23 planned 1000
+  [0s] queued 0/1000 err=0 rate=None eta_min=None
+  [10s] running 0/1000 err=0 rate=None eta_min=None
+  [60s] running 72/1000 err=0 rate=72.0 eta_min=12.9
+  [70s] running 96/1000 err=0 rate=82.2 eta_min=11.0
+  [120s] running 168/1000 err=0 rate=84.0 eta_min=9.9
+  [130s] running 168/1000 err=0 rate=84.0 eta_min=9.9
+  [180s] running 240/1000 err=0 rate=84.0 eta_min=9.0
+  [190s] running 264/1000 err=0 rate=84.0 eta_min=8.8
+  [240s] running 336/1000 err=0 rate=84.0 eta_min=7.9
+  [250s] running 336/1000 err=0 rate=84.0 eta_min=7.9
+  [300s] running 432/1000 err=0 rate=96.0 eta_min=5.9
+  [310s] running 432/1000 err=0 rate=84.0 eta_min=6.8
+  !!! kill -9 worker pid 57478 at 504 units
+  [360s] running 504/1000 err=0 rate=84.0 eta_min=5.9
+  [370s] running 504/1000 err=0 rate=84.0 eta_min=5.9
+  recovered: progress resumed 40s after the kill (lease 30s)
+  [420s] running 600/1000 err=0 rate=84.0 eta_min=4.8
+  [430s] running 600/1000 err=0 rate=84.0 eta_min=4.8
+  [480s] running 672/1000 err=0 rate=84.0 eta_min=3.9
+  [490s] running 696/1000 err=0 rate=96.0 eta_min=3.2
+  [540s] running 768/1000 err=0 rate=84.0 eta_min=2.8
+  [550s] running 792/1000 err=0 rate=96.0 eta_min=2.2
+  [601s] running 864/1000 err=0 rate=96.0 eta_min=1.4
+  [611s] running 864/1000 err=0 rate=84.0 eta_min=1.6
+  [661s] running 936/1000 err=0 rate=84.0 eta_min=0.8
+  [671s] running 960/1000 err=0 rate=84.0 eta_min=0.5
+  [701s] completed 1000/1000 err=0 rate=None eta_min=None
+SUMMARY {"size": 1000, "run": 23, "state": "completed", "wall_s": 701.1, "perf": {"trials": 1000, "valid": 1000, "valid_per_min": 86.48059160852449, "completion_tokens_per_s": 77.36986128256643, "prompt_tokens_mean": 306.448, "completion_tokens_mean": 53.679, "latency_ms_median": 7936.7102910764515, "latency_ms_p95": 11790.893584024161, "trials_with_retry_attempt": 0, "failure_rate": 0.0, "invalid_rate": 0.0, "batch_retries": 1, "database_mb": 9.7265625}, "kill": {"at_units": 504, "recovery_s": 40}}
+results computed in 0.02s; totals {'trials': 1000, 'valid': 1000, 'by_status': {'valid': 1000}, 'invalid_rate': 0.0, 'planned': 1000}
+comparison endpoint 0.01s
+report created in 0.07s id 4
+population 8 ready=ready created in 1.3s
+run 24 planned 10000
+  [0s] queued 0/10000 err=0 rate=None eta_min=None
+  [10s] running 0/10000 err=0 rate=None eta_min=None
+  [60s] running 72/10000 err=0 rate=72.5 eta_min=136.9
+  [70s] running 96/10000 err=0 rate=82.8 eta_min=119.6
+  [120s] running 168/10000 err=0 rate=84.3 eta_min=116.7
+  [130s] running 168/10000 err=0 rate=84.0 eta_min=117.0
+  [180s] running 240/10000 err=0 rate=84.0 eta_min=116.2
+  [190s] running 264/10000 err=0 rate=84.0 eta_min=115.9
+  [240s] running 336/10000 err=0 rate=84.0 eta_min=115.0
+  [250s] running 360/10000 err=0 rate=96.0 eta_min=100.4
+  [300s] running 432/10000 err=0 rate=96.0 eta_min=99.7
+  [310s] running 432/10000 err=0 rate=84.0 eta_min=113.9
+  [360s] running 504/10000 err=0 rate=84.0 eta_min=113.0
+  [370s] running 528/10000 err=0 rate=84.0 eta_min=112.8
+  [420s] running 600/10000 err=0 rate=84.0 eta_min=111.9
+  [430s] running 624/10000 err=0 rate=96.0 eta_min=97.7
+  [480s] running 696/10000 err=0 rate=96.0 eta_min=96.9
+  [490s] running 696/10000 err=0 rate=84.0 eta_min=110.8
+  [540s] running 768/10000 err=0 rate=84.0 eta_min=109.9
+  [550s] running 792/10000 err=0 rate=84.0 eta_min=109.6
+  [601s] running 864/10000 err=0 rate=84.0 eta_min=108.8
+  [611s] running 888/10000 err=0 rate=96.0 eta_min=94.9
+  [661s] running 960/10000 err=0 rate=96.0 eta_min=94.2
+  [671s] running 960/10000 err=0 rate=84.0 eta_min=107.6
+  [721s] running 1032/10000 err=0 rate=84.0 eta_min=106.8
+  [731s] running 1056/10000 err=0 rate=84.0 eta_min=106.5
+  [781s] running 1128/10000 err=0 rate=84.0 eta_min=105.6
+  [791s] running 1128/10000 err=0 rate=84.0 eta_min=105.6
+  [841s] running 1200/10000 err=0 rate=84.0 eta_min=104.8
+  [851s] running 1224/10000 err=0 rate=84.0 eta_min=104.5
+  [901s] running 1296/10000 err=0 rate=84.0 eta_min=103.6
+  [911s] running 1320/10000 err=0 rate=96.0 eta_min=90.4
+  [961s] running 1392/10000 err=0 rate=84.0 eta_min=102.5
+  [971s] running 1392/10000 err=0 rate=84.0 eta_min=102.5
+  [1021s] running 1488/10000 err=0 rate=96.0 eta_min=88.7
+  [1031s] running 1488/10000 err=0 rate=84.0 eta_min=101.3
+  [1081s] running 1560/10000 err=0 rate=84.0 eta_min=100.5
+  [1091s] running 1584/10000 err=0 rate=96.0 eta_min=87.7
+  [1141s] running 1656/10000 err=0 rate=84.0 eta_min=99.3
+  [1151s] running 1656/10000 err=0 rate=84.0 eta_min=99.3
+  [1201s] running 1728/10000 err=0 rate=84.0 eta_min=98.5
+  [1211s] running 1752/10000 err=0 rate=84.0 eta_min=98.2
+  [1261s] running 1824/10000 err=0 rate=84.0 eta_min=97.3
+  [1271s] running 1848/10000 err=0 rate=96.0 eta_min=84.9
+  [1321s] running 1920/10000 err=0 rate=96.0 eta_min=84.2
+  [1331s] running 1920/10000 err=0 rate=84.0 eta_min=96.2
+  [1381s] running 1992/10000 err=0 rate=84.0 eta_min=95.3
+  [1391s] running 2016/10000 err=0 rate=84.0 eta_min=95.0
+  [1441s] running 2088/10000 err=0 rate=84.0 eta_min=94.2
+  [1451s] running 2088/10000 err=0 rate=84.0 eta_min=94.2
+  [1502s] running 2160/10000 err=0 rate=84.0 eta_min=93.3
+  [1512s] running 2184/10000 err=0 rate=84.0 eta_min=93.0
+  [1562s] running 2256/10000 err=0 rate=84.0 eta_min=92.2
+  [1572s] running 2256/10000 err=0 rate=84.0 eta_min=92.2
+  [1622s] running 2328/10000 err=0 rate=84.0 eta_min=91.3
+  [1632s] running 2352/10000 err=0 rate=84.0 eta_min=91.0
+  [1682s] running 2424/10000 err=0 rate=84.0 eta_min=90.2
+  [1692s] running 2424/10000 err=0 rate=84.0 eta_min=90.2
+  [1742s] running 2496/10000 err=0 rate=84.0 eta_min=89.3
+  [1752s] running 2520/10000 err=0 rate=84.0 eta_min=89.0
+  [1802s] running 2592/10000 err=0 rate=84.0 eta_min=88.2
+  [1812s] running 2592/10000 err=0 rate=84.0 eta_min=88.2
+  [1862s] running 2664/10000 err=0 rate=84.0 eta_min=87.3
+  [1872s] running 2688/10000 err=0 rate=84.0 eta_min=87.0
+  [1922s] running 2760/10000 err=0 rate=84.0 eta_min=86.2
+  [1932s] running 2784/10000 err=0 rate=96.0 eta_min=75.2
+  [1982s] running 2856/10000 err=0 rate=96.0 eta_min=74.4
+  [1992s] running 2856/10000 err=0 rate=84.0 eta_min=85.0
+  [2042s] running 2928/10000 err=0 rate=84.0 eta_min=84.2
+  [2052s] running 2952/10000 err=0 rate=84.0 eta_min=83.9
+  !!! kill -9 worker pid 59158 at 3000 units
+  [2102s] running 3000/10000 err=0 rate=72.0 eta_min=97.2
+  [2113s] running 3024/10000 err=0 rate=84.0 eta_min=83.0
+  recovered: progress resumed 40s after the kill (lease 30s)
+  [2163s] running 3096/10000 err=0 rate=84.0 eta_min=82.2
+  [2173s] running 3120/10000 err=0 rate=84.0 eta_min=81.9
+  [2223s] running 3192/10000 err=0 rate=96.0 eta_min=70.9
+  [2233s] running 3192/10000 err=0 rate=84.0 eta_min=81.0
+  [2283s] running 3264/10000 err=0 rate=84.0 eta_min=80.2
+  [2293s] running 3288/10000 err=0 rate=84.0 eta_min=79.9
+  [2343s] running 3360/10000 err=0 rate=84.0 eta_min=79.0
+  [2353s] running 3384/10000 err=0 rate=96.0 eta_min=68.9
+  [2403s] running 3456/10000 err=0 rate=96.0 eta_min=68.2
+  [2413s] running 3456/10000 err=0 rate=84.0 eta_min=77.9
+  [2463s] running 3528/10000 err=0 rate=84.0 eta_min=77.0
+  [2473s] running 3552/10000 err=0 rate=84.0 eta_min=76.8
+  [2523s] running 3624/10000 err=0 rate=84.0 eta_min=75.9
+  [2533s] running 3624/10000 err=0 rate=84.0 eta_min=75.9
+  [2583s] running 3696/10000 err=0 rate=84.0 eta_min=75.0
+  [2593s] running 3720/10000 err=0 rate=84.0 eta_min=74.8
+  [2643s] running 3792/10000 err=0 rate=84.0 eta_min=73.9
+  [2653s] running 3816/10000 err=0 rate=96.0 eta_min=64.4
+  [2703s] running 3888/10000 err=0 rate=96.0 eta_min=63.7
+  [2713s] running 3888/10000 err=0 rate=84.0 eta_min=72.8
+  [2763s] running 3960/10000 err=0 rate=84.0 eta_min=71.9
+  [2773s] running 3984/10000 err=0 rate=84.0 eta_min=71.6
+  [2823s] running 4056/10000 err=0 rate=84.0 eta_min=70.8
+  [2833s] running 4056/10000 err=0 rate=84.0 eta_min=70.8
+  [2883s] running 4152/10000 err=0 rate=96.0 eta_min=60.9
+  [2893s] running 4152/10000 err=0 rate=84.0 eta_min=69.6
+  [2944s] running 4224/10000 err=0 rate=84.0 eta_min=68.8
+  [2954s] running 4248/10000 err=0 rate=96.0 eta_min=59.9
+  [3004s] running 4320/10000 err=0 rate=84.0 eta_min=67.6
+  [3014s] running 4320/10000 err=0 rate=84.0 eta_min=67.6
+  [3064s] running 4392/10000 err=0 rate=84.0 eta_min=66.8
+  [3074s] running 4416/10000 err=0 rate=84.0 eta_min=66.5
+  [3124s] running 4488/10000 err=0 rate=84.0 eta_min=65.6
+  [3134s] running 4512/10000 err=0 rate=96.0 eta_min=57.2
+  [3184s] running 4584/10000 err=0 rate=96.0 eta_min=56.4
+  [3194s] running 4584/10000 err=0 rate=84.0 eta_min=64.5
+  [3244s] running 4656/10000 err=0 rate=84.0 eta_min=63.6
+  [3254s] running 4680/10000 err=0 rate=84.0 eta_min=63.3
+  [3304s] running 4752/10000 err=0 rate=84.0 eta_min=62.5
+  [3314s] running 4776/10000 err=0 rate=96.0 eta_min=54.4
+  [3364s] running 4848/10000 err=0 rate=96.0 eta_min=53.7
+  [3374s] running 4848/10000 err=0 rate=84.0 eta_min=61.3
+  [3424s] running 4920/10000 err=0 rate=84.0 eta_min=60.5
+  [3434s] running 4944/10000 err=0 rate=84.0 eta_min=60.2
+  [3484s] running 5016/10000 err=0 rate=84.0 eta_min=59.3
+  [3494s] running 5016/10000 err=0 rate=84.0 eta_min=59.3
+  [3545s] running 5088/10000 err=0 rate=84.0 eta_min=58.5
+  [3605s] running 5184/10000 err=0 rate=84.0 eta_min=57.3
+  [3665s] running 5256/10000 err=0 rate=84.0 eta_min=56.5
+  [3725s] running 5352/10000 err=0 rate=84.0 eta_min=55.3
+  [3785s] running 5448/10000 err=0 rate=96.0 eta_min=47.4
+  [3845s] running 5520/10000 err=0 rate=84.0 eta_min=53.3
+  [3905s] running 5616/10000 err=0 rate=84.0 eta_min=52.2
+  [3965s] running 5688/10000 err=0 rate=84.0 eta_min=51.3
+  [4025s] running 5784/10000 err=0 rate=84.0 eta_min=50.2
+  [4085s] running 5856/10000 err=0 rate=84.0 eta_min=49.3
+  [4145s] running 5952/10000 err=0 rate=84.0 eta_min=48.2
+  [4206s] running 6024/10000 err=0 rate=84.0 eta_min=47.3
+  [4266s] running 6120/10000 err=0 rate=84.0 eta_min=46.2
+  [4326s] running 6192/10000 err=0 rate=84.0 eta_min=45.3
+  [4386s] running 6288/10000 err=0 rate=84.0 eta_min=44.2
+  [4446s] running 6384/10000 err=0 rate=96.0 eta_min=37.7
+  [4506s] running 6456/10000 err=0 rate=84.0 eta_min=42.2
+  [4566s] running 6552/10000 err=0 rate=84.0 eta_min=41.0
+  [4626s] running 6624/10000 err=0 rate=84.0 eta_min=40.2
+  [4686s] running 6720/10000 err=0 rate=84.0 eta_min=39.0
+  [4746s] running 6816/10000 err=0 rate=96.0 eta_min=33.2
+  [4807s] running 6888/10000 err=0 rate=84.0 eta_min=37.0
+  [4867s] running 6984/10000 err=0 rate=84.0 eta_min=35.9
+  [4927s] running 7056/10000 err=0 rate=84.0 eta_min=35.0
+  [4987s] running 7152/10000 err=0 rate=84.0 eta_min=33.9
+  [5047s] running 7224/10000 err=0 rate=84.0 eta_min=33.0
+  [5107s] running 7320/10000 err=0 rate=84.0 eta_min=31.9
+  [5167s] running 7392/10000 err=0 rate=84.0 eta_min=31.0
+  [5227s] running 7488/10000 err=0 rate=84.0 eta_min=29.9
+  [5287s] running 7560/10000 err=0 rate=84.0 eta_min=29.0
+  [5347s] running 7656/10000 err=0 rate=84.0 eta_min=27.9
+  [5408s] running 7728/10000 err=0 rate=84.0 eta_min=27.0
+  [5468s] running 7824/10000 err=0 rate=84.0 eta_min=25.9
+  [5528s] running 7920/10000 err=0 rate=96.0 eta_min=21.7
+  [5588s] running 7992/10000 err=0 rate=84.0 eta_min=23.9
+  [5648s] running 8088/10000 err=0 rate=84.0 eta_min=22.8
+  [5708s] running 8160/10000 err=0 rate=84.0 eta_min=21.9
+  [5768s] running 8256/10000 err=0 rate=84.0 eta_min=20.8
+  [5828s] running 8352/10000 err=0 rate=96.0 eta_min=17.2
+  [5888s] running 8424/10000 err=0 rate=84.0 eta_min=18.8
+  [5948s] running 8520/10000 err=0 rate=84.0 eta_min=17.6
+  [6009s] running 8592/10000 err=0 rate=84.0 eta_min=16.8
+  [6069s] running 8688/10000 err=0 rate=84.0 eta_min=15.6
+  [6129s] running 8784/10000 err=0 rate=96.0 eta_min=12.7
+  [6189s] running 8856/10000 err=0 rate=84.0 eta_min=13.6
+  [6249s] running 8952/10000 err=0 rate=84.0 eta_min=12.5
+  [6300s] running 9024/10000 err=0 rate=84.0 eta_min=11.6
+  [6310s] running 9024/10000 err=0 rate=84.0 eta_min=11.6
+  [6360s] running 9096/10000 err=0 rate=84.0 eta_min=10.8
+  [6370s] running 9120/10000 err=0 rate=84.0 eta_min=10.5
+  [6420s] running 9192/10000 err=0 rate=84.0 eta_min=9.6
+  [6430s] running 9192/10000 err=0 rate=84.0 eta_min=9.6
+  [6480s] running 9264/10000 err=0 rate=84.0 eta_min=8.8
+  [6490s] running 9288/10000 err=0 rate=84.0 eta_min=8.5
+  [6540s] running 9360/10000 err=0 rate=84.0 eta_min=7.6
+  [6550s] running 9360/10000 err=0 rate=84.0 eta_min=7.6
+  [6600s] running 9432/10000 err=0 rate=84.0 eta_min=6.8
+  [6610s] running 9456/10000 err=0 rate=84.0 eta_min=6.5
+  [6660s] running 9528/10000 err=0 rate=84.0 eta_min=5.6
+  [6670s] running 9552/10000 err=0 rate=96.0 eta_min=4.7
+  [6720s] running 9624/10000 err=0 rate=96.0 eta_min=3.9
+  [6730s] running 9624/10000 err=0 rate=84.0 eta_min=4.5
+  [6780s] running 9696/10000 err=0 rate=84.0 eta_min=3.6
+  [6790s] running 9720/10000 err=0 rate=84.0 eta_min=3.3
+  [6841s] running 9792/10000 err=0 rate=84.0 eta_min=2.5
+  [6851s] running 9792/10000 err=0 rate=84.0 eta_min=2.5
+  [6901s] running 9864/10000 err=0 rate=84.0 eta_min=1.6
+  [6911s] running 9888/10000 err=0 rate=84.0 eta_min=1.3
+  [6961s] running 9960/10000 err=0 rate=84.0 eta_min=0.5
+  [6971s] running 9960/10000 err=0 rate=84.0 eta_min=0.5
+  [6991s] completed 10000/10000 err=0 rate=None eta_min=None
+SUMMARY {"size": 10000, "run": 24, "state": "completed", "wall_s": 6991.3, "perf": {"trials": 10000, "valid": 10000, "valid_per_min": 85.87277009681551, "completion_tokens_per_s": 76.98050163200678, "prompt_tokens_mean": 306.3442, "completion_tokens_mean": 53.7869, "latency_ms_median": 8035.641874885187, "latency_ms_p95": 11924.923584097996, "trials_with_retry_attempt": 0, "failure_rate": 0.0, "invalid_rate": 0.0, "batch_retries": 1, "database_mb": 37.12109375}, "kill": {"at_units": 3000, "recovery_s": 40}}
+results computed in 0.57s; totals {'trials': 10000, 'valid': 10000, 'by_status': {'valid': 10000}, 'invalid_rate': 0.0, 'planned': 10000}
+comparison endpoint 0.20s
+report created in 0.41s id 5
+=== DONE Mon  2 Nov 2026 22:37:02 EST
+/private/tmp/claude-501/-Users-anishreddy-Code-SIMULACRA/94f6ad2d-d4d2-49d1-a093-c8dfaa964624/scratchpad/scale/all.sh: line 10: kill: (58610) - No such process

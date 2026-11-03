@@ -1,0 +1,478 @@
+{
+ "personas": 100,
+ "model": "qwen2.5-3b",
+ "studies": {
+  "prompt_sensitivity": {
+   "run_id": 25,
+   "comparison": {
+    "run_id": 25,
+    "design": "within",
+    "baseline_idx": 0,
+    "pairs": [
+     {
+      "n_treatment": 100,
+      "n_baseline": 100,
+      "paired": true,
+      "top2_treatment": 0.19,
+      "top2_baseline": 0.22,
+      "diff": -0.03,
+      "discordant": {
+       "treatment_only": 7,
+       "baseline_only": 10
+      },
+      "p": 0.629058837890625,
+      "cohens_h": -0.07435690320130961,
+      "relative_lift": -0.13636363636363635,
+      "appeal": {
+       "diff": 0.12,
+       "t": 2.3167800671444994,
+       "p": 0.022576438069538744
+      },
+      "treatment_idx": 1,
+      "label": "Wording B",
+      "vs": "Wording A",
+      "p_holm": 0.847900390625,
+      "significant": false
+     },
+     {
+      "n_treatment": 100,
+      "n_baseline": 100,
+      "paired": true,
+      "top2_treatment": 0.18,
+      "top2_baseline": 0.22,
+      "diff": -0.04000000000000001,
+      "discordant": {
+       "treatment_only": 5,
+       "baseline_only": 9
+      },
+      "p": 0.4239501953125,
+      "cohens_h": -0.10011246562549381,
+      "relative_lift": -0.18181818181818185,
+      "appeal": {
+       "diff": 0.04,
+       "t": 0.6648039453209387,
+       "p": 0.5077215640714271
+      },
+      "treatment_idx": 2,
+      "label": "Wording C",
+      "vs": "Wording A",
+      "p_holm": 0.847900390625,
+      "significant": false
+     }
+    ],
+    "segments": [],
+    "balance": null,
+    "pricing": null,
+    "notes": [
+     "Differences are differences between simulated responses. A significant result means the model responded differently, not that real people would."
+    ]
+   },
+   "results": [
+    {
+     "idx": 0,
+     "label": "Wording A",
+     "n_trials": 100,
+     "n_valid": 100,
+     "intent": [
+      {
+       "code": "definitely",
+       "n": 6,
+       "share": 0.06
+      },
+      {
+       "code": "probably",
+       "n": 16,
+       "share": 0.16
+      },
+      {
+       "code": "unsure",
+       "n": 10,
+       "share": 0.1
+      },
+      {
+       "code": "probably_not",
+       "n": 66,
+       "share": 0.66
+      },
+      {
+       "code": "definitely_not",
+       "n": 2,
+       "share": 0.02
+      }
+     ],
+     "top2box": {
+      "n": 22,
+      "of": 100,
+      "share": 0.22,
+      "ci_low": 0.15001174503655804,
+      "ci_high": 0.3107053471500031
+     },
+     "bottom2box": {
+      "n": 68,
+      "of": 100,
+      "share": 0.68,
+      "ci_low": 0.5833719774632081,
+      "ci_high": 0.7633098918454312
+     },
+     "appeal": {
+      "mean": 2.51,
+      "sd": 0.6402343321003646,
+      "n": 100
+     },
+     "benefits": [
+      {
+       "code": "convenience",
+       "n": 29,
+       "share": 0.29
+      },
+      {
+       "code": "none",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "saves_money",
+       "n": 41,
+       "share": 0.41
+      },
+      {
+       "code": "saves_time",
+       "n": 29,
+       "share": 0.29
+      }
+     ],
+     "objections": [
+      {
+       "code": "price",
+       "n": 91,
+       "share": 0.91
+      },
+      {
+       "code": "trust",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "need",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "complexity",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "privacy",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "already_have_alternative",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "none",
+       "n": 9,
+       "share": 0.09
+      },
+      {
+       "code": "other",
+       "n": 0,
+       "share": 0.0
+      }
+     ]
+    },
+    {
+     "idx": 1,
+     "label": "Wording B",
+     "n_trials": 100,
+     "n_valid": 100,
+     "intent": [
+      {
+       "code": "definitely",
+       "n": 8,
+       "share": 0.08
+      },
+      {
+       "code": "probably",
+       "n": 11,
+       "share": 0.11
+      },
+      {
+       "code": "unsure",
+       "n": 9,
+       "share": 0.09
+      },
+      {
+       "code": "probably_not",
+       "n": 69,
+       "share": 0.69
+      },
+      {
+       "code": "definitely_not",
+       "n": 3,
+       "share": 0.03
+      }
+     ],
+     "top2box": {
+      "n": 19,
+      "of": 100,
+      "share": 0.19,
+      "ci_low": 0.1251465399270426,
+      "ci_high": 0.27779024070807856
+     },
+     "bottom2box": {
+      "n": 72,
+      "of": 100,
+      "share": 0.72,
+      "ci_low": 0.6251178763865427,
+      "ci_high": 0.7986044083240164
+     },
+     "appeal": {
+      "mean": 2.63,
+      "sd": 0.6878226515607058,
+      "n": 100
+     },
+     "benefits": [
+      {
+       "code": "convenience",
+       "n": 5,
+       "share": 0.05
+      },
+      {
+       "code": "none",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "saves_money",
+       "n": 85,
+       "share": 0.85
+      },
+      {
+       "code": "saves_time",
+       "n": 9,
+       "share": 0.09
+      }
+     ],
+     "objections": [
+      {
+       "code": "price",
+       "n": 88,
+       "share": 0.88
+      },
+      {
+       "code": "trust",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "need",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "complexity",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "privacy",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "already_have_alternative",
+       "n": 2,
+       "share": 0.02
+      },
+      {
+       "code": "none",
+       "n": 9,
+       "share": 0.09
+      },
+      {
+       "code": "other",
+       "n": 0,
+       "share": 0.0
+      }
+     ]
+    },
+    {
+     "idx": 2,
+     "label": "Wording C",
+     "n_trials": 100,
+     "n_valid": 100,
+     "intent": [
+      {
+       "code": "definitely",
+       "n": 7,
+       "share": 0.07
+      },
+      {
+       "code": "probably",
+       "n": 11,
+       "share": 0.11
+      },
+      {
+       "code": "unsure",
+       "n": 15,
+       "share": 0.15
+      },
+      {
+       "code": "probably_not",
+       "n": 66,
+       "share": 0.66
+      },
+      {
+       "code": "definitely_not",
+       "n": 1,
+       "share": 0.01
+      }
+     ],
+     "top2box": {
+      "n": 18,
+      "of": 100,
+      "share": 0.18,
+      "ci_low": 0.11700131654251038,
+      "ci_high": 0.26667536024213084
+     },
+     "bottom2box": {
+      "n": 67,
+      "of": 100,
+      "share": 0.67,
+      "ci_low": 0.5730516033971139,
+      "ci_high": 0.7543701620610456
+     },
+     "appeal": {
+      "mean": 2.55,
+      "sd": 0.6383572667401852,
+      "n": 100
+     },
+     "benefits": [
+      {
+       "code": "convenience",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "none",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "saves_money",
+       "n": 82,
+       "share": 0.82
+      },
+      {
+       "code": "saves_time",
+       "n": 13,
+       "share": 0.13
+      },
+      {
+       "code": "status",
+       "n": 3,
+       "share": 0.03
+      }
+     ],
+     "objections": [
+      {
+       "code": "price",
+       "n": 92,
+       "share": 0.92
+      },
+      {
+       "code": "trust",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "need",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "complexity",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "privacy",
+       "n": 0,
+       "share": 0.0
+      },
+      {
+       "code": "already_have_alternative",
+       "n": 1,
+       "share": 0.01
+      },
+      {
+       "code": "none",
+       "n": 6,
+       "share": 0.06
+      },
+      {
+       "code": "other",
+       "n": 0,
+       "share": 0.0
+      }
+     ]
+    }
+   ]
+  },
+  "repeat_stability": {
+   "run_id": 26,
+   "stability": {
+    "personas_with_repeats": 100,
+    "top2_agreement": 0.72,
+    "intent_exact_agreement": 0.41,
+    "note": "Share of persona-treatment cells whose repeated trials gave the same answer."
+   }
+  },
+  "model_disagreement": {
+   "run_a": 27,
+   "run_b": 28,
+   "comparison": {
+    "run_a": {
+     "id": 27,
+     "model": "qwen2.5-3b",
+     "prompt": "concept-v2"
+    },
+    "run_b": {
+     "id": 28,
+     "model": "qwen2.5-1.5b",
+     "prompt": "concept-v2"
+    },
+    "matched_trials": 100,
+    "only_in_a": 0,
+    "only_in_b": 0,
+    "notes": [
+     "Only trials valid in both runs are compared.",
+     "Disagreement between runs measures model or prompt sensitivity, not which one is right."
+    ],
+    "top2_a": 0.22,
+    "top2_b": 0.89,
+    "top2_diff": -0.67,
+    "top2_agreement": 0.33,
+    "top2_kappa": 0.06737193763919828,
+    "mcnemar_p": 1.3552527156068805e-20,
+    "discordant": {
+     "a_only": 0,
+     "b_only": 67
+    },
+    "intent_exact_agreement": 0.23,
+    "objection_agreement": 0.48,
+    "appeal": {
+     "mean_a": 2.51,
+     "mean_b": 3.83,
+     "diff": -1.32,
+     "t": -18.618785244669915,
+     "p": 4.117728645770686e-34
+    }
+   }
+  }
+ }
+}

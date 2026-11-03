@@ -1,6 +1,6 @@
 # ADR-0005: Trial design and what "reproducible" means
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Decision
 - **One trial = one stateless LLM call** producing a schema-validated decision for (persona, treatment, repeat). MVP experiments need no inter-agent interaction; this maximizes batchability and prefix-cache hits (shared scenario text first, persona card second, question last).

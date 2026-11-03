@@ -78,6 +78,7 @@ class ExperimentHandler:
                 scenario,
                 treatments[t_idx],
                 build_card(persona, max_tokens=int(cfg.get("card_tokens", 300))),
+                str(cfg.get("prompt_variant", "v1")),
             )
             base_seed = trial_seed(int(cfg["seed"]), persona["synthetic_id"], t_idx, r_idx)
             status, attempts, text, parsed, gen = "request_failed", 0, "", None, None

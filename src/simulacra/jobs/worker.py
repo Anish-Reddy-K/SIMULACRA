@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 
 from simulacra.jobs import queue
 from simulacra.jobs.handlers import BatchContext, Handler
+from simulacra.jobs.resources import ResourceGuard
 from simulacra.persistence.models import WorkerRow
 
 log = logging.getLogger("simulacra.worker")
@@ -26,7 +27,9 @@ class Worker:
         lease_s: float = 30.0,
         poll_s: float = 0.5,
         grace_s: float = 20.0,
+        guard: ResourceGuard | None = None,
     ) -> None:
+        self.guard = guard
         self.session_factory = session_factory
         self.handlers = handlers
         self.worker_id = worker_id or f"w-{os.getpid()}-{uuid.uuid4().hex[:6]}"
@@ -120,6 +123,8 @@ class Worker:
             while not self.stop.is_set():
                 self._beat()
                 with self.session_factory() as s:
+                    if self.guard is not None:
+                        self.guard.check(s)
                     queue.settle_runs(s)
                     claimed = queue.claim_next(s, self.worker_id, self.lease_s)
                 if claimed is None:

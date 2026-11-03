@@ -1,6 +1,6 @@
 # ADR-0007: Benchmark and recommendation policy
 
-**Status:** Proposed (Phase 0). Full method in `docs/architecture/benchmark-methodology.md`.
+**Status:** Accepted. Full method in `docs/architecture/benchmark-methodology.md`.
 
 ## Decision
 A **deterministic, documented policy engine** — no LLM in the ranking path.

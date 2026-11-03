@@ -1,6 +1,6 @@
 # ADR-0006: Persona generation pipeline
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Decision
 Structure first, language second:

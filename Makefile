@@ -1,4 +1,4 @@
-.PHONY: setup dev up build check py-check web-check e2e audit
+.PHONY: setup dev up build dist check py-check web-check e2e audit
 
 setup:
 	uv sync
@@ -14,6 +14,10 @@ dev:
 # Production shape: build the static UI, then serve everything from the API on :8765.
 build:
 	cd apps/web && npm run build
+
+# Wheel with the UI bundled: `pip install dist/simulacra-*.whl && simulacra up`
+dist: build
+	uv build --out-dir dist
 
 up: build
 	uv run simulacra up
