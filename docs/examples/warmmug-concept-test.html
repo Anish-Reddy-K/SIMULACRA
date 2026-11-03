@@ -1,0 +1,198 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>WarmMug concept test</title><style>body{font-family:system-ui,sans-serif;max-width:60rem;margin:2rem auto;padding:0 1rem;line-height:1.5;color:#23201c;background:#f3efe9}pre{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:.9rem}</style></head><body><pre># WarmMug concept test
+
+&gt; Simulated results. Not observed human behavior and not a validated prediction.
+
+## Executive summary
+
+- 100 of 100 simulated responses were valid (100% valid output).
+- Baseline: 5% (5 of 100) of simulated respondents said probably or definitely (sampling variation 2% to 11%); mean appeal 2.5 of 5.
+- The most common objection was &#x27;price&#x27; (84% of valid responses).
+- The most common perceived benefit was &#x27;convenience&#x27; (37%).
+
+## Research question
+
+Would busy professionals buy a self-heating smart mug?
+
+**Hypothesis:** Interest is higher among early adopters and higher-income personas; price will be the main objection.
+
+## Experiment configuration
+
+- Treatments: Baseline
+- Trials planned: 100  (valid 100)
+- Prompt version: concept-v1 (33cb8835fdc8)
+
+## Inference model and runtime
+
+- Runtime: llama.cpp b11960-8642541b2
+- Model: qwen2.5-3b (digest None, quantization None)
+- Temperature 0.7, seed 7, structured mode constrained
+
+## Simulated findings
+
+### Baseline (n=100)
+
+| Purchase intent | n | share |
+|---|---|---|
+| definitely | 1 | 1% |
+| probably | 4 | 4% |
+| unsure | 20 | 20% |
+| probably not | 73 | 73% |
+| definitely not | 2 | 2% |
+
+## Segment analysis
+
+| Segment | Treatment | n | Top-2-box | Sampling variation |
+|---|---|---|---|---|
+| age_band=18-29 | 0 | 18 | 0% | 0% to 18% |
+| age_band=30-44 | 0 | 29 | 3% | 1% to 17% |
+| age_band=45-59 | 0 | 22 | 5% | 1% to 22% |
+| age_band=60+ | 0 | 31 | 10% | 3% to 25% |
+| education=bachelor | 0 | 32 | 9% | 3% to 24% |
+| education=high_school | 0 | 25 | 4% | 1% to 20% |
+| education=some_college | 0 | 26 | 0% | 0% to 13% |
+| employment=full_time | 0 | 61 | 7% | 3% to 16% |
+| employment=part_time | 0 | 10 | 0% | 0% to 28% |
+| employment=retired | 0 | 11 | 9% | 2% to 38% |
+| employment=self_employed | 0 | 12 | 0% | 0% to 24% |
+| gender=man | 0 | 49 | 6% | 2% to 17% |
+| gender=woman | 0 | 51 | 4% | 1% to 13% |
+| household=couple | 0 | 26 | 4% | 1% to 19% |
+| household=family_with_children | 0 | 36 | 3% | 0% to 14% |
+| household=lives_alone | 0 | 14 | 14% | 4% to 40% |
+| household=shared_housing | 0 | 19 | 5% | 1% to 25% |
+| income_band=high | 0 | 14 | 7% | 1% to 31% |
+| income_band=low | 0 | 24 | 0% | 0% to 14% |
+| income_band=middle | 0 | 24 | 0% | 0% to 14% |
+| income_band=upper_middle | 0 | 25 | 16% | 6% to 35% |
+| income_band=very_low | 0 | 13 | 0% | 0% to 23% |
+| price_sensitivity=high | 0 | 41 | 2% | 0% to 13% |
+| price_sensitivity=low | 0 | 15 | 13% | 4% to 38% |
+| price_sensitivity=moderate | 0 | 33 | 6% | 2% to 20% |
+| price_sensitivity=very_high | 0 | 11 | 0% | 0% to 26% |
+| region=midwest | 0 | 21 | 10% | 3% to 29% |
+| region=northeast | 0 | 17 | 6% | 1% to 27% |
+| region=south | 0 | 38 | 3% | 0% to 13% |
+| region=west | 0 | 24 | 4% | 1% to 20% |
+| tech_adoption=early_adopter | 0 | 26 | 12% | 4% to 29% |
+| tech_adoption=early_majority | 0 | 25 | 4% | 1% to 20% |
+| tech_adoption=laggard | 0 | 18 | 0% | 0% to 18% |
+| tech_adoption=late_majority | 0 | 29 | 3% | 1% to 17% |
+
+_Segments with fewer than 10 valid responses are hidden._
+
+## Top objections
+
+- price: 84 (84%)
+- already have alternative: 5 (5%)
+
+## Representative responses
+
+- &quot;I don&#x27;t want to spend that much on a mug when I can get a good cup for less.&quot; (objection: price; source trial #1, persona P2-00001)
+- &quot;I can&#x27;t afford a $79 mug, especially since we&#x27;re on a tight budget with kids to support.&quot; (objection: price; source trial #2, persona P2-00002)
+- &quot;I already have a reliable way to keep my drinks warm, so this gadget doesn&#x27;t seem like a necessity to me.&quot; (objection: already have alternative; source trial #3, persona P2-00003)
+- &quot;I already have a good coffee mug that keeps my drinks warm, so why invest in this fancy smart mug?&quot; (objection: already have alternative; source trial #6, persona P2-00005)
+- &quot;I don&#x27;t want to spend that much on a mug when I can get a good cup for less.&quot; (benefit: convenience; source trial #1, persona P2-00001)
+- &quot;I already have a reliable way to keep my drinks warm, so this gadget doesn&#x27;t seem like a necessity to me.&quot; (benefit: convenience; source trial #3, persona P2-00003)
+- &quot;I can&#x27;t afford a $79 mug, especially since we&#x27;re on a tight budget with kids to support.&quot; (benefit: saves money; source trial #2, persona P2-00002)
+- &quot;I already have a good coffee mug that keeps my drinks warm, so why invest in this fancy smart mug?&quot; (benefit: saves money; source trial #6, persona P2-00005)
+- &quot;I don&#x27;t have much money to waste on gadgets, and this thing costs too much.&quot; (benefit: saves time; source trial #5, persona P2-00006)
+- &quot;I&#x27;m too old and tech-phobic to understand how to use this, and I don&#x27;t need something that complicated in my simple life.&quot; (benefit: saves time; source trial #7, persona P2-00007)
+
+## Contradictory patterns
+
+- none detected by the configured checks
+
+## Limitations
+
+- These are simulated opinions from model-generated personas. They are not observed human behavior and not validated predictions.
+- Personas follow an assumed distribution, not a representative sample of any real population.
+- Small local language models tend to agree with offers, give generic reasons and under-represent real variation in opinion; results can depend strongly on prompt wording and on the model.
+- Intervals describe sampling variation of this simulation only. They are not confidence in real-world behavior.
+- Stated purchase intent is not purchase behavior, even among real people.
+
+## Suggested real-world follow-up
+
+- Treat the objections and segment differences as hypotheses and check them with real customer interviews or a small real survey.
+- If a treatment difference matters to a decision, test it with real traffic (for example an A/B test on a landing page) before acting.
+- Re-run with a different model and prompt wording; findings that change are artifacts, not insights.
+
+## Reproducibility metadata
+
+```json
+{
+  &quot;simulacra_version&quot;: &quot;0.1.0&quot;,
+  &quot;experiment&quot;: {
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;WarmMug concept test&quot;,
+    &quot;kind&quot;: &quot;product_concept&quot;,
+    &quot;research_question&quot;: &quot;Would busy professionals buy a self-heating smart mug?&quot;,
+    &quot;hypothesis&quot;: &quot;Interest is higher among early adopters and higher-income personas; price will be the main objection.&quot;,
+    &quot;scenario&quot;: {
+      &quot;product_name&quot;: &quot;WarmMug&quot;,
+      &quot;description&quot;: &quot;A self-heating smart mug that keeps coffee or tea at your chosen temperature for up to 6 hours, with a charging coaster and a phone app.&quot;,
+      &quot;price_usd&quot;: 79.0,
+      &quot;category&quot;: &quot;kitchen gadgets&quot;,
+      &quot;headline&quot;: null
+    },
+    &quot;config&quot;: {
+      &quot;design&quot;: &quot;between&quot;,
+      &quot;repeats&quot;: 1,
+      &quot;seed&quot;: 7
+    },
+    &quot;treatments&quot;: [
+      {
+        &quot;idx&quot;: 0,
+        &quot;label&quot;: &quot;Baseline&quot;,
+        &quot;params&quot;: {}
+      }
+    ]
+  },
+  &quot;population&quot;: {
+    &quot;version_id&quot;: 2,
+    &quot;version&quot;: 1,
+    &quot;size&quot;: 100,
+    &quot;seed&quot;: 11,
+    &quot;source&quot;: &quot;generated&quot;,
+    &quot;spec_sha256_16&quot;: &quot;f5dd3c9998b061a3&quot;
+  },
+  &quot;inference&quot;: {
+    &quot;runtime&quot;: &quot;llama.cpp&quot;,
+    &quot;runtime_version&quot;: &quot;b11960-8642541b2&quot;,
+    &quot;base_url&quot;: &quot;http://127.0.0.1:8080&quot;,
+    &quot;model&quot;: &quot;qwen2.5-3b&quot;,
+    &quot;model_digest&quot;: null,
+    &quot;quantization&quot;: null,
+    &quot;structured_mode&quot;: &quot;constrained&quot;,
+    &quot;temperature&quot;: 0.7,
+    &quot;max_tokens&quot;: 220,
+    &quot;concurrency&quot;: 4,
+    &quot;seed&quot;: 7
+  },
+  &quot;prompt&quot;: {
+    &quot;version&quot;: &quot;concept-v1&quot;,
+    &quot;sha256_12&quot;: &quot;33cb8835fdc8&quot;
+  },
+  &quot;trials_planned&quot;: 100,
+  &quot;hardware&quot;: {
+    &quot;captured_at&quot;: &quot;2026-11-03T00:46:37.032543Z&quot;,
+    &quot;os&quot;: &quot;Darwin&quot;,
+    &quot;os_version&quot;: &quot;26.5.2&quot;,
+    &quot;arch&quot;: &quot;arm64&quot;,
+    &quot;chip&quot;: &quot;Apple M4&quot;,
+    &quot;apple_silicon&quot;: true,
+    &quot;cpu_cores_total&quot;: 10,
+    &quot;cpu_cores_performance&quot;: 4,
+    &quot;ram_total_mb&quot;: 16384,
+    &quot;ram_available_mb&quot;: 2586,
+    &quot;swap_used_mb&quot;: 6935,
+    &quot;disk_free_mb&quot;: 12639,
+    &quot;disk_total_mb&quot;: 233752,
+    &quot;metal&quot;: &quot;Metal 4&quot;,
+    &quot;on_battery&quot;: false,
+    &quot;low_power_mode&quot;: false,
+    &quot;sleep_prevented&quot;: true,
+    &quot;notes&quot;: []
+  }
+}
+```
+</pre></body></html>

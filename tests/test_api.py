@@ -5,7 +5,7 @@ def test_health_reports_ok_with_wal(client: TestClient) -> None:
     body = client.get("/api/v1/health").json()
     assert body["status"] == "ok"
     assert body["database"] == {"ok": True, "journal_mode": "wal"}
-    assert body["worker"] == {"status": "not_running"}
+    assert body["worker"]["status"] == "not_running"
 
 
 def test_non_local_host_header_rejected(client: TestClient) -> None:

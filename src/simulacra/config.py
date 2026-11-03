@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     # Enables the synthetic "mock://" benchmark target (tests and demos only). Mock results
     # are labeled and never used in recommendations.
     enable_mock_backend: bool = False
+    worker_lease_s: float = 30.0  # a dead worker's batch becomes reclaimable after this
 
     @property
     def database_url(self) -> str:

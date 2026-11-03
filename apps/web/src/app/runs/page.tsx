@@ -1,17 +1,14 @@
-import { EmptyState } from "@/components/shell/empty-state";
+import { RunList } from "@/components/runs/list";
 import { PageHeader } from "@/components/shell/page-header";
 
-export default function Page() {
+export default function Runs() {
   return (
     <>
       <PageHeader
         title="Runs"
-        description="Monitor long-running simulations live and resume them after interruptions."
-        phase={6}
+        description="Monitor long-running simulations live. Runs continue in the background when you close the browser and resume after interruptions."
       />
-      <EmptyState title="Not available yet">
-        This section is not built yet. It is planned for phase 6.
-      </EmptyState>
+      <RunList />
     </>
   );
 }
