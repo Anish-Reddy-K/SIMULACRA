@@ -147,6 +147,7 @@ def analyze(session: Session, run_id: int) -> dict[str, Any]:
         "benefits": _ranked(valid, "top_benefit", exclude=("none",)),
         "quotes": _quotes(valid),
         "contradictions": contradictions,
+        "repeat_stability": _repeat_stability(valid),
         "notes": [
             "Intervals describe sampling variation of this simulation, not uncertainty about real people.",
             f"Segments with fewer than {MIN_SEGMENT_N} valid responses are suppressed.",
@@ -258,3 +259,21 @@ def _contradictions(
                     }
                 )
     return found
+
+
+def _repeat_stability(valid: list[Trial]) -> dict[str, Any] | None:
+    """Run-to-run variation: how consistent is the same persona across repeated trials?"""
+    groups: dict[tuple[str, int], list[Trial]] = defaultdict(list)
+    for t in valid:
+        groups[(t.persona_id, t.treatment_idx)].append(t)
+    multi = [g for g in groups.values() if len(g) > 1]
+    if not multi:
+        return None
+    same_top = sum(len({parsed(t)["purchase_intent"] in TOP_BOX for t in g}) == 1 for g in multi)
+    same_intent = sum(len({parsed(t)["purchase_intent"] for t in g}) == 1 for g in multi)
+    return {
+        "personas_with_repeats": len(multi),
+        "top2_agreement": same_top / len(multi),
+        "intent_exact_agreement": same_intent / len(multi),
+        "note": "Share of persona-treatment cells whose repeated trials gave the same answer.",
+    }

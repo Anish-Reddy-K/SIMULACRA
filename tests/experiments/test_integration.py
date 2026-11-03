@@ -1,5 +1,6 @@
 import json
 import time
+from collections import Counter
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -279,3 +280,120 @@ def test_cross_origin_start_rejected(eclient: TestClient) -> None:
         headers={"Origin": "https://evil.example"},
     )
     assert r.status_code == 403
+
+
+def template_body(pop: int, **over: object) -> dict:
+    return {
+        "name": "Ad test",
+        "research_question": "Which headline works better?",
+        "population_version_id": pop,
+        "scenario": {
+            "product_name": "WarmMug",
+            "description": "A self-heating mug that keeps drinks hot.",
+        },
+        **over,
+    }
+
+
+def test_templates_listed_and_validated(eclient: TestClient) -> None:
+    ids = [t["id"] for t in eclient.get("/api/v1/experiment-templates").json()]
+    assert ids == ["product_concept", "ad_comparison", "pricing"]
+    pop = make_population(eclient, 10)
+    bad = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(pop, template="ad_comparison", headlines=["one"]),
+    )
+    assert bad.status_code == 422
+    bad = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(pop, template="pricing", prices=[10, 10]),
+    )
+    assert bad.status_code == 422
+    ok = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(pop, template="pricing", prices=[49, 79, 129]),
+    )
+    assert ok.status_code == 201 and [t["label"] for t in ok.json()["treatments"]] == [
+        "$49",
+        "$79",
+        "$129",
+    ]
+
+
+def test_ab_run_isolates_treatments_and_compares(eclient: TestClient) -> None:
+    pop = make_population(eclient, 60)
+    exp = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(
+            pop,
+            template="ad_comparison",
+            headlines=["MARKERALPHA save time", "MARKERBETA save money", "MARKERGAMMA be happy"],
+            seed=11,
+        ),
+    ).json()
+    sessions = eclient.app.state.sessions  # type: ignore[attr-defined]
+    w = start_worker(eclient)
+    try:
+        run_id = eclient.post(
+            f"/api/v1/experiments/{exp['id']}/start", json={"target": MOCK_TARGET, "batch_size": 10}
+        ).json()["run_id"]
+        assert wait_run(eclient, run_id)["state"] == "completed"
+    finally:
+        w.stop()
+    markers = ["MARKERALPHA", "MARKERBETA", "MARKERGAMMA"]
+    with sessions() as s:
+        trials = list(s.scalars(select(Trial).where(Trial.run_id == run_id)))
+    assert len(trials) == 60  # between-subjects: each persona sees exactly one treatment
+    assert len({t.persona_id for t in trials}) == 60
+    for t in trials:  # isolation at the database level: only the assigned arm's text was ever sent
+        seen = [m for m in markers if m in t.prompt_text]
+        assert seen == [markers[t.treatment_idx]]
+    arm_sizes = Counter(t.treatment_idx for t in trials)
+    assert set(arm_sizes) == {0, 1, 2} and max(arm_sizes.values()) < 35
+
+    cmp = eclient.get(f"/api/v1/runs/{run_id}/comparison").json()
+    assert cmp["design"] == "between" and len(cmp["pairs"]) == 2 and cmp["balance"]["arm_sizes"]
+    rep = eclient.post(f"/api/v1/runs/{run_id}/reports").json()
+    md = eclient.get(f"/api/v1/reports/{rep['id']}/export?format=md").text
+    assert "## Treatment comparison" in md and "Headline B" in md
+
+
+def test_within_design_shows_every_persona_every_treatment(eclient: TestClient) -> None:
+    pop = make_population(eclient, 20)
+    exp = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(pop, template="pricing", prices=[10, 99], design="within"),
+    ).json()
+    w = start_worker(eclient)
+    try:
+        started = eclient.post(
+            f"/api/v1/experiments/{exp['id']}/start", json={"target": MOCK_TARGET}
+        ).json()
+        assert started["trials_planned"] == 40
+        wait_run(eclient, started["run_id"])
+    finally:
+        w.stop()
+    cmp = eclient.get(f"/api/v1/runs/{started['run_id']}/comparison").json()
+    assert (
+        cmp["design"] == "within"
+        and cmp["pairs"][0]["paired"]
+        and cmp["pairs"][0]["n_treatment"] == 20
+    )
+
+
+def test_clone_experiment(eclient: TestClient) -> None:
+    pop = make_population(eclient, 10)
+    exp = eclient.post(
+        "/api/v1/experiments/from-template",
+        json=template_body(
+            pop,
+            template="ad_comparison",
+            headlines=["First headline", "Second headline"],
+            repeats=2,
+            seed=5,
+        ),
+    ).json()
+    clone = eclient.post(f"/api/v1/experiments/{exp['id']}/clone").json()
+    assert clone["id"] != exp["id"] and clone["name"].endswith("(copy)")
+    assert clone["treatments"] == exp["treatments"] and clone["config"] == exp["config"]
+    assert eclient.post("/api/v1/experiments/999/clone").status_code == 404

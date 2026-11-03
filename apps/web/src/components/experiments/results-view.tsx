@@ -6,7 +6,7 @@ import { ApiError, BarChart, Loading, Panel } from "@/components/lab/ui";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { codeLabel, expApi, type Quote, type Results, type TrialDetail } from "@/lib/exp-api";
+import { codeLabel, expApi, type Comparison, type Quote, type Results, type TrialDetail } from "@/lib/exp-api";
 import { formatPercent } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
 
@@ -39,6 +39,74 @@ function QuoteItem({ q }: { q: Quote }) {
       </span>
       {open && <TrialSource id={q.trial_id} />}
     </li>
+  );
+}
+
+function ComparisonPanel({ runId }: { runId: number }) {
+  const { data, error, loading } = useApi<Comparison>(() => expApi.comparison(runId), [runId]);
+  if (loading) return <Loading what="comparison" />;
+  if (error || !data) return <ApiError error={error ?? "No data"} />;
+  if (data.pairs.length === 0) return null;
+  const pct = (x?: number) => (x === undefined ? "n/a" : `${(x * 100).toFixed(0)}%`);
+  const sig = data.segments.filter((x) => x.significant);
+  return (
+    <Panel as="h2" title="Treatment comparison">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm">
+          <caption className="sr-only">Treatments compared with the baseline</caption>
+          <thead>
+            <tr className="border-b border-hairline">
+              {["Treatment", "Top-2-box", "Baseline", "Difference", "Sampling variation of difference", "Holm-adjusted p", "Effect size (h)", "Result"].map((h) => (<th key={h} scope="col" className="py-1 pr-4">{h}</th>))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.pairs.map((p) => (
+              <tr key={p.treatment_idx} className="border-b border-hairline">
+                <td className="py-2 pr-4 font-medium">{p.label}</td>
+                <td className="pr-4">{pct(p.top2_treatment)}</td>
+                <td className="pr-4">{pct(p.top2_baseline)} ({p.vs})</td>
+                <td className="pr-4 font-mono">{p.diff === undefined ? "n/a" : `${p.diff >= 0 ? "+" : ""}${(p.diff * 100).toFixed(1)} pts`}</td>
+                <td className="pr-4 font-mono text-xs">{p.diff_ci_low === undefined ? "paired test" : `${(p.diff_ci_low * 100).toFixed(0)} to ${((p.diff_ci_high ?? 0) * 100).toFixed(0)} pts`}</td>
+                <td className="pr-4 font-mono">{p.p_holm === undefined ? "n/a" : p.p_holm.toFixed(3)}</td>
+                <td className="pr-4 font-mono">{p.cohens_h === undefined ? "n/a" : p.cohens_h.toFixed(2)}</td>
+                <td><Badge variant={p.significant ? "default" : "secondary"}>{p.significant ? "difference detected" : "no detectable difference"}</Badge></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {data.pricing && (
+        <div className="mt-6">
+          <BarChart
+            title="Simulated purchase interest by price (top-2-box)"
+            hint={data.pricing.note}
+            rows={data.pricing.curve.map((c) => ({ label: `$${c.price_usd}`, value: c.top2, text: `${pct(c.top2 ?? undefined)} (n=${c.n})` }))}
+          />
+          {data.pricing.monotone_violations.map((v) => (
+            <Alert key={`${v.lower_price}-${v.higher_price}`} variant="warning" className="mt-3">
+              <AlertTitle>Implausible pattern</AlertTitle>
+              <AlertDescription>
+                Simulated interest was higher at ${v.higher_price} than at ${v.lower_price} (p = {v.p.toFixed(3)}). Treat this as a model artifact, not a finding.
+              </AlertDescription>
+            </Alert>
+          ))}
+        </div>
+      )}
+      {data.balance && (
+        <p className="mt-4 text-xs text-muted-foreground">
+          Randomization balance: smallest Holm-adjusted p = {data.balance.min_p_holm?.toFixed(3)}{" "}
+          {data.balance.imbalanced ? "(imbalance detected between groups)" : "(no detectable imbalance)"}. Group sizes:{" "}
+          {Object.entries(data.balance.arm_sizes).map(([k, v]) => `${k}: ${v}`).join(", ")}.
+        </p>
+      )}
+      {sig.length > 0 && (
+        <p className="mt-2 text-xs text-muted-foreground">
+          Exploratory: {sig.length} segment difference(s) remained significant after Holm adjustment across {data.segments.length} tests:{" "}
+          {sig.map((x) => `${codeLabel(x.attribute)}=${codeLabel(x.value)}`).join(", ")}.
+        </p>
+      )}
+      <ul className="mt-3 list-disc pl-5 text-xs text-muted-foreground">{data.notes.map((n) => (<li key={n}>{n}</li>))}</ul>
+    </Panel>
   );
 }
 
@@ -109,6 +177,8 @@ export function ResultsView({ runId }: { runId: number }) {
           </div>
         </Panel>
       ))}
+
+      <ComparisonPanel runId={runId} />
 
       <Panel as="h2" title="Segments">
         <p className="mb-3 text-xs text-muted-foreground">
