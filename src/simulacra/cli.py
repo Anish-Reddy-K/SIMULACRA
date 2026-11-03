@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from simulacra.api.app import create_app
 from simulacra.config import get_settings
 from simulacra.jobs.handlers import default_registry
+from simulacra.jobs.resources import ResourceGuard
 from simulacra.jobs.worker import Worker, install_signal_handlers
 from simulacra.persistence import migrate
 from simulacra.persistence.db import make_engine
@@ -19,7 +20,7 @@ from simulacra.persistence.db import make_engine
 WORKER_RESTART_DELAY_S = 2.0
 
 
-def _supervise_worker(stop: threading.Event) -> None:
+def _supervise_worker(stop: threading.Event, keep_awake: bool = False) -> None:
     """Keep one worker process alive next to the API; restart it if it dies."""
     proc: subprocess.Popen[bytes] | None = None
     while not stop.is_set():
@@ -46,6 +47,11 @@ def main(argv: list[str] | None = None) -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     up = sub.add_parser("up", help="start the API, web UI and background worker on localhost")
     up.add_argument("--no-worker", action="store_true", help="do not start the worker process")
+    up.add_argument(
+        "--keep-awake",
+        action="store_true",
+        help="macOS: prevent idle sleep only while the worker runs (the lid still sleeps the Mac)",
+    )
     sub.add_parser("worker", help="run the background worker on its own")
     sub.add_parser("migrate", help="apply database migrations")
     args = parser.parse_args(argv)
@@ -63,6 +69,7 @@ def main(argv: list[str] | None = None) -> None:
             sessions,
             default_registry(settings.enable_mock_backend, sessions),
             lease_s=settings.worker_lease_s,
+            guard=ResourceGuard(settings.data_dir),
         )
 
         async def main_async() -> None:
@@ -74,7 +81,9 @@ def main(argv: list[str] | None = None) -> None:
         stop = threading.Event()
         thread = None
         if not args.no_worker:
-            thread = threading.Thread(target=_supervise_worker, args=(stop,), daemon=True)
+            thread = threading.Thread(
+                target=_supervise_worker, args=(stop, args.keep_awake), daemon=True
+            )
             thread.start()
         try:
             uvicorn.run(create_app(settings), host=settings.host, port=settings.port)

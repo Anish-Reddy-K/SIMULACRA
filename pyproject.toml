@@ -52,6 +52,8 @@ select = ["E", "F", "I", "B", "UP", "S", "SIM", "RUF"]
 "src/simulacra/reporting/build.py" = ["E501"]  # report prose
 "src/simulacra/analysis/concept.py" = ["E501"]
 "src/simulacra/analysis/compare.py" = ["E501"]
+"src/simulacra/jobs/resources.py" = ["E501"]
+"src/simulacra/api/experiments.py" = ["E501"]
 "src/simulacra/experiments/templates.py" = ["E501"]
 
 [tool.mypy]

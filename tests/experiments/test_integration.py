@@ -397,3 +397,23 @@ def test_clone_experiment(eclient: TestClient) -> None:
     assert clone["id"] != exp["id"] and clone["name"].endswith("(copy)")
     assert clone["treatments"] == exp["treatments"] and clone["config"] == exp["config"]
     assert eclient.post("/api/v1/experiments/999/clone").status_code == 404
+
+
+def test_performance_endpoint_reports_measured_numbers(eclient: TestClient) -> None:
+    pop = make_population(eclient, 30)
+    exp = make_experiment(eclient, pop)
+    w = start_worker(eclient)
+    try:
+        run_id = eclient.post(
+            f"/api/v1/experiments/{exp['id']}/start", json={"target": MOCK_TARGET, "batch_size": 5}
+        ).json()["run_id"]
+        wait_run(eclient, run_id)
+    finally:
+        w.stop()
+    perf = eclient.get(f"/api/v1/runs/{run_id}/performance").json()
+    assert perf["trials"] == 30 and perf["valid"] == 30 and perf["wall_s"] > 0
+    assert perf["valid_per_min"] == perf["valid"] / (perf["wall_s"] / 60)
+    assert perf["completion_tokens"] > 0 and perf["latency_ms_p95"] >= perf["latency_ms_median"]
+    assert perf["failure_rate"] == 0 and perf["trials_with_retry_attempt"] == 0
+    assert sum(perf["throughput_per_5min_window"]) == 30 and perf["database_mb"] > 0
+    assert eclient.get("/api/v1/runs/999/performance").status_code == 404

@@ -10,7 +10,7 @@ from simulacra.analysis import compare as compare_mod
 from simulacra.analysis import concept
 from simulacra.experiments import service as svc
 from simulacra.experiments import templates
-from simulacra.persistence.models import Experiment, Report, Run, Treatment, Trial
+from simulacra.persistence.models import Experiment, Report, Run, RunEvent, Treatment, Trial
 from simulacra.reporting import build
 
 router = APIRouter()
@@ -324,3 +324,80 @@ def export_report(
         media_type=media,
         headers={"Content-Disposition": f'attachment; filename="report-{report_id}.{format}"'},
     )
+
+
+@router.get("/runs/{run_id}/performance")
+def performance(run_id: int, request: Request) -> dict[str, Any]:
+    """Measured performance of a run, computed from stored trials (nothing is estimated)."""
+    settings = request.app.state.settings
+    with _sessions(request)() as s:
+        run = s.get(Run, run_id)
+        if run is None:
+            raise HTTPException(404, "No such run")
+        rows = s.execute(
+            select(
+                Trial.status,
+                Trial.attempts,
+                Trial.latency_ms,
+                Trial.prompt_tokens,
+                Trial.completion_tokens,
+                Trial.created_at,
+            ).where(Trial.run_id == run_id)
+        ).all()
+        retries = (
+            s.scalar(
+                select(func.count())
+                .select_from(RunEvent)
+                .where(RunEvent.run_id == run_id, RunEvent.kind == "retry")
+            )
+            or 0
+        )
+        resource_events = (
+            s.scalar(
+                select(func.count())
+                .select_from(RunEvent)
+                .where(RunEvent.run_id == run_id, RunEvent.kind == "resource")
+            )
+            or 0
+        )
+    n = len(rows)
+    valid = sum(1 for r in rows if r.status == "valid")
+    lat = sorted(r.latency_ms for r in rows)
+    started = run.started_at.timestamp() if run.started_at else None
+    finished = run.finished_at.timestamp() if run.finished_at else None
+    if started is not None and run.started_at is not None and run.started_at.tzinfo is None:
+        started = run.started_at.replace(tzinfo=__import__("datetime").UTC).timestamp()
+    if finished is not None and run.finished_at is not None and run.finished_at.tzinfo is None:
+        finished = run.finished_at.replace(tzinfo=__import__("datetime").UTC).timestamp()
+    wall = (finished - started) if started is not None and finished is not None else None
+    windows: dict[int, int] = {}
+    for r in rows:
+        windows[int(r.created_at // 300)] = windows.get(int(r.created_at // 300), 0) + 1
+    ordered = [windows[k] for k in sorted(windows)]
+    db_file = settings.data_dir / "simulacra.db"
+    comp = sum(r.completion_tokens or 0 for r in rows)
+    prompt = sum(r.prompt_tokens or 0 for r in rows)
+    return {
+        "run_id": run_id,
+        "state": run.state,
+        "trials": n,
+        "valid": valid,
+        "wall_s": wall,
+        "valid_per_min": valid / (wall / 60) if wall else None,
+        "prompt_tokens": prompt,
+        "completion_tokens": comp,
+        "completion_tokens_per_s": comp / wall if wall else None,
+        "prompt_tokens_mean": prompt / n if n else None,
+        "completion_tokens_mean": comp / n if n else None,
+        "latency_ms_median": lat[len(lat) // 2] if lat else None,
+        "latency_ms_p95": lat[min(len(lat) - 1, int(0.95 * len(lat)))] if lat else None,
+        "trials_with_retry_attempt": sum(1 for r in rows if r.attempts > 1),
+        "failure_rate": sum(1 for r in rows if r.status == "request_failed") / n if n else None,
+        "invalid_rate": sum(1 for r in rows if r.status in ("invalid_json", "schema_mismatch")) / n
+        if n
+        else None,
+        "batch_retries": retries,
+        "resource_events": resource_events,
+        "throughput_per_5min_window": ordered,
+        "database_mb": db_file.stat().st_size / 2**20 if db_file.exists() else None,
+    }
