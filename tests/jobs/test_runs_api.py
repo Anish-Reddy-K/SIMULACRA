@@ -75,7 +75,12 @@ def test_run_lifecycle_and_progress_fields(rclient: TestClient) -> None:
     assert rclient.get("/api/v1/runs/999").status_code == 404
 
 
-def test_eta_is_indeterminate_then_available_while_running(rclient: TestClient) -> None:
+def test_eta_is_indeterminate_then_available_while_running(
+    rclient: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from simulacra.api import runs as runs_api
+
+    monkeypatch.setattr(runs_api, "MIN_ELAPSED_FOR_ETA_S", 1.0)
     run = rclient.post(
         "/api/v1/runs/demo", json={"units": 400, "batch_size": 5, "config": {"sleep_s": 0.01}}
     ).json()
@@ -85,7 +90,7 @@ def test_eta_is_indeterminate_then_available_while_running(rclient: TestClient) 
         seen_eta = None
         while time.time() < end:
             cur = rclient.get(f"/api/v1/runs/{run['id']}").json()
-            if cur["state"] == "running" and cur["done_units"] < 15:
+            if cur["state"] == "running" and cur["done_units"] < runs_api.MIN_UNITS_FOR_ETA:
                 assert cur["eta_s"] is None  # too little data: never invented
             if cur["eta_s"] is not None:
                 seen_eta = cur

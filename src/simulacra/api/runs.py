@@ -16,7 +16,8 @@ from simulacra.persistence.models import Job, Run, RunEvent, RunUnit
 
 router = APIRouter(prefix="/runs")
 RATE_WINDOW_S = 120.0
-MIN_UNITS_FOR_ETA = 5
+MIN_UNITS_FOR_ETA = 20
+MIN_ELAPSED_FOR_ETA_S = 10.0  # an early burst of completions says little about the true rate
 
 
 def _sessions(request: Request) -> sessionmaker[Session]:
@@ -63,23 +64,20 @@ def _out(s: Session, run: Run) -> RunOut:
     elapsed = (end - started).total_seconds() if started else None
     rate: float | None = None
     eta: float | None = None
-    if run.state == "running":
+    if run.state == "running" and started is not None:
         t = queue.now()
+        since_start = t - started.timestamp()
+        window = min(RATE_WINDOW_S, since_start)  # includes startup time: deliberately conservative
         recent = (
             s.scalar(
                 select(func.count())
                 .select_from(RunUnit)
-                .where(RunUnit.run_id == run.id, RunUnit.created_at > t - RATE_WINDOW_S)
+                .where(RunUnit.run_id == run.id, RunUnit.created_at > t - window)
             )
             or 0
         )
-        first = s.scalar(
-            select(func.min(RunUnit.created_at)).where(
-                RunUnit.run_id == run.id, RunUnit.created_at > t - RATE_WINDOW_S
-            )
-        )
-        if recent >= MIN_UNITS_FOR_ETA and first is not None and t - first > 1:
-            rate = recent / ((t - first) / 60)
+        if recent >= MIN_UNITS_FOR_ETA and since_start >= MIN_ELAPSED_FOR_ETA_S:
+            rate = recent / (window / 60)
             eta = (run.total_units - run.done_units) / (rate / 60) if rate > 0 else None
     batches = s.scalar(select(func.count()).select_from(Job).where(Job.run_id == run.id)) or 0
     failed = (

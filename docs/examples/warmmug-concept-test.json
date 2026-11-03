@@ -1,0 +1,1069 @@
+{
+  "title": "WarmMug concept test",
+  "generated_at": "2026-11-03T00:48:37.629828+00:00",
+  "research_question": "Would busy professionals buy a self-heating smart mug?",
+  "hypothesis": "Interest is higher among early adopters and higher-income personas; price will be the main objection.",
+  "summary": [
+    "100 of 100 simulated responses were valid (100% valid output).",
+    "Baseline: 5% (5 of 100) of simulated respondents said probably or definitely (sampling variation 2% to 11%); mean appeal 2.5 of 5.",
+    "The most common objection was 'price' (84% of valid responses).",
+    "The most common perceived benefit was 'convenience' (37%)."
+  ],
+  "analysis": {
+    "run_id": 1,
+    "totals": {
+      "trials": 100,
+      "valid": 100,
+      "by_status": {
+        "valid": 100
+      },
+      "invalid_rate": 0.0,
+      "planned": 100
+    },
+    "treatments": [
+      {
+        "idx": 0,
+        "label": "Baseline",
+        "n_trials": 100,
+        "n_valid": 100,
+        "intent": [
+          {
+            "code": "definitely",
+            "n": 1,
+            "share": 0.01
+          },
+          {
+            "code": "probably",
+            "n": 4,
+            "share": 0.04
+          },
+          {
+            "code": "unsure",
+            "n": 20,
+            "share": 0.2
+          },
+          {
+            "code": "probably_not",
+            "n": 73,
+            "share": 0.73
+          },
+          {
+            "code": "definitely_not",
+            "n": 2,
+            "share": 0.02
+          }
+        ],
+        "top2box": {
+          "n": 5,
+          "of": 100,
+          "share": 0.05,
+          "ci_low": 0.02154336145631356,
+          "ci_high": 0.11175196527208817
+        },
+        "bottom2box": {
+          "n": 75,
+          "of": 100,
+          "share": 0.75,
+          "ci_low": 0.6569535362992417,
+          "ci_high": 0.8245490599627573
+        },
+        "appeal": {
+          "mean": 2.52,
+          "sd": 0.5741080037762929,
+          "n": 100
+        },
+        "benefits": [
+          {
+            "code": "convenience",
+            "n": 37,
+            "share": 0.37
+          },
+          {
+            "code": "saves_money",
+            "n": 37,
+            "share": 0.37
+          },
+          {
+            "code": "saves_time",
+            "n": 26,
+            "share": 0.26
+          }
+        ],
+        "objections": [
+          {
+            "code": "price",
+            "n": 84,
+            "share": 0.84
+          },
+          {
+            "code": "trust",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "need",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "complexity",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "privacy",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "already_have_alternative",
+            "n": 5,
+            "share": 0.05
+          },
+          {
+            "code": "none",
+            "n": 11,
+            "share": 0.11
+          },
+          {
+            "code": "other",
+            "n": 0,
+            "share": 0.0
+          }
+        ]
+      }
+    ],
+    "segments": [
+      {
+        "attribute": "age_band",
+        "value": "18-29",
+        "treatment_idx": 0,
+        "n": 18,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 18,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.1758845505823749
+        },
+        "appeal_mean": 2.7222222222222223
+      },
+      {
+        "attribute": "age_band",
+        "value": "30-44",
+        "treatment_idx": 0,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 29,
+          "share": 0.034482758620689655,
+          "ci_low": 0.006113056614032261,
+          "ci_high": 0.1717589106470025
+        },
+        "appeal_mean": 2.6206896551724137
+      },
+      {
+        "attribute": "age_band",
+        "value": "45-59",
+        "treatment_idx": 0,
+        "n": 22,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 22,
+          "share": 0.045454545454545456,
+          "ci_low": 0.008069219301147859,
+          "ci_high": 0.21798489499518053
+        },
+        "appeal_mean": 2.4545454545454546
+      },
+      {
+        "attribute": "age_band",
+        "value": "60+",
+        "treatment_idx": 0,
+        "n": 31,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 31,
+          "share": 0.0967741935483871,
+          "ci_low": 0.03346403609464399,
+          "ci_high": 0.2490028999817704
+        },
+        "appeal_mean": 2.3548387096774195
+      },
+      {
+        "attribute": "education",
+        "value": "bachelor",
+        "treatment_idx": 0,
+        "n": 32,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 32,
+          "share": 0.09375,
+          "ci_low": 0.032400962626319516,
+          "ci_high": 0.24218499335778831
+        },
+        "appeal_mean": 2.53125
+      },
+      {
+        "attribute": "education",
+        "value": "graduate",
+        "treatment_idx": 0,
+        "n": 9,
+        "suppressed": true
+      },
+      {
+        "attribute": "education",
+        "value": "high_school",
+        "treatment_idx": 0,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 25,
+          "share": 0.04,
+          "ci_low": 0.007096050386699165,
+          "ci_high": 0.19544472405022525
+        },
+        "appeal_mean": 2.48
+      },
+      {
+        "attribute": "education",
+        "value": "no_degree",
+        "treatment_idx": 0,
+        "n": 8,
+        "suppressed": true
+      },
+      {
+        "attribute": "education",
+        "value": "some_college",
+        "treatment_idx": 0,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 26,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.12873304380462175
+        },
+        "appeal_mean": 2.5
+      },
+      {
+        "attribute": "employment",
+        "value": "full_time",
+        "treatment_idx": 0,
+        "n": 61,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 61,
+          "share": 0.06557377049180328,
+          "ci_low": 0.02579328695767287,
+          "ci_high": 0.15683021400467229
+        },
+        "appeal_mean": 2.4754098360655736
+      },
+      {
+        "attribute": "employment",
+        "value": "part_time",
+        "treatment_idx": 0,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 10,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2775401687666166
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "employment",
+        "value": "retired",
+        "treatment_idx": 0,
+        "n": 11,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 11,
+          "share": 0.09090909090909091,
+          "ci_low": 0.01623175226282597,
+          "ci_high": 0.3773646254862038
+        },
+        "appeal_mean": 2.6363636363636362
+      },
+      {
+        "attribute": "employment",
+        "value": "self_employed",
+        "treatment_idx": 0,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 12,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2425007574992425
+        },
+        "appeal_mean": 2.4166666666666665
+      },
+      {
+        "attribute": "employment",
+        "value": "student",
+        "treatment_idx": 0,
+        "n": 4,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "unemployed",
+        "treatment_idx": 0,
+        "n": 2,
+        "suppressed": true
+      },
+      {
+        "attribute": "gender",
+        "value": "man",
+        "treatment_idx": 0,
+        "n": 49,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 49,
+          "share": 0.061224489795918366,
+          "ci_low": 0.021039764955529186,
+          "ci_high": 0.16520743422087725
+        },
+        "appeal_mean": 2.5306122448979593
+      },
+      {
+        "attribute": "gender",
+        "value": "woman",
+        "treatment_idx": 0,
+        "n": 51,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 51,
+          "share": 0.0392156862745098,
+          "ci_low": 0.010820856268751206,
+          "ci_high": 0.13216548986265267
+        },
+        "appeal_mean": 2.5098039215686274
+      },
+      {
+        "attribute": "household",
+        "value": "couple",
+        "treatment_idx": 0,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 26,
+          "share": 0.038461538461538464,
+          "ci_low": 0.0068218089769898765,
+          "ci_high": 0.18893176991958405
+        },
+        "appeal_mean": 2.3461538461538463
+      },
+      {
+        "attribute": "household",
+        "value": "family_with_children",
+        "treatment_idx": 0,
+        "n": 36,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 36,
+          "share": 0.027777777777777776,
+          "ci_low": 0.004920280295569679,
+          "ci_high": 0.141700337350308
+        },
+        "appeal_mean": 2.5555555555555554
+      },
+      {
+        "attribute": "household",
+        "value": "lives_alone",
+        "treatment_idx": 0,
+        "n": 14,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 14,
+          "share": 0.14285714285714285,
+          "ci_low": 0.040093073737921175,
+          "ci_high": 0.39941907763863693
+        },
+        "appeal_mean": 2.5
+      },
+      {
+        "attribute": "household",
+        "value": "multigenerational",
+        "treatment_idx": 0,
+        "n": 5,
+        "suppressed": true
+      },
+      {
+        "attribute": "household",
+        "value": "shared_housing",
+        "treatment_idx": 0,
+        "n": 19,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 19,
+          "share": 0.05263157894736842,
+          "ci_low": 0.009351752490529969,
+          "ci_high": 0.2463921533654521
+        },
+        "appeal_mean": 2.6842105263157894
+      },
+      {
+        "attribute": "income_band",
+        "value": "high",
+        "treatment_idx": 0,
+        "n": 14,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 14,
+          "share": 0.07142857142857142,
+          "ci_low": 0.012721886112291636,
+          "ci_high": 0.3146926955395781
+        },
+        "appeal_mean": 2.5
+      },
+      {
+        "attribute": "income_band",
+        "value": "low",
+        "treatment_idx": 0,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 24,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13798057582897535
+        },
+        "appeal_mean": 2.5833333333333335
+      },
+      {
+        "attribute": "income_band",
+        "value": "middle",
+        "treatment_idx": 0,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 24,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13798057582897535
+        },
+        "appeal_mean": 2.7083333333333335
+      },
+      {
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "treatment_idx": 0,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 25,
+          "share": 0.16,
+          "ci_low": 0.06403347608577989,
+          "ci_high": 0.34654013980238163
+        },
+        "appeal_mean": 2.48
+      },
+      {
+        "attribute": "income_band",
+        "value": "very_low",
+        "treatment_idx": 0,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 13,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.22810184305529166
+        },
+        "appeal_mean": 2.1538461538461537
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "treatment_idx": 0,
+        "n": 41,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 41,
+          "share": 0.024390243902439025,
+          "ci_low": 0.00431842027071648,
+          "ci_high": 0.12595347011678087
+        },
+        "appeal_mean": 2.4634146341463414
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "treatment_idx": 0,
+        "n": 15,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 15,
+          "share": 0.13333333333333333,
+          "ci_low": 0.0373604698913593,
+          "ci_high": 0.3788249920651624
+        },
+        "appeal_mean": 2.6666666666666665
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "treatment_idx": 0,
+        "n": 33,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 33,
+          "share": 0.06060606060606061,
+          "ci_low": 0.016780530429070947,
+          "ci_high": 0.19606581717798194
+        },
+        "appeal_mean": 2.6363636363636362
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "very_high",
+        "treatment_idx": 0,
+        "n": 11,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 11,
+          "share": 0.0,
+          "ci_low": 2.7755575615628914e-17,
+          "ci_high": 0.2588400172488141
+        },
+        "appeal_mean": 2.1818181818181817
+      },
+      {
+        "attribute": "region",
+        "value": "midwest",
+        "treatment_idx": 0,
+        "n": 21,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 21,
+          "share": 0.09523809523809523,
+          "ci_low": 0.026518208796947246,
+          "ci_high": 0.2891458386074067
+        },
+        "appeal_mean": 2.4285714285714284
+      },
+      {
+        "attribute": "region",
+        "value": "northeast",
+        "treatment_idx": 0,
+        "n": 17,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 17,
+          "share": 0.058823529411764705,
+          "ci_low": 0.01046013064516424,
+          "ci_high": 0.269825452035628
+        },
+        "appeal_mean": 2.588235294117647
+      },
+      {
+        "attribute": "region",
+        "value": "south",
+        "treatment_idx": 0,
+        "n": 38,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 38,
+          "share": 0.02631578947368421,
+          "ci_low": 0.004660467553530057,
+          "ci_high": 0.13495178436800254
+        },
+        "appeal_mean": 2.526315789473684
+      },
+      {
+        "attribute": "region",
+        "value": "west",
+        "treatment_idx": 0,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 24,
+          "share": 0.041666666666666664,
+          "ci_low": 0.007393265354805126,
+          "ci_high": 0.20242226248842232
+        },
+        "appeal_mean": 2.5416666666666665
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "treatment_idx": 0,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 26,
+          "share": 0.11538461538461539,
+          "ci_low": 0.04003171821149494,
+          "ci_high": 0.28976293086898336
+        },
+        "appeal_mean": 2.8076923076923075
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "treatment_idx": 0,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 25,
+          "share": 0.04,
+          "ci_low": 0.007096050386699165,
+          "ci_high": 0.19544472405022525
+        },
+        "appeal_mean": 2.84
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "innovator",
+        "treatment_idx": 0,
+        "n": 2,
+        "suppressed": true
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "treatment_idx": 0,
+        "n": 18,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 18,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.1758845505823749
+        },
+        "appeal_mean": 1.8333333333333333
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "treatment_idx": 0,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 29,
+          "share": 0.034482758620689655,
+          "ci_low": 0.006113056614032261,
+          "ci_high": 0.1717589106470025
+        },
+        "appeal_mean": 2.4482758620689653
+      }
+    ],
+    "objections": [
+      {
+        "code": "price",
+        "n": 84,
+        "share": 0.84
+      },
+      {
+        "code": "already_have_alternative",
+        "n": 5,
+        "share": 0.05
+      }
+    ],
+    "benefits": [
+      {
+        "code": "convenience",
+        "n": 37,
+        "share": 0.37
+      },
+      {
+        "code": "saves_money",
+        "n": 37,
+        "share": 0.37
+      },
+      {
+        "code": "saves_time",
+        "n": 26,
+        "share": 0.26
+      }
+    ],
+    "quotes": [
+      {
+        "kind": "top_objection",
+        "code": "price",
+        "trial_id": 1,
+        "persona_id": "P2-00001",
+        "treatment_idx": 0,
+        "text": "I don't want to spend that much on a mug when I can get a good cup for less."
+      },
+      {
+        "kind": "top_objection",
+        "code": "price",
+        "trial_id": 2,
+        "persona_id": "P2-00002",
+        "treatment_idx": 0,
+        "text": "I can't afford a $79 mug, especially since we're on a tight budget with kids to support."
+      },
+      {
+        "kind": "top_objection",
+        "code": "already_have_alternative",
+        "trial_id": 3,
+        "persona_id": "P2-00003",
+        "treatment_idx": 0,
+        "text": "I already have a reliable way to keep my drinks warm, so this gadget doesn't seem like a necessity to me."
+      },
+      {
+        "kind": "top_objection",
+        "code": "already_have_alternative",
+        "trial_id": 6,
+        "persona_id": "P2-00005",
+        "treatment_idx": 0,
+        "text": "I already have a good coffee mug that keeps my drinks warm, so why invest in this fancy smart mug?"
+      },
+      {
+        "kind": "top_benefit",
+        "code": "convenience",
+        "trial_id": 1,
+        "persona_id": "P2-00001",
+        "treatment_idx": 0,
+        "text": "I don't want to spend that much on a mug when I can get a good cup for less."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "convenience",
+        "trial_id": 3,
+        "persona_id": "P2-00003",
+        "treatment_idx": 0,
+        "text": "I already have a reliable way to keep my drinks warm, so this gadget doesn't seem like a necessity to me."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_money",
+        "trial_id": 2,
+        "persona_id": "P2-00002",
+        "treatment_idx": 0,
+        "text": "I can't afford a $79 mug, especially since we're on a tight budget with kids to support."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_money",
+        "trial_id": 6,
+        "persona_id": "P2-00005",
+        "treatment_idx": 0,
+        "text": "I already have a good coffee mug that keeps my drinks warm, so why invest in this fancy smart mug?"
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_time",
+        "trial_id": 5,
+        "persona_id": "P2-00006",
+        "treatment_idx": 0,
+        "text": "I don't have much money to waste on gadgets, and this thing costs too much."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_time",
+        "trial_id": 7,
+        "persona_id": "P2-00007",
+        "treatment_idx": 0,
+        "text": "I'm too old and tech-phobic to understand how to use this, and I don't need something that complicated in my simple life."
+      }
+    ],
+    "contradictions": [],
+    "notes": [
+      "Intervals describe sampling variation of this simulation, not uncertainty about real people.",
+      "Segments with fewer than 10 valid responses are suppressed."
+    ]
+  },
+  "population": {
+    "name": {
+      "version_id": 2,
+      "version": 1,
+      "size": 100,
+      "seed": 11,
+      "source": "generated",
+      "spec_sha256_16": "f5dd3c9998b061a3"
+    },
+    "marginals": [
+      {
+        "attribute": "age",
+        "target": {
+          "18-25": 0.12,
+          "25-35": 0.18,
+          "35-50": 0.26,
+          "50-65": 0.24,
+          "65-85": 0.2
+        },
+        "realized": {
+          "18-25": 0.1,
+          "25-35": 0.15,
+          "35-50": 0.26,
+          "50-65": 0.28,
+          "65-85": 0.21
+        },
+        "max_abs_diff": 0.040000000000000036
+      },
+      {
+        "attribute": "education",
+        "target": {
+          "no_degree": 0.08,
+          "high_school": 0.28,
+          "some_college": 0.22,
+          "bachelor": 0.26,
+          "graduate": 0.16
+        },
+        "realized": {
+          "no_degree": 0.08,
+          "high_school": 0.25,
+          "some_college": 0.26,
+          "bachelor": 0.32,
+          "graduate": 0.09
+        },
+        "max_abs_diff": 0.07
+      },
+      {
+        "attribute": "income_band",
+        "target": {
+          "very_low": 0.14,
+          "low": 0.24,
+          "middle": 0.3,
+          "upper_middle": 0.2,
+          "high": 0.12
+        },
+        "realized": {
+          "very_low": 0.13,
+          "low": 0.24,
+          "middle": 0.24,
+          "upper_middle": 0.25,
+          "high": 0.14
+        },
+        "max_abs_diff": 0.06
+      },
+      {
+        "attribute": "tech_adoption",
+        "target": {
+          "laggard": 0.14,
+          "late_majority": 0.28,
+          "early_majority": 0.34,
+          "early_adopter": 0.18,
+          "innovator": 0.06
+        },
+        "realized": {
+          "laggard": 0.18,
+          "late_majority": 0.29,
+          "early_majority": 0.25,
+          "early_adopter": 0.26,
+          "innovator": 0.02
+        },
+        "max_abs_diff": 0.09000000000000002
+      },
+      {
+        "attribute": "price_sensitivity",
+        "target": {
+          "low": 0.15,
+          "moderate": 0.35,
+          "high": 0.35,
+          "very_high": 0.15
+        },
+        "realized": {
+          "low": 0.15,
+          "moderate": 0.33,
+          "high": 0.41,
+          "very_high": 0.11
+        },
+        "max_abs_diff": 0.06
+      },
+      {
+        "attribute": "gender",
+        "target": {
+          "woman": 0.5,
+          "man": 0.49,
+          "non_binary": 0.01
+        },
+        "realized": {
+          "woman": 0.51,
+          "man": 0.49,
+          "non_binary": 0.0
+        },
+        "max_abs_diff": 0.010000000000000009
+      },
+      {
+        "attribute": "region",
+        "target": {
+          "northeast": 0.17,
+          "midwest": 0.21,
+          "south": 0.38,
+          "west": 0.24
+        },
+        "realized": {
+          "northeast": 0.17,
+          "midwest": 0.21,
+          "south": 0.38,
+          "west": 0.24
+        },
+        "max_abs_diff": 0.0
+      },
+      {
+        "attribute": "employment",
+        "target": {
+          "full_time": 0.48,
+          "part_time": 0.12,
+          "self_employed": 0.08,
+          "student": 0.06,
+          "unemployed": 0.05,
+          "retired": 0.21
+        },
+        "realized": {
+          "full_time": 0.61,
+          "part_time": 0.1,
+          "self_employed": 0.12,
+          "student": 0.04,
+          "unemployed": 0.02,
+          "retired": 0.11
+        },
+        "max_abs_diff": 0.13
+      },
+      {
+        "attribute": "household",
+        "target": {
+          "lives_alone": 0.2,
+          "couple": 0.28,
+          "family_with_children": 0.32,
+          "shared_housing": 0.12,
+          "multigenerational": 0.08
+        },
+        "realized": {
+          "lives_alone": 0.14,
+          "couple": 0.26,
+          "family_with_children": 0.36,
+          "shared_housing": 0.19,
+          "multigenerational": 0.05
+        },
+        "max_abs_diff": 0.07
+      }
+    ],
+    "notes": "Population shares are generated from an assumed distribution."
+  },
+  "manifest": {
+    "simulacra_version": "0.1.0",
+    "experiment": {
+      "id": 1,
+      "name": "WarmMug concept test",
+      "kind": "product_concept",
+      "research_question": "Would busy professionals buy a self-heating smart mug?",
+      "hypothesis": "Interest is higher among early adopters and higher-income personas; price will be the main objection.",
+      "scenario": {
+        "product_name": "WarmMug",
+        "description": "A self-heating smart mug that keeps coffee or tea at your chosen temperature for up to 6 hours, with a charging coaster and a phone app.",
+        "price_usd": 79.0,
+        "category": "kitchen gadgets",
+        "headline": null
+      },
+      "config": {
+        "design": "between",
+        "repeats": 1,
+        "seed": 7
+      },
+      "treatments": [
+        {
+          "idx": 0,
+          "label": "Baseline",
+          "params": {}
+        }
+      ]
+    },
+    "population": {
+      "version_id": 2,
+      "version": 1,
+      "size": 100,
+      "seed": 11,
+      "source": "generated",
+      "spec_sha256_16": "f5dd3c9998b061a3"
+    },
+    "inference": {
+      "runtime": "llama.cpp",
+      "runtime_version": "b11960-8642541b2",
+      "base_url": "http://127.0.0.1:8080",
+      "model": "qwen2.5-3b",
+      "model_digest": null,
+      "quantization": null,
+      "structured_mode": "constrained",
+      "temperature": 0.7,
+      "max_tokens": 220,
+      "concurrency": 4,
+      "seed": 7
+    },
+    "prompt": {
+      "version": "concept-v1",
+      "sha256_12": "33cb8835fdc8"
+    },
+    "trials_planned": 100,
+    "hardware": {
+      "captured_at": "2026-11-03T00:46:37.032543Z",
+      "os": "Darwin",
+      "os_version": "26.5.2",
+      "arch": "arm64",
+      "chip": "Apple M4",
+      "apple_silicon": true,
+      "cpu_cores_total": 10,
+      "cpu_cores_performance": 4,
+      "ram_total_mb": 16384,
+      "ram_available_mb": 2586,
+      "swap_used_mb": 6935,
+      "disk_free_mb": 12639,
+      "disk_total_mb": 233752,
+      "metal": "Metal 4",
+      "on_battery": false,
+      "low_power_mode": false,
+      "sleep_prevented": true,
+      "notes": []
+    }
+  },
+  "limitations": [
+    "These are simulated opinions from model-generated personas. They are not observed human behavior and not validated predictions.",
+    "Personas follow an assumed distribution, not a representative sample of any real population.",
+    "Small local language models tend to agree with offers, give generic reasons and under-represent real variation in opinion; results can depend strongly on prompt wording and on the model.",
+    "Intervals describe sampling variation of this simulation only. They are not confidence in real-world behavior.",
+    "Stated purchase intent is not purchase behavior, even among real people."
+  ],
+  "follow_up": [
+    "Treat the objections and segment differences as hypotheses and check them with real customer interviews or a small real survey.",
+    "If a treatment difference matters to a decision, test it with real traffic (for example an A/B test on a landing page) before acting.",
+    "Re-run with a different model and prompt wording; findings that change are artifacts, not insights."
+  ],
+  "run": {
+    "id": 1,
+    "state": "completed",
+    "done_units": 100,
+    "total_units": 100
+  }
+}
