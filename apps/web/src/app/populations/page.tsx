@@ -1,17 +1,14 @@
-import { EmptyState } from "@/components/shell/empty-state";
+import { PopulationList } from "@/components/populations/list";
 import { PageHeader } from "@/components/shell/page-header";
 
-export default function Page() {
+export default function Populations() {
   return (
     <>
       <PageHeader
         title="Populations"
-        description="Generate and inspect versioned synthetic populations."
-        phase={5}
+        description="Generate versioned synthetic populations from explicit assumptions, inspect their quality, and export them."
       />
-      <EmptyState title="Not available yet">
-        This section is not built yet. It is planned for phase 5.
-      </EmptyState>
+      <PopulationList />
     </>
   );
 }

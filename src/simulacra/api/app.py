@@ -10,11 +10,12 @@ from sqlalchemy.orm import sessionmaker
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from simulacra import __version__
-from simulacra.api import health, lab
+from simulacra.api import health, lab, populations
 from simulacra.benchmarks import repository as repo
 from simulacra.config import Settings, get_settings
 from simulacra.persistence import migrate
 from simulacra.persistence.db import make_engine
+from simulacra.populations import service as pop_service
 
 # Reject any other Host header: blocks DNS-rebinding attacks against the local API.
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
@@ -31,14 +32,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         app.state.sessions = sessionmaker(app.state.engine, expire_on_commit=False)
         app.state.settings = settings
         app.state.benchmark_tasks = {}
+        app.state.population_tasks = {}
         with app.state.sessions() as session:
             repo.mark_interrupted(session)  # runs orphaned by a previous crash or restart
+            pop_service.mark_interrupted(session)
         try:
             yield
         finally:
-            for task in app.state.benchmark_tasks.values():
+            tasks = [*app.state.benchmark_tasks.values(), *app.state.population_tasks.values()]
+            for task in tasks:
                 task.cancel()
-            await asyncio.gather(*app.state.benchmark_tasks.values(), return_exceptions=True)
+            await asyncio.gather(*tasks, return_exceptions=True)
             app.state.engine.dispose()
 
     app = FastAPI(title="Simulacra", version=__version__, lifespan=lifespan)
@@ -61,6 +65,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app.include_router(health.router, prefix="/api/v1")
     app.include_router(lab.router, prefix="/api/v1")
+    app.include_router(populations.router, prefix="/api/v1")
 
     # Registered last so it never shadows API routes. Absent until `npm run build` has run.
     if settings.web_dir.is_dir():

@@ -99,3 +99,50 @@ class BenchmarkEvent(Base):
     )
     ts: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
     message: Mapped[str]
+
+
+class Population(Base):
+    __tablename__ = "populations"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str]
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
+
+
+class PopulationVersion(Base):
+    """Immutable once status is 'ready'. Changing a population creates a new version."""
+
+    __tablename__ = "population_versions"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    population_id: Mapped[int] = mapped_column(
+        ForeignKey("populations.id", ondelete="CASCADE"), index=True
+    )
+    version: Mapped[int]
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
+    status: Mapped[str]  # generating | ready | failed
+    source: Mapped[str]  # generated | imported
+    spec_json: Mapped[dict[str, Any]] = mapped_column(JSON)
+    seed: Mapped[int]
+    size: Mapped[int]
+    enrichment_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    diagnostics_json: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    progress_done: Mapped[int] = mapped_column(default=0)
+    progress_total: Mapped[int] = mapped_column(default=0)
+    error: Mapped[str | None]
+
+
+class PersonaRow(Base):
+    __tablename__ = "personas"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    version_id: Mapped[int] = mapped_column(
+        ForeignKey("population_versions.id", ondelete="CASCADE"), index=True
+    )
+    idx: Mapped[int]
+    synthetic_id: Mapped[str]
+    name: Mapped[str]
+    attributes_json: Mapped[dict[str, Any]] = mapped_column(JSON)
+    bio: Mapped[str] = mapped_column(Text)
+    extras_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    meta_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
