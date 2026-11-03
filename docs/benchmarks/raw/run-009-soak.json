@@ -1,0 +1,153 @@
+{
+ "run": {
+  "id": 9,
+  "stage": "soak",
+  "status": "completed",
+  "created_at": "2026-11-03T00:11:11.208899+00:00",
+  "finished_at": "2026-11-03T00:16:15.493723+00:00",
+  "op": "soak (concurrency 1)",
+  "op_done": 300,
+  "op_total": 300,
+  "error": null,
+  "targets": [
+   {
+    "base_url": "http://127.0.0.1:11434",
+    "model": "qwen2.5:3b",
+    "structured_mode": "constrained"
+   }
+  ]
+ },
+ "hardware": {
+  "captured_at": "2026-11-03T00:11:10.760643Z",
+  "os": "Darwin",
+  "os_version": "26.5.2",
+  "arch": "arm64",
+  "chip": "Apple M4",
+  "apple_silicon": true,
+  "cpu_cores_total": 10,
+  "cpu_cores_performance": 4,
+  "ram_total_mb": 16384,
+  "ram_available_mb": 6376,
+  "swap_used_mb": 4015,
+  "disk_free_mb": 15745,
+  "disk_total_mb": 233752,
+  "metal": "Metal 4",
+  "on_battery": false,
+  "low_power_mode": false,
+  "sleep_prevented": true,
+  "notes": []
+ },
+ "results": [
+  {
+   "id": 77,
+   "target_label": "ollama / qwen2.5:3b",
+   "runtime_kind": "ollama",
+   "runtime_version": "0.15.2",
+   "base_url": "http://127.0.0.1:11434",
+   "model": "qwen2.5:3b",
+   "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+   "quantization": "Q4_K_M",
+   "structured_mode": "constrained",
+   "stage": "screen",
+   "evidence": "screened",
+   "workload": "compat",
+   "concurrency": 1,
+   "workload_hash": null,
+   "metrics": null,
+   "diagnostics": [],
+   "compat": {
+    "ok": true,
+    "first_request_ms": 900.5118750501424,
+    "structured_valid_rate": 1.0,
+    "structured_json_schema_works": true,
+    "error": null
+   },
+   "extras": {}
+  },
+  {
+   "id": 78,
+   "target_label": "ollama / qwen2.5:3b",
+   "runtime_kind": "ollama",
+   "runtime_version": "0.15.2",
+   "base_url": "http://127.0.0.1:11434",
+   "model": "qwen2.5:3b",
+   "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+   "quantization": "Q4_K_M",
+   "structured_mode": "constrained",
+   "stage": "soak",
+   "evidence": "soak",
+   "workload": "G",
+   "concurrency": 1,
+   "workload_hash": "bfdd1cd242deb8d0",
+   "metrics": {
+    "n": 121,
+    "concurrency": 1,
+    "wall_s": 301.90074237505905,
+    "valid_rate": 1.0,
+    "invalid_json_rate": 0.0,
+    "schema_mismatch_rate": 0.0,
+    "failure_rate": 0.0,
+    "timeout_rate": 0.0,
+    "valid_trials_per_min": 24.047638779836834,
+    "latency_ms_median": 2405.9820829425007,
+    "latency_ms_p95": 3111.7822090163827,
+    "ttft_ms_median": 358.60312497243285,
+    "decode_tokens_per_s_median": 47.961206162731486,
+    "decode_tps_method": "runtime_reported",
+    "prefill_tokens_per_s_median": 633.9388261778955,
+    "output_tokens_per_s_aggregate": 26.690891637455266,
+    "prompt_tokens_mean": 243.46280991735537,
+    "completion_tokens_mean": 66.59504132231405,
+    "first_request_ms": 2863.464582944289,
+    "peak_rss_mb": 2347.265625,
+    "min_available_mb": 5120.765625,
+    "swap_growth_mb": 0.0
+   },
+   "diagnostics": [],
+   "compat": null,
+   "extras": {
+    "duration_s": 301.90074237505905,
+    "windows": [
+     {
+      "window": 0,
+      "trials": 24,
+      "valid_per_min": 24.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 1,
+      "trials": 25,
+      "valid_per_min": 25.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 2,
+      "trials": 24,
+      "valid_per_min": 24.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 3,
+      "trials": 23,
+      "valid_per_min": 23.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 4,
+      "trials": 24,
+      "valid_per_min": 24.0,
+      "failure_rate": 0.0
+     }
+    ],
+    "throughput_drift": 1.0,
+    "note": "duration is what actually ran; an overnight soak is a separate, longer run"
+   }
+  }
+ ],
+ "events": [
+  "00:11:11 Queued soak benchmark for 1 target(s)",
+  "00:11:11 Starting soak benchmark of ollama / qwen2.5:3b at concurrency 1",
+  "00:16:15 Finished ollama / qwen2.5:3b",
+  "00:16:15 Benchmark completed"
+ ]
+}

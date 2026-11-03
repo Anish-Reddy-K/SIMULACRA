@@ -8,13 +8,14 @@ export default defineConfig({
   outputDir: "./e2e/results",
   use: { baseURL: `http://127.0.0.1:${PORT}` },
   webServer: {
-    command: "uv run simulacra up",
+    command: "rm -rf .e2e-data && uv run simulacra up",
     cwd: "../..",
     url: `http://127.0.0.1:${PORT}/api/v1/health`,
     reuseExistingServer: false,
     env: {
       SIMULACRA_PORT: String(PORT),
       SIMULACRA_DATA_DIR: ".e2e-data",
+      SIMULACRA_ENABLE_MOCK_BACKEND: "true",
     },
   },
 });

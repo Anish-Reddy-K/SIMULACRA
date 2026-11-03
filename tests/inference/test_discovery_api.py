@@ -44,6 +44,10 @@ def fake_discovery(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
 
 
 def test_lab_endpoints(client: TestClient, fake_discovery: None) -> None:
+    # the synthetic mock runtime is never listed unless explicitly enabled
+    assert all(
+        r["base_url"] != "mock://" for r in client.get("/api/v1/lab/runtimes").json()["runtimes"]
+    )
     runtimes = client.get("/api/v1/lab/runtimes").json()
     assert [r["running"] for r in runtimes["runtimes"]] == [True, False]
     models = client.get("/api/v1/lab/models").json()

@@ -17,8 +17,12 @@ class Settings(BaseSettings):
     # without adding authentication first.
     host: str = "127.0.0.1"
     port: int = 8765
+    dev_web_port: int = 3000  # Next dev server origin allowed to call the API in development
     data_dir: Path = Field(default_factory=lambda: Path(user_data_dir("simulacra")))
     web_dir: Path = REPO_ROOT / "apps" / "web" / "out"
+    # Enables the synthetic "mock://" benchmark target (tests and demos only). Mock results
+    # are labeled and never used in recommendations.
+    enable_mock_backend: bool = False
 
     @property
     def database_url(self) -> str:
