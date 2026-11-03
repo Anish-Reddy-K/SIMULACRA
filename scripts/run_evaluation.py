@@ -37,10 +37,12 @@ PARAPHRASES = [
 def call(path: str, body: Any = None, post: bool = False) -> Any:
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(
-        API + path, data=data, headers={"Content-Type": "application/json"},
+        API + path,
+        data=data,
+        headers={"Content-Type": "application/json"},
         method="POST" if (body is not None or post) else "GET",
     )
-    return json.load(urllib.request.urlopen(req, timeout=600))  # noqa: S310  (local API)
+    return json.load(urllib.request.urlopen(req, timeout=600))
 
 
 def wait(run_id: int) -> dict[str, Any]:
@@ -53,20 +55,44 @@ def wait(run_id: int) -> dict[str, Any]:
 
 def population(size: int, seed: int) -> int:
     preset = call("/populations/presets")
-    return int(call("/populations", {"spec": {**preset, "name": f"Evaluation population {size}", "size": size, "seed": seed}})["id"])
+    return int(
+        call(
+            "/populations",
+            {
+                "spec": {
+                    **preset,
+                    "name": f"Evaluation population {size}",
+                    "size": size,
+                    "seed": seed,
+                }
+            },
+        )["id"]
+    )
 
 
 def start(exp: dict[str, Any], base_url: str, model: str, **opts: Any) -> int:
     target = {"base_url": base_url, "model": model, "structured_mode": "constrained"}
-    return int(call(f"/experiments/{exp['id']}/start", {"target": target, "concurrency": 12, "batch_size": 24,
-                                                         "prompt_variant": "v2", **opts})["run_id"])
+    return int(
+        call(
+            f"/experiments/{exp['id']}/start",
+            {"target": target, "concurrency": 12, "batch_size": 24, "prompt_variant": "v2", **opts},
+        )["run_id"]
+    )
 
 
 def base_experiment(name: str, pop: int, **over: Any) -> dict[str, Any]:
     body = {
-        "name": name, "research_question": "Evaluation study", "population_version_id": pop,
-        "scenario": {"product_name": "WarmMug", "description": DESCRIPTION, "price_usd": 79, "category": "kitchen gadgets"},
-        "seed": 7, **over,
+        "name": name,
+        "research_question": "Evaluation study",
+        "population_version_id": pop,
+        "scenario": {
+            "product_name": "WarmMug",
+            "description": DESCRIPTION,
+            "price_usd": 79,
+            "category": "kitchen gadgets",
+        },
+        "seed": 7,
+        **over,
     }
     return call("/experiments", body)  # type: ignore[no-any-return]
 
@@ -85,22 +111,42 @@ def main() -> None:
     results: dict[str, Any] = {"personas": args.personas, "model": args.model, "studies": {}}
 
     # 1. Prompt sensitivity: within-subjects, three equivalent descriptions of the same offer.
-    exp = call("/experiments", {
-        "name": "Prompt sensitivity", "research_question": "Does equivalent rewording change answers?",
-        "population_version_id": pop, "design": "within", "seed": 7,
-        "scenario": {"product_name": "WarmMug", "description": DESCRIPTION, "price_usd": 79, "category": "kitchen gadgets"},
-        "treatments": [{"label": f"Wording {chr(65 + i)}", "params": {"description": d}} for i, d in enumerate(PARAPHRASES)],
-    })
+    exp = call(
+        "/experiments",
+        {
+            "name": "Prompt sensitivity",
+            "research_question": "Does equivalent rewording change answers?",
+            "population_version_id": pop,
+            "design": "within",
+            "seed": 7,
+            "scenario": {
+                "product_name": "WarmMug",
+                "description": DESCRIPTION,
+                "price_usd": 79,
+                "category": "kitchen gadgets",
+            },
+            "treatments": [
+                {"label": f"Wording {chr(65 + i)}", "params": {"description": d}}
+                for i, d in enumerate(PARAPHRASES)
+            ],
+        },
+    )
     rid = start(exp, args.base_url, args.model)
     wait(rid)
-    results["studies"]["prompt_sensitivity"] = {"run_id": rid, "comparison": call(f"/runs/{rid}/comparison"),
-                                                "results": call(f"/runs/{rid}/results")["treatments"]}
+    results["studies"]["prompt_sensitivity"] = {
+        "run_id": rid,
+        "comparison": call(f"/runs/{rid}/comparison"),
+        "results": call(f"/runs/{rid}/results")["treatments"],
+    }
 
     # 2. Repeat stability: identical prompts, several repeats per persona.
     exp = base_experiment("Repeat stability", pop, repeats=args.repeats)
     rid = start(exp, args.base_url, args.model)
     wait(rid)
-    results["studies"]["repeat_stability"] = {"run_id": rid, "stability": call(f"/runs/{rid}/results")["repeat_stability"]}
+    results["studies"]["repeat_stability"] = {
+        "run_id": rid,
+        "stability": call(f"/runs/{rid}/results")["repeat_stability"],
+    }
 
     # 3. Model disagreement: identical trials, two models.
     if args.second_base_url and args.second_model:
@@ -109,7 +155,11 @@ def main() -> None:
         wait(a)
         b = start(exp, args.second_base_url, args.second_model)
         wait(b)
-        results["studies"]["model_disagreement"] = {"run_a": a, "run_b": b, "comparison": call(f"/compare-runs?a={a}&b={b}")}
+        results["studies"]["model_disagreement"] = {
+            "run_a": a,
+            "run_b": b,
+            "comparison": call(f"/compare-runs?a={a}&b={b}"),
+        }
 
     Path(args.out).write_text(json.dumps(results, indent=1))
     print(f"wrote {args.out}")

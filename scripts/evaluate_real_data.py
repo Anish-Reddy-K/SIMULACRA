@@ -19,7 +19,7 @@ API = "http://127.0.0.1:8765/api/v1"
 
 
 def get(path: str) -> dict:  # type: ignore[type-arg]
-    return json.load(urllib.request.urlopen(API + path, timeout=120))  # type: ignore[no-any-return]  # noqa: S310
+    return json.load(urllib.request.urlopen(API + path, timeout=120))  # type: ignore[no-any-return]
 
 
 def main() -> None:
@@ -32,7 +32,9 @@ def main() -> None:
     ap.add_argument("--out")
     args = ap.parse_args()
     attrs = args.attributes.split(",")
-    rows = rd.parse_real_csv(Path(args.csv).read_bytes(), args.outcome, set(args.positive.lower().split(",")))
+    rows = rd.parse_real_csv(
+        Path(args.csv).read_bytes(), args.outcome, set(args.positive.lower().split(","))
+    )
     sim_segments = []
     for a in attrs:
         q = get(f"/runs/{args.run}/query?metric=top2_share&group_by={a}")

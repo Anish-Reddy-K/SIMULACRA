@@ -15,6 +15,14 @@
 - Same Qwen2.5 3B weights: llama.cpp reached about 4x the valid trials per minute of Ollama 0.15.2 in our benchmark ([results](docs/benchmark-results.md)).
 - Small models are weak simulators: they failed basic behavioral checks and showed no detectable price sensitivity at n=100 per arm ([evaluation](docs/evaluation/README.md), [A/B example](docs/ab-testing.md)).
 
+## Screenshots (real data from the runs described in the docs)
+| | |
+|---|---|
+| ![Inference Lab](docs/screenshots/inference-lab.png) | ![Benchmark evidence](docs/screenshots/benchmark-evidence.png) |
+| ![Population diagnostics](docs/screenshots/population-diagnostics.png) | ![10,000-trial run](docs/screenshots/run-monitor-10k.png) |
+
+![Pricing experiment results](docs/screenshots/pricing-results.png)
+
 ## Quick start
 Requirements: macOS or Linux, [uv](https://docs.astral.sh/uv/), Node 24+, `make`, and one local runtime with a model (for example `brew install ollama` then `ollama pull qwen2.5:3b`, or `brew install llama.cpp`).
 ```sh
@@ -29,5 +37,7 @@ Open the app, go to **Inference Lab** and run a quick benchmark, create a popula
 
 ## Development
 `make check` (ruff, mypy, pytest, eslint, tsc, vitest, build), `make e2e` (Playwright), `make dev`, `make audit`. Python 3.12, FastAPI, SQLite (WAL), Next.js (static export), Tailwind, shadcn/ui.
+
+Not included in this release: a demo video, a published real-human-data evaluation, an unattended overnight run, and multi-step simulation environments (see [ROADMAP](ROADMAP.md)).
 
 License: Apache-2.0.
