@@ -7,6 +7,8 @@ from pydantic import BaseModel
 from simulacra.inference.structured import ValidationStatus
 from simulacra.inference.types import GenerationResult
 
+MIN_DECODE_WINDOW_MS = 100.0
+MIN_DECODE_SHARE = 0.3
 TokenRateMethod = Literal["runtime_reported", "client_derived", "unavailable"]
 
 
@@ -72,10 +74,15 @@ def aggregate(samples: list[Sample], concurrency: int, wall_s: float) -> Workloa
         return sum(s.status == status for s in samples)
 
     reported = [r.decode_tokens_per_s for r in ok if r.decode_tokens_per_s]
+    # Client-derived rate is only trusted when the decode window is a real share of the
+    # request. Some servers (vllm-mlx) deliver output in one burst, leaving a near-zero
+    # window and an absurd rate; those samples are discarded, not reported.
     derived = [
         r.completion_tokens / ((r.total_ms - r.ttft_ms) / 1000)
         for r in ok
-        if r.completion_tokens and r.ttft_ms is not None and r.total_ms - r.ttft_ms > 1
+        if r.completion_tokens
+        and r.ttft_ms is not None
+        and (r.total_ms - r.ttft_ms) >= max(MIN_DECODE_WINDOW_MS, MIN_DECODE_SHARE * r.total_ms)
     ]
     tps: float | None
     method: TokenRateMethod

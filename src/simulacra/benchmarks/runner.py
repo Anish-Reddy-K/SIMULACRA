@@ -205,6 +205,7 @@ async def run_target(
     stage: Stage,
     on_progress: ProgressFn | None = None,
     soak_seconds: float = 300.0,
+    soak_concurrency: int = 2,
 ) -> TargetReport:
     report = TargetReport(target.label)
     compat = await stage_compat(target, on_progress)
@@ -264,7 +265,9 @@ async def run_target(
         return report
 
     # soak: sustained workload G at a concurrency chosen by the caller via prior results (default 2)
-    report.records.append(await _soak(target, soak_seconds, concurrency=2, on_progress=on_progress))
+    report.records.append(
+        await _soak(target, soak_seconds, concurrency=soak_concurrency, on_progress=on_progress)
+    )
     return report
 
 

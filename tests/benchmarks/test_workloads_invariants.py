@@ -168,3 +168,10 @@ def test_responsiveness_catches_a_model_that_never_buys() -> None:
     sometimes = [_sample("price_sweep", _d("buy_now"), persona="p02", price=50), *never]
     d = {x.name: x for x in score_consistency(sometimes)}
     assert d["affluent_responsiveness"].passed is True
+
+
+def test_burst_delivery_does_not_produce_absurd_derived_rates() -> None:
+    # Output arrives in one burst: ttft ~ total, so the derived rate must be discarded.
+    burst = [Sample(i, "g", "valid", _res(1500, 50, 1499.5)) for i in range(4)]
+    m = aggregate(burst, 1, 10.0)
+    assert m.decode_tps_method == "unavailable" and m.decode_tokens_per_s_median is None

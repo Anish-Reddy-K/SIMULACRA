@@ -1,0 +1,153 @@
+{
+ "run": {
+  "id": 8,
+  "stage": "soak",
+  "status": "completed",
+  "created_at": "2026-11-03T00:05:58.044125+00:00",
+  "finished_at": "2026-11-03T00:11:01.881858+00:00",
+  "op": "soak (concurrency 4)",
+  "op_done": 300,
+  "op_total": 300,
+  "error": null,
+  "targets": [
+   {
+    "base_url": "http://127.0.0.1:8080",
+    "model": "qwen2.5-3b",
+    "structured_mode": "constrained"
+   }
+  ]
+ },
+ "hardware": {
+  "captured_at": "2026-11-03T00:05:57.532217Z",
+  "os": "Darwin",
+  "os_version": "26.5.2",
+  "arch": "arm64",
+  "chip": "Apple M4",
+  "apple_silicon": true,
+  "cpu_cores_total": 10,
+  "cpu_cores_performance": 4,
+  "ram_total_mb": 16384,
+  "ram_available_mb": 6465,
+  "swap_used_mb": 4047,
+  "disk_free_mb": 15113,
+  "disk_total_mb": 233752,
+  "metal": "Metal 4",
+  "on_battery": false,
+  "low_power_mode": false,
+  "sleep_prevented": true,
+  "notes": []
+ },
+ "results": [
+  {
+   "id": 75,
+   "target_label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "model_digest": null,
+   "quantization": null,
+   "structured_mode": "constrained",
+   "stage": "screen",
+   "evidence": "screened",
+   "workload": "compat",
+   "concurrency": 1,
+   "workload_hash": null,
+   "metrics": null,
+   "diagnostics": [],
+   "compat": {
+    "ok": true,
+    "first_request_ms": 464.1280001960695,
+    "structured_valid_rate": 1.0,
+    "structured_json_schema_works": true,
+    "error": null
+   },
+   "extras": {}
+  },
+  {
+   "id": 76,
+   "target_label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "model_digest": null,
+   "quantization": null,
+   "structured_mode": "constrained",
+   "stage": "soak",
+   "evidence": "soak",
+   "workload": "G",
+   "concurrency": 4,
+   "workload_hash": "e77e2ef5bbff2a83",
+   "metrics": {
+    "n": 466,
+    "concurrency": 4,
+    "wall_s": 301.69429354183376,
+    "valid_rate": 1.0,
+    "invalid_json_rate": 0.0,
+    "schema_mismatch_rate": 0.0,
+    "failure_rate": 0.0,
+    "timeout_rate": 0.0,
+    "valid_trials_per_min": 92.67659547601947,
+    "latency_ms_median": 2499.8350414680317,
+    "latency_ms_p95": 3347.3775829188526,
+    "ttft_ms_median": 97.22968738060445,
+    "decode_tokens_per_s_median": 29.214284111195518,
+    "decode_tps_method": "runtime_reported",
+    "prefill_tokens_per_s_median": 3691.3674733677067,
+    "output_tokens_per_s_aggregate": 109.1900002922401,
+    "prompt_tokens_mean": 242.19098712446353,
+    "completion_tokens_mean": 70.69098712446352,
+    "first_request_ms": 3593.473667046055,
+    "peak_rss_mb": 2611.78125,
+    "min_available_mb": 5005.59375,
+    "swap_growth_mb": 0.0
+   },
+   "diagnostics": [],
+   "compat": null,
+   "extras": {
+    "duration_s": 301.69429354183376,
+    "windows": [
+     {
+      "window": 0,
+      "trials": 79,
+      "valid_per_min": 79.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 1,
+      "trials": 95,
+      "valid_per_min": 95.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 2,
+      "trials": 96,
+      "valid_per_min": 96.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 3,
+      "trials": 96,
+      "valid_per_min": 96.0,
+      "failure_rate": 0.0
+     },
+     {
+      "window": 4,
+      "trials": 96,
+      "valid_per_min": 96.0,
+      "failure_rate": 0.0
+     }
+    ],
+    "throughput_drift": 1.2151898734177216,
+    "note": "duration is what actually ran; an overnight soak is a separate, longer run"
+   }
+  }
+ ],
+ "events": [
+  "00:05:58 Queued soak benchmark for 1 target(s)",
+  "00:05:58 Starting soak benchmark of llama.cpp / qwen2.5-3b at concurrency 4",
+  "00:11:01 Finished llama.cpp / qwen2.5-3b",
+  "00:11:01 Benchmark completed"
+ ]
+}

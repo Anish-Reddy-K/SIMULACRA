@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from simulacra.benchmarks import repository as repo
 from simulacra.benchmarks.hardware import detect_hardware
+from simulacra.benchmarks.recommend import build_evidence
 from simulacra.benchmarks.runner import Stage, Target, run_target
 from simulacra.inference.mock import MockBackend
 from simulacra.inference.ollama import OllamaBackend
@@ -36,12 +37,13 @@ def _example(schema: dict[str, Any], defs: dict[str, Any] | None = None) -> Any:
     if kind == "object":
         return {k: _example(v, defs) for k, v in schema.get("properties", {}).items()}
     if kind == "array":
-        return []
+        item = _example(schema.get("items", {}), defs)
+        return [item for _ in range(schema.get("minItems", 0))]
     if kind == "integer":
         return schema.get("minimum", 1)
     if kind == "boolean":
         return True
-    return "ok"
+    return "ok" * max(1, -(-schema.get("minLength", 2) // 2))
 
 
 def mock_responder(request: GenerationRequest) -> str:
@@ -130,9 +132,11 @@ async def execute_run(
                 failures += 1
                 event(f"Skipped {spec.model} at {spec.base_url}: {exc}")
                 continue
-            event(f"Starting {stage} benchmark of {target.label} ({target.runtime.kind.value})")
+            soak_c = _best_known_concurrency(session_factory, target) if stage == "soak" else 2
+            suffix = f" at concurrency {soak_c}" if stage == "soak" else ""
+            event(f"Starting {stage} benchmark of {target.label}{suffix}")
             try:
-                report = await run_target(target, stage, progress, soak_seconds)
+                report = await run_target(target, stage, progress, soak_seconds, soak_c)
             finally:
                 await target.backend.aclose()
             with session_factory() as s:
@@ -157,6 +161,20 @@ async def execute_run(
         with session_factory() as s:
             repo.set_status(s, run_id, "failed", f"{type(exc).__name__}: {exc}")
         event(f"Benchmark failed: {type(exc).__name__}: {exc}")
+
+
+def _best_known_concurrency(session_factory: Callable[[], Session], target: Target) -> int:
+    """Reuse the best concurrency from earlier detailed/quick runs of this exact configuration."""
+    with session_factory() as s:
+        for ev in build_evidence(repo.all_results(s)):
+            same = (ev.runtime_kind, ev.base_url, ev.model) == (
+                target.runtime.kind.value,
+                target.runtime.base_url,
+                target.model,
+            )
+            if same and ev.structured_mode == target.structured_mode and ev.best_concurrency:
+                return ev.best_concurrency
+    return 2
 
 
 def start_hardware_snapshot() -> dict[str, Any]:

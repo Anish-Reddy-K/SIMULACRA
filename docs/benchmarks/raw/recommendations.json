@@ -1,0 +1,518 @@
+[
+ {
+  "goal": "fastest",
+  "title": "Fastest",
+  "selected": {
+   "key": "llama.cpp|http://127.0.0.1:8080|qwen2.5-3b|constrained",
+   "label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "quantization": null,
+   "parameter_b": 3.0,
+   "structured_mode": "constrained",
+   "evidence": "soak",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": true,
+   "valid_per_min": 95.27055596409987,
+   "best_concurrency": 4,
+   "decode_tokens_per_s": 29.288691915569075,
+   "decode_tps_method": "runtime_reported",
+   "valid_rate": 1.0,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 2731.59375,
+   "min_available_mb": 4795.765625,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.7333333333333334,
+   "soak": {
+    "duration_s": 301.69429354183376,
+    "drift": 1.2151898734177216,
+    "failure_rate": 0.0,
+    "valid_per_min": 92.67659547601947
+   },
+   "result_ids": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    75,
+    76
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected llama.cpp / qwen2.5-3b: 95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants.",
+   "Ranked by valid structured trials per minute at its best measured concurrency."
+  ],
+  "considered": [
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "selected",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "ranked",
+    "detail": "47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "ranked",
+    "detail": "43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "ranked",
+    "detail": "36.5 valid trials/min at concurrency 2, peak server memory 2648 MB, 100% valid output, 67% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people."
+  ],
+  "when_different": "Choose a more balanced option when output validity or consistency matters more than speed.",
+  "policy_version": "1"
+ },
+ {
+  "goal": "balanced",
+  "title": "Best balanced",
+  "selected": {
+   "key": "llama.cpp|http://127.0.0.1:8080|qwen2.5-3b|constrained",
+   "label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "quantization": null,
+   "parameter_b": 3.0,
+   "structured_mode": "constrained",
+   "evidence": "soak",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": true,
+   "valid_per_min": 95.27055596409987,
+   "best_concurrency": 4,
+   "decode_tokens_per_s": 29.288691915569075,
+   "decode_tps_method": "runtime_reported",
+   "valid_rate": 1.0,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 2731.59375,
+   "min_available_mb": 4795.765625,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.7333333333333334,
+   "soak": {
+    "duration_s": 301.69429354183376,
+    "drift": 1.2151898734177216,
+    "failure_rate": 0.0,
+    "valid_per_min": 92.67659547601947
+   },
+   "result_ids": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    75,
+    76
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected llama.cpp / qwen2.5-3b: 95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants.",
+   "Score = 0.4 x relative throughput + 0.3 x valid-output rate + 0.3 x consistency. Scores: llama.cpp / qwen2.5-3b 0.92; openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON) 0.73; ollama / qwen2.5:1.5b 0.71; openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit 0.65; ollama / qwen2.5:3b 0.62."
+  ],
+  "considered": [
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "selected",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "ranked",
+    "detail": "43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "ranked",
+    "detail": "47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "ranked",
+    "detail": "36.5 valid trials/min at concurrency 2, peak server memory 2648 MB, 100% valid output, 67% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people."
+  ],
+  "when_different": "Choose the fastest option for quick exploration, or the quality option when subtle constraint-following matters.",
+  "policy_version": "1"
+ },
+ {
+  "goal": "quality",
+  "title": "Highest local quality",
+  "selected": {
+   "key": "openai-compat|http://127.0.0.1:8000|mlx-community/Qwen2.5-3B-Instruct-4bit|prompted",
+   "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+   "runtime_kind": "openai-compat",
+   "runtime_version": null,
+   "base_url": "http://127.0.0.1:8000",
+   "model": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+   "quantization": null,
+   "parameter_b": 3.0,
+   "structured_mode": "prompted",
+   "evidence": "detailed",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": null,
+   "valid_per_min": 43.105785571098544,
+   "best_concurrency": 4,
+   "decode_tokens_per_s": 48.39645392881825,
+   "decode_tps_method": "client_derived",
+   "valid_rate": 0.9840425531914894,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 1906.90625,
+   "min_available_mb": 4855.84375,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.8333333333333334,
+   "soak": null,
+   "result_ids": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON): 43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants.",
+   "Ranked by consistency-invariant pass rate, then valid-output rate, then model size (a rough capacity proxy only), then throughput."
+  ],
+  "considered": [
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "selected",
+    "detail": "43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "ranked",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "ranked",
+    "detail": "47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "ranked",
+    "detail": "36.5 valid trials/min at concurrency 2, peak server memory 2648 MB, 100% valid output, 67% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people.",
+   "Model size is not a quality measure; only the invariant results are evidence."
+  ],
+  "when_different": "Choose a faster option when you need thousands of trials and can accept a weaker model; consistency invariants are proxies, not human realism.",
+  "policy_version": "1"
+ },
+ {
+  "goal": "overnight",
+  "title": "Overnight large-scale",
+  "selected": {
+   "key": "llama.cpp|http://127.0.0.1:8080|qwen2.5-3b|constrained",
+   "label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "quantization": null,
+   "parameter_b": 3.0,
+   "structured_mode": "constrained",
+   "evidence": "soak",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": true,
+   "valid_per_min": 95.27055596409987,
+   "best_concurrency": 4,
+   "decode_tokens_per_s": 29.288691915569075,
+   "decode_tps_method": "runtime_reported",
+   "valid_rate": 1.0,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 2731.59375,
+   "min_available_mb": 4795.765625,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.7333333333333334,
+   "soak": {
+    "duration_s": 301.69429354183376,
+    "drift": 1.2151898734177216,
+    "failure_rate": 0.0,
+    "valid_per_min": 92.67659547601947
+   },
+   "result_ids": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    75,
+    76
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected llama.cpp / qwen2.5-3b: 95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants.",
+   "Only configurations with a completed soak run, low failures and stable throughput qualify."
+  ],
+  "considered": [
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "not_benchmarked",
+    "detail": "no soak run of at least 300s"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "not_benchmarked",
+    "detail": "no soak run of at least 300s"
+   },
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "not_benchmarked",
+    "detail": "no soak run of at least 300s"
+   },
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "selected",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people."
+  ],
+  "when_different": "A short soak is not an overnight run. Re-run a longer soak before trusting a multi-hour job.",
+  "policy_version": "1"
+ },
+ {
+  "goal": "low_memory",
+  "title": "Low memory",
+  "selected": {
+   "key": "ollama|http://127.0.0.1:11434|qwen2.5:1.5b|constrained",
+   "label": "ollama / qwen2.5:1.5b",
+   "runtime_kind": "ollama",
+   "runtime_version": "0.15.2",
+   "base_url": "http://127.0.0.1:11434",
+   "model": "qwen2.5:1.5b",
+   "quantization": "Q4_K_M",
+   "parameter_b": 1.5,
+   "structured_mode": "constrained",
+   "evidence": "detailed",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": true,
+   "valid_per_min": 47.64796768280452,
+   "best_concurrency": 2,
+   "decode_tokens_per_s": 88.28295512973887,
+   "decode_tps_method": "runtime_reported",
+   "valid_rate": 1.0,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 1423.09375,
+   "min_available_mb": 6587.765625,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.6833333333333332,
+   "soak": null,
+   "result_ids": [
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected ollama / qwen2.5:1.5b: 47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants.",
+   "Ranked by lowest peak server-process memory during the benchmark."
+  ],
+  "considered": [
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "selected",
+    "detail": "47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "ranked",
+    "detail": "43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "ranked",
+    "detail": "36.5 valid trials/min at concurrency 2, peak server memory 2648 MB, 100% valid output, 67% on consistency invariants"
+   },
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "ranked",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people.",
+   "RSS can under-report GPU memory on Apple Silicon; system available memory was also checked."
+  ],
+  "when_different": "Choose a larger model when memory is not the constraint; small models can score lower on consistency.",
+  "policy_version": "1"
+ },
+ {
+  "goal": "privacy_first",
+  "title": "Privacy-first",
+  "selected": {
+   "key": "llama.cpp|http://127.0.0.1:8080|qwen2.5-3b|constrained",
+   "label": "llama.cpp / qwen2.5-3b",
+   "runtime_kind": "llama.cpp",
+   "runtime_version": "b11960-8642541b2",
+   "base_url": "http://127.0.0.1:8080",
+   "model": "qwen2.5-3b",
+   "quantization": null,
+   "parameter_b": 3.0,
+   "structured_mode": "constrained",
+   "evidence": "soak",
+   "compat_ok": true,
+   "compat_error": null,
+   "json_schema_works": true,
+   "valid_per_min": 95.27055596409987,
+   "best_concurrency": 4,
+   "decode_tokens_per_s": 29.288691915569075,
+   "decode_tps_method": "runtime_reported",
+   "valid_rate": 1.0,
+   "failure_rate": 0.0,
+   "peak_rss_mb": 2731.59375,
+   "min_available_mb": 4795.765625,
+   "swap_growth_mb": 0.0,
+   "consistency": 0.7333333333333334,
+   "soak": {
+    "duration_s": 301.69429354183376,
+    "drift": 1.2151898734177216,
+    "failure_rate": 0.0,
+    "valid_per_min": 92.67659547601947
+   },
+   "result_ids": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    75,
+    76
+   ]
+  },
+  "provisional": false,
+  "rationale": [
+   "Selected llama.cpp / qwen2.5-3b: 95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants.",
+   "Score = 0.4 x relative throughput + 0.3 x valid-output rate + 0.3 x consistency. Scores: llama.cpp / qwen2.5-3b 0.92; openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON) 0.73; ollama / qwen2.5:1.5b 0.71; openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit 0.65; ollama / qwen2.5:3b 0.62.",
+   "Only runtimes on this machine were considered; nothing is sent elsewhere."
+  ],
+  "considered": [
+   {
+    "label": "llama.cpp / qwen2.5-3b",
+    "status": "selected",
+    "detail": "95.3 valid trials/min at concurrency 4, 29 tokens/s decode (runtime_reported), peak server memory 2732 MB, 100% valid output, 73% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit (prompted JSON)",
+    "status": "ranked",
+    "detail": "43.1 valid trials/min at concurrency 4, 48 tokens/s decode (client_derived), peak server memory 1907 MB, 98% valid output, 83% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:1.5b",
+    "status": "ranked",
+    "detail": "47.6 valid trials/min at concurrency 2, 88 tokens/s decode (runtime_reported), peak server memory 1423 MB, 100% valid output, 68% on consistency invariants"
+   },
+   {
+    "label": "openai-compat / mlx-community/Qwen2.5-3B-Instruct-4bit",
+    "status": "ranked",
+    "detail": "36.5 valid trials/min at concurrency 2, peak server memory 2648 MB, 100% valid output, 67% on consistency invariants"
+   },
+   {
+    "label": "ollama / qwen2.5:3b",
+    "status": "ranked",
+    "detail": "24.0 valid trials/min at concurrency 1, 48 tokens/s decode (runtime_reported), peak server memory 2398 MB, 100% valid output, 73% on consistency invariants"
+   }
+  ],
+  "caveats": [
+   "Based on proxy metrics from synthetic workloads. These do not measure accuracy against real people."
+  ],
+  "when_different": "All runtimes Simulacra supports run on this machine. Choose by goal when every candidate is local.",
+  "policy_version": "1"
+ }
+]
