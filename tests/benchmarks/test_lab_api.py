@@ -18,12 +18,12 @@ def mclient(tmp_path: Path) -> Iterator[TestClient]:
         yield c
 
 
-def wait_done(c: TestClient, run_id: int, timeout: float = 60) -> dict:  # type: ignore[type-arg]
+def wait_done(c: TestClient, run_id: int, timeout: float = 60) -> dict:
     end = time.time() + timeout
     while time.time() < end:
         detail = c.get(f"/api/v1/lab/benchmarks/{run_id}").json()
         if detail["run"]["status"] != "running":
-            return detail  # type: ignore[no-any-return]
+            return detail
         time.sleep(0.1)
     raise AssertionError("benchmark did not finish")
 

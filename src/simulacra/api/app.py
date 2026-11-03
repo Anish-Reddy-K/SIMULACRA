@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from simulacra import __version__
-from simulacra.api import health, lab, populations
+from simulacra.api import experiments, health, lab, populations, runs
 from simulacra.benchmarks import repository as repo
 from simulacra.config import Settings, get_settings
 from simulacra.persistence import migrate
@@ -66,6 +66,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(health.router, prefix="/api/v1")
     app.include_router(lab.router, prefix="/api/v1")
     app.include_router(populations.router, prefix="/api/v1")
+    app.include_router(runs.router, prefix="/api/v1")
+    app.include_router(experiments.router, prefix="/api/v1")
 
     # Registered last so it never shadows API routes. Absent until `npm run build` has run.
     if settings.web_dir.is_dir():

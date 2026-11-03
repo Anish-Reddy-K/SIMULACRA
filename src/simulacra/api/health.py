@@ -6,6 +6,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 from simulacra import __version__
+from simulacra.jobs import queue
 
 router = APIRouter()
 
@@ -16,8 +17,8 @@ class DatabaseHealth(BaseModel):
 
 
 class WorkerHealth(BaseModel):
-    # Phase 6 replaces this with real heartbeat data. Until a worker exists, say so.
-    status: Literal["not_running"] = "not_running"
+    status: Literal["running", "not_running"]
+    heartbeat_age_s: float | None = None
 
 
 class Health(BaseModel):
@@ -35,9 +36,14 @@ def health(request: Request) -> Health:
         db = DatabaseHealth(ok=True, journal_mode=str(mode))
     except SQLAlchemyError:
         db = DatabaseHealth(ok=False, journal_mode=None)
+    worker = WorkerHealth(status="not_running")
+    if db.ok:
+        with request.app.state.sessions() as session:
+            alive = queue.worker_alive(session)
+            if alive is not None:
+                worker = WorkerHealth(
+                    status="running", heartbeat_age_s=round(queue.now() - alive.heartbeat_at, 1)
+                )
     return Health(
-        status="ok" if db.ok else "degraded",
-        version=__version__,
-        database=db,
-        worker=WorkerHealth(),
+        status="ok" if db.ok else "degraded", version=__version__, database=db, worker=worker
     )
