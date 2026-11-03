@@ -17,7 +17,9 @@ build:
 
 # Wheel with the UI bundled: `pip install dist/simulacra-*.whl && simulacra up`
 dist: build
-	uv build --out-dir dist
+	rm -rf src/simulacra/web && cp -R apps/web/out src/simulacra/web
+	uv build --wheel --out-dir dist
+	rm -rf src/simulacra/web
 
 up: build
 	uv run simulacra up
