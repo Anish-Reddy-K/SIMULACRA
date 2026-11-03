@@ -38,10 +38,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/simulacra"]
-
-# Bundle the built static UI (run `npm run build` in apps/web first; see `make dist`).
-[tool.hatch.build.targets.wheel.force-include]
-"apps/web/out" = "simulacra/web"
+# `make dist` copies the built static UI into src/simulacra/web (gitignored) before building,
+# so a plain `uv sync` works on a checkout that has no UI build.
+artifacts = ["src/simulacra/web/**"]
 
 [tool.ruff]
 line-length = 100
