@@ -1,6 +1,6 @@
 # ADR-0003: SQLite (WAL) as store and job queue; defer DuckDB/Polars
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Decision
 - **SQLite in WAL mode**, one DB file, accessed via **SQLAlchemy 2.x + Alembic**. `busy_timeout` set, short write transactions, `synchronous=NORMAL`.
@@ -18,3 +18,6 @@
 
 ## Risks
 Single-writer contention between API and worker: mitigated by WAL + short transactions; covered by a failure-injection test in Phase 6.
+
+## Outcome (Phase 9)
+DuckDB and Polars were never needed. 10,000 trials cost 37 MB and the full analysis of a 10,000-trial run takes 0.6 s in plain Python over SQLite, so the deferral stands.

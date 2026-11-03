@@ -39,6 +39,10 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/simulacra"]
 
+# Bundle the built static UI (run `npm run build` in apps/web first; see `make dist`).
+[tool.hatch.build.targets.wheel.force-include]
+"apps/web/out" = "simulacra/web"
+
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]

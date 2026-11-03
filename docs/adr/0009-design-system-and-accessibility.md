@@ -1,6 +1,6 @@
 # ADR-0009: Neumorphic design system with accessibility guardrails
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Problem
 Classic neumorphism fails WCAG: shadow-only boundaries give controls ~1.2–1.5:1 contrast, and focus/disabled states are indistinguishable.

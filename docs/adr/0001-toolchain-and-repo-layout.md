@@ -1,6 +1,6 @@
 # ADR-0001: Toolchain, runtime versions, repo layout
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Context
 Dev machine: Apple M4, 16 GB, macOS 26.5, **system Python is 3.14.2**, Node 26, `uv` and `npm` present, `pnpm` absent. vllm-metal's published wheel targets CPython 3.12; MLX and many ML wheels lag new CPython releases.

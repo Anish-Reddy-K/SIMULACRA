@@ -6,6 +6,12 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+PACKAGED_WEB = Path(__file__).resolve().parent / "web"  # present in built wheels
+
+
+def default_web_dir() -> Path:
+    """Wheels bundle the static UI; a source checkout uses the Next.js export directory."""
+    return PACKAGED_WEB if PACKAGED_WEB.is_dir() else REPO_ROOT / "apps" / "web" / "out"
 
 
 class Settings(BaseSettings):
@@ -19,7 +25,7 @@ class Settings(BaseSettings):
     port: int = 8765
     dev_web_port: int = 3000  # Next dev server origin allowed to call the API in development
     data_dir: Path = Field(default_factory=lambda: Path(user_data_dir("simulacra")))
-    web_dir: Path = REPO_ROOT / "apps" / "web" / "out"
+    web_dir: Path = Field(default_factory=default_web_dir)
     # Enables the synthetic "mock://" benchmark target (tests and demos only). Mock results
     # are labeled and never used in recommendations.
     enable_mock_backend: bool = False

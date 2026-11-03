@@ -1,6 +1,6 @@
 # ADR-0008: Licensing and prior-art boundaries
 
-**Status:** Proposed — **needs owner decision on license**.
+**Status:** Accepted: Apache-2.0 chosen by the owner.
 
 ## Findings
 - **Concordia (Google DeepMind):** Entity-Component architecture; the Game Master is itself an entity (v2.0, Aug 2025); prefabs, engine abstraction. Reported Apache-2.0 — confirm in repo.

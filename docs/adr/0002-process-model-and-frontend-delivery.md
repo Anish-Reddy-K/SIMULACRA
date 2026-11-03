@@ -1,6 +1,6 @@
 # ADR-0002: Process model and frontend delivery
 
-**Status:** Proposed (Phase 0)
+**Status:** Accepted
 
 ## Decision
 Two Python processes, one command (`simulacra up`):
@@ -20,7 +20,7 @@ The spec asks for Next.js but also "ease of use" and "one coherent application".
 - Celery/Redis (spec non-goal; SQLite queue suffices — ADR-0003).
 
 ## Security
-Bind 127.0.0.1; reject non-local `Host` headers (DNS-rebinding defense); per-install random token required on mutating requests; strict CORS off by default.
+Bind 127.0.0.1; reject non-local `Host` headers (DNS-rebinding defense); reject state-changing requests whose `Origin` is not localhost on the Simulacra or dev-server port (implemented instead of the per-install token: browsers always send `Origin` on cross-site writes, so no secret has to be stored or delivered to the UI); no CORS headers are sent.
 
 ## Reconsider when
 We need server-side rendering or multi-user hosting.
