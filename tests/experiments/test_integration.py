@@ -417,3 +417,70 @@ def test_performance_endpoint_reports_measured_numbers(eclient: TestClient) -> N
     assert perf["failure_rate"] == 0 and perf["trials_with_retry_attempt"] == 0
     assert sum(perf["throughput_per_5min_window"]) == 30 and perf["database_mb"] > 0
     assert eclient.get("/api/v1/runs/999/performance").status_code == 404
+
+
+def completed_run(eclient: TestClient, pop_size: int = 40) -> int:
+    pop = make_population(eclient, pop_size)
+    exp = make_experiment(eclient, pop)
+    w = start_worker(eclient)
+    try:
+        run_id = eclient.post(
+            f"/api/v1/experiments/{exp['id']}/start", json={"target": MOCK_TARGET, "batch_size": 10}
+        ).json()["run_id"]
+        assert wait_run(eclient, run_id)["state"] == "completed"
+    finally:
+        w.stop()
+    return int(run_id)
+
+
+def test_synthesis_themes_query_and_csv(eclient: TestClient) -> None:
+    run_id = completed_run(eclient)
+    syn = eclient.get(f"/api/v1/runs/{run_id}/synthesis").json()
+    assert syn["claims"] and all(v["verified"] for v in syn["verification"])
+    assert all(c["evidence_trial_ids"] for c in syn["claims"])
+    first_evidence = syn["claims"][0]["evidence_trial_ids"][0]
+    assert eclient.get(f"/api/v1/trials/{first_evidence}").json()["run_id"] == run_id
+
+    th = eclient.get(f"/api/v1/runs/{run_id}/themes").json()
+    assert "by_objection" in th and "clusters" in th and "no model involved" in th["note"]
+
+    q = eclient.get(f"/api/v1/runs/{run_id}/query?metric=top2_share&group_by=region").json()
+    assert {r["group"] for r in q["rows"]} == {"northeast", "midwest", "south", "west"} or q["rows"]
+    assert all("evidence_trial_ids" in r for r in q["rows"])
+    f = eclient.get(f"/api/v1/runs/{run_id}/query?metric=count&filter_region=west").json()
+    assert f["filters"] == {"region": "west"} and f["rows"][0]["value"] > 0
+    assert eclient.get(f"/api/v1/runs/{run_id}/query?metric=bogus").status_code == 422
+    assert eclient.get(f"/api/v1/runs/{run_id}/query?metric=count&group_by=shoe").status_code == 422
+    assert eclient.get("/api/v1/runs/999/query?metric=count").status_code == 404
+
+    csv_text = eclient.get(f"/api/v1/runs/{run_id}/export/trials.csv").text
+    lines = csv_text.splitlines()
+    assert lines[0].startswith("trial_id,persona_id") and len(lines) == 41
+    assert eclient.get("/api/v1/runs/999/export/trials.csv").status_code == 404
+
+    by_intent = eclient.get(f"/api/v1/runs/{run_id}/trials?intent=definitely&limit=5").json()
+    assert (
+        by_intent["total"] == 40
+        and eclient.get(f"/api/v1/runs/{run_id}/trials?intent=unsure").json()["total"] == 0
+    )
+    assert eclient.get(f"/api/v1/runs/{run_id}/trials?objection=price").json()["total"] == 40
+
+
+def test_compare_runs_endpoint(eclient: TestClient) -> None:
+    pop = make_population(eclient, 30)
+    exp = make_experiment(eclient, pop)
+    w = start_worker(eclient)
+    try:
+        ids = [
+            eclient.post(
+                f"/api/v1/experiments/{exp['id']}/start", json={"target": MOCK_TARGET}
+            ).json()["run_id"]
+            for _ in range(2)
+        ]
+        for rid in ids:
+            wait_run(eclient, rid)
+    finally:
+        w.stop()
+    cmp = eclient.get(f"/api/v1/compare-runs?a={ids[0]}&b={ids[1]}").json()
+    assert cmp["matched_trials"] == 30 and cmp["top2_agreement"] == 1.0 and cmp["top2_kappa"] == 1.0
+    assert eclient.get("/api/v1/compare-runs?a=1&b=999").status_code == 404

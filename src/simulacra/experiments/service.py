@@ -84,6 +84,8 @@ class StartOptions(BaseModel):
     max_tokens: int = Field(220, ge=32, le=2000)
     batch_size: int = Field(10, ge=1, le=200)
     seed: int | None = None  # defaults to the experiment's seed
+    prompt_variant: str = Field("v1", pattern="^v[12]$")
+    card_tokens: int = Field(300, ge=50, le=2000)
 
 
 def plan_units(
@@ -182,7 +184,11 @@ async def start_run(
                     "concurrency": opts.concurrency,
                     "seed": seed,
                 },
-                "prompt": {"version": prompts.PROMPT_VERSION, "sha256_12": prompts.prompt_hash()},
+                "prompt": {
+                    "version": prompts.prompt_version(opts.prompt_variant),
+                    "sha256_12": prompts.prompt_hash(opts.prompt_variant),
+                    "card_tokens": opts.card_tokens,
+                },
                 "trials_planned": len(units),
                 "hardware": start_hardware_snapshot(),
             }
@@ -194,6 +200,8 @@ async def start_run(
                 "temperature": opts.temperature,
                 "max_tokens": opts.max_tokens,
                 "seed": seed,
+                "prompt_variant": opts.prompt_variant,
+                "card_tokens": opts.card_tokens,
             }
             return queue.create_run(
                 s, KIND, f"{exp.name}", units, config, opts.batch_size, manifest=manifest

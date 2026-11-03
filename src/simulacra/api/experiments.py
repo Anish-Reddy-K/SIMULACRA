@@ -1,3 +1,5 @@
+import csv
+import io
 import json
 from typing import Any, Literal
 
@@ -7,7 +9,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session, sessionmaker
 
 from simulacra.analysis import compare as compare_mod
-from simulacra.analysis import concept
+from simulacra.analysis import concept, explore, runcompare, synthesis, themes
 from simulacra.experiments import service as svc
 from simulacra.experiments import templates
 from simulacra.persistence.models import Experiment, Report, Run, RunEvent, Treatment, Trial
@@ -238,11 +240,21 @@ def _trial_out(t: Trial) -> TrialOut:
 
 @router.get("/runs/{run_id}/trials")
 def list_trials(
-    run_id: int, request: Request, status: str | None = None, offset: int = 0, limit: int = 50
+    run_id: int,
+    request: Request,
+    status: str | None = None,
+    offset: int = 0,
+    limit: int = 50,
+    intent: str | None = None,
+    objection: str | None = None,
 ) -> dict[str, Any]:
     limit = max(1, min(limit, 200))
     with _sessions(request)() as s:
         cond = [Trial.run_id == run_id] + ([Trial.status == status] if status else [])
+        if intent:
+            cond.append(Trial.parsed_json["purchase_intent"].as_string() == intent)
+        if objection:
+            cond.append(Trial.parsed_json["top_objection"].as_string() == objection)
         total = s.scalar(select(func.count()).select_from(Trial).where(*cond)) or 0
         rows = s.scalars(select(Trial).where(*cond).order_by(Trial.id).offset(offset).limit(limit))
         return {"total": total, "items": [_trial_out(t).model_dump() for t in rows]}
@@ -401,3 +413,127 @@ def performance(run_id: int, request: Request) -> dict[str, Any]:
         "throughput_per_5min_window": ordered,
         "database_mb": db_file.stat().st_size / 2**20 if db_file.exists() else None,
     }
+
+
+@router.get("/runs/{run_id}/synthesis")
+def get_synthesis(run_id: int, request: Request) -> dict[str, Any]:
+    """Key findings as claims with numbers and evidence trial ids, plus an independent verification."""
+    with _sessions(request)() as s:
+        try:
+            claims = synthesis.build(s, run_id)
+            return {"claims": claims, "verification": synthesis.verify(s, run_id, claims)}
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+
+@router.get("/runs/{run_id}/themes")
+def get_themes(run_id: int, request: Request) -> dict[str, Any]:
+    with _sessions(request)() as s:
+        try:
+            _run, trials, _personas, _labels = concept.load(s, run_id)
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from exc
+        valid = [t for t in trials if t.status == "valid" and t.parsed_json]
+        groups: dict[str, list[str]] = {}
+        for t in valid:
+            code = concept.parsed(t)["top_objection"]
+            if code != "none":
+                groups.setdefault(code, []).append(concept.parsed(t)["reason"])
+        clusters = themes.cluster_reasons([(t.id, concept.parsed(t)["reason"]) for t in valid])
+    return {
+        "by_objection": themes.distinctive_terms(groups),
+        "clusters": [
+            {
+                "size": c.size,
+                "exemplar_trial_id": c.exemplar_trial_id,
+                "exemplar_text": c.exemplar_text,
+                "terms": c.terms,
+                "trial_ids": c.trial_ids[:10],
+            }
+            for c in clusters
+        ],
+        "note": "Words are ranked by weighted log-odds against the other objections; clusters group reasons "
+        "with similar wording. Both are computed from the stored text, with no model involved.",
+    }
+
+
+@router.get("/runs/{run_id}/query")
+def query_run(
+    run_id: int,
+    request: Request,
+    metric: str,
+    group_by: str | None = None,
+    treatment: int | None = None,
+    code: str | None = None,
+) -> dict[str, Any]:
+    """Structured question: filters are passed as filter_<attribute>=<value> query parameters."""
+    filters = {
+        k[len("filter_") :]: v for k, v in request.query_params.items() if k.startswith("filter_")
+    }
+    with _sessions(request)() as s:
+        try:
+            return explore.query(
+                s, run_id, metric, group_by or None, treatment, filters or None, code
+            )
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except explore.QueryError as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+
+@router.get("/compare-runs")
+def compare_two_runs(a: int, b: int, request: Request) -> dict[str, Any]:
+    with _sessions(request)() as s:
+        try:
+            return runcompare.compare_runs(s, a, b)
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+
+def _safe_cell(value: Any) -> str:
+    """Neutralize spreadsheet formula injection in exported text."""
+    text = str(value)
+    return "'" + text if text[:1] in ("=", "+", "-", "@") else text
+
+
+@router.get("/runs/{run_id}/export/trials.csv")
+def export_trials_csv(run_id: int, request: Request) -> Response:
+    with _sessions(request)() as s:
+        run = s.get(Run, run_id)
+        if run is None:
+            raise HTTPException(404, "No such run")
+        trials = list(s.scalars(select(Trial).where(Trial.run_id == run_id).order_by(Trial.id)))
+    out = io.StringIO()
+    w = csv.writer(out)
+    w.writerow(
+        [
+            "trial_id",
+            "persona_id",
+            "treatment_idx",
+            "repeat_idx",
+            "status",
+            "purchase_intent",
+            "appeal",
+            "top_benefit",
+            "top_objection",
+            "reason",
+            "prompt_tokens",
+            "completion_tokens",
+            "latency_ms",
+        ]
+    )
+    for t in trials:
+        p = t.parsed_json or {}
+        w.writerow(
+            [t.id, t.persona_id, t.treatment_idx, t.repeat_idx, t.status]
+            + [
+                _safe_cell(p.get(k, ""))
+                for k in ("purchase_intent", "appeal", "top_benefit", "top_objection", "reason")
+            ]
+            + [t.prompt_tokens, t.completion_tokens, round(t.latency_ms, 1)]
+        )
+    return Response(
+        out.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="trials-{run_id}.csv"'},
+    )

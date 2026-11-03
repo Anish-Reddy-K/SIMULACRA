@@ -99,6 +99,69 @@ export type Comparison = {
   notes: string[];
 };
 
+export type Claim = {
+  id: string;
+  kind: string;
+  text: string;
+  numbers: Record<string, unknown>;
+  evidence_trial_ids: number[];
+};
+
+export type Synthesis = {
+  claims: Claim[];
+  verification: { id: string; verified: boolean; problems: string[] }[];
+};
+
+export type Themes = {
+  by_objection: Record<string, { term: string; z: number; count: number }[]>;
+  clusters: { size: number; exemplar_trial_id: number; exemplar_text: string; terms: string[]; trial_ids: number[] }[];
+  note: string;
+};
+
+export type QueryRow = {
+  group: string;
+  n: number;
+  suppressed: boolean;
+  value?: number;
+  k?: number;
+  ci_low?: number;
+  ci_high?: number;
+  evidence_trial_ids: number[];
+};
+
+export type QueryResult = {
+  metric: string;
+  group_by: string | null;
+  rows: QueryRow[];
+  notes: string[];
+};
+
+export type RunComparison = {
+  run_a: { id: number; model: string | null; prompt: string | null };
+  run_b: { id: number; model: string | null; prompt: string | null };
+  matched_trials: number;
+  only_in_a: number;
+  only_in_b: number;
+  top2_a?: number;
+  top2_b?: number;
+  top2_diff?: number;
+  top2_agreement?: number;
+  top2_kappa?: number | null;
+  mcnemar_p?: number;
+  intent_exact_agreement?: number;
+  objection_agreement?: number;
+  appeal?: { mean_a: number; mean_b: number; p: number | null };
+  notes: string[];
+};
+
+export type TrialRow = {
+  id: number;
+  persona_id: string;
+  treatment_idx: number;
+  status: string;
+  parsed: Record<string, string | number> | null;
+};
+
 export type ReportSummary = { id: number; run_id: number; title: string; created_at: string };
 
 export type ReportFull = {
@@ -157,6 +220,14 @@ export const expApi = {
     request<{ run_id: number; trials_planned: number; state: string }>(`/experiments/${id}/start`, json(body)),
   results: (runId: number) => request<Results>(`/runs/${runId}/results`),
   comparison: (runId: number) => request<Comparison>(`/runs/${runId}/comparison`),
+  synthesis: (runId: number) => request<Synthesis>(`/runs/${runId}/synthesis`),
+  themes: (runId: number) => request<Themes>(`/runs/${runId}/themes`),
+  query: (runId: number, params: Record<string, string>) =>
+    request<QueryResult>(`/runs/${runId}/query?${new URLSearchParams(params).toString()}`),
+  compareRuns: (a: number, b: number) => request<RunComparison>(`/compare-runs?a=${a}&b=${b}`),
+  trials: (runId: number, params: Record<string, string>) =>
+    request<{ total: number; items: TrialRow[] }>(`/runs/${runId}/trials?${new URLSearchParams(params).toString()}`),
+  trialsCsvUrl: (runId: number) => `/api/v1/runs/${runId}/export/trials.csv`,
   fromTemplate: (body: unknown) => request<Experiment>("/experiments/from-template", json(body)),
   trial: (id: number) => request<TrialDetail>(`/trials/${id}`),
   createReport: (runId: number) => request<ReportSummary>(`/runs/${runId}/reports`, { method: "POST" }),
