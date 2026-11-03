@@ -57,6 +57,48 @@ export type Results = {
   notes: string[];
 };
 
+export type PairComparison = {
+  treatment_idx: number;
+  label: string;
+  vs: string;
+  n_treatment: number;
+  n_baseline: number;
+  paired?: boolean;
+  top2_treatment?: number;
+  top2_baseline?: number;
+  diff?: number;
+  diff_ci_low?: number;
+  diff_ci_high?: number;
+  p?: number;
+  p_holm?: number;
+  significant?: boolean;
+  cohens_h?: number;
+  relative_lift?: number | null;
+  appeal?: { diff: number | null; p: number | null; d?: number | null };
+};
+
+export type Comparison = {
+  design: string;
+  pairs: PairComparison[];
+  segments: {
+    treatment_idx: number;
+    attribute: string;
+    value: string;
+    n_treatment: number;
+    n_baseline: number;
+    diff: number;
+    p_holm: number;
+    significant: boolean;
+  }[];
+  balance: { arm_sizes: Record<string, number>; min_p_holm: number | null; imbalanced: boolean } | null;
+  pricing: {
+    curve: { treatment_idx: number; price_usd: number; n: number; top2: number | null; ci_low: number; ci_high: number }[];
+    monotone_violations: { lower_price: number; higher_price: number; p: number }[];
+    note: string;
+  } | null;
+  notes: string[];
+};
+
 export type ReportSummary = { id: number; run_id: number; title: string; created_at: string };
 
 export type ReportFull = {
@@ -114,6 +156,8 @@ export const expApi = {
   start: (id: number, body: unknown) =>
     request<{ run_id: number; trials_planned: number; state: string }>(`/experiments/${id}/start`, json(body)),
   results: (runId: number) => request<Results>(`/runs/${runId}/results`),
+  comparison: (runId: number) => request<Comparison>(`/runs/${runId}/comparison`),
+  fromTemplate: (body: unknown) => request<Experiment>("/experiments/from-template", json(body)),
   trial: (id: number) => request<TrialDetail>(`/trials/${id}`),
   createReport: (runId: number) => request<ReportSummary>(`/runs/${runId}/reports`, { method: "POST" }),
   reports: () => request<ReportSummary[]>("/reports"),

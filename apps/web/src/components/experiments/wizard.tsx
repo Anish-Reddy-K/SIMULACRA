@@ -36,6 +36,10 @@ export function Wizard() {
   const [product, setProduct] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [template, setTemplate] = useState<"product_concept" | "ad_comparison" | "pricing">("product_concept");
+  const [headlines, setHeadlines] = useState("");
+  const [prices, setPrices] = useState("");
+  const [design, setDesign] = useState<"between" | "within">("between");
   const [category, setCategory] = useState("");
   const [targetKey, setTargetKey] = useState("");
   const [repeats, setRepeats] = useState("1");
@@ -63,13 +67,25 @@ export function Wizard() {
   const target = models.find((m) => m.key === targetKey);
   const fastest = recs.data?.find((r) => r.goal === "balanced")?.selected ?? null;
   const measured = fastest && target && fastest.label.includes(target.model) ? fastest.valid_per_min : null;
-  const trials = (pop?.size ?? 0) * Number(repeats || 1);
+
+  const headlineList = headlines.split("\n").map((h) => h.trim()).filter(Boolean);
+  const priceList = prices.split(",").map((p) => p.trim()).filter(Boolean).map(Number);
+  const armsValid =
+    template === "product_concept" ||
+    (template === "ad_comparison" && headlineList.length >= 2 && headlineList.length <= 12) ||
+    (template === "pricing" &&
+      priceList.length >= 2 &&
+      priceList.length <= 12 &&
+      priceList.every((p) => Number.isFinite(p) && p >= 0) &&
+      new Set(priceList).size === priceList.length);
+  const arms = template === "ad_comparison" ? headlineList.length : template === "pricing" ? priceList.length : 1;
+  const trials = (pop?.size ?? 0) * Number(repeats || 1) * (design === "within" ? arms : 1);
   const eta = measured && trials ? Math.round(trials / measured) : null;
 
   const stepValid = [
     name.trim() !== "" && question.trim().length >= 3,
     !!pop,
-    product.trim() !== "" && description.trim().length >= 10,
+    product.trim() !== "" && description.trim().length >= 10 && armsValid,
     !!target,
     true,
   ];
@@ -79,18 +95,21 @@ export function Wizard() {
     setBusy(true);
     setProblem(null);
     try {
-      const exp = await expApi.create({
+      const exp = await expApi.fromTemplate({
+        template,
         name,
-        kind: "product_concept",
         research_question: question,
         hypothesis,
         population_version_id: pop.id,
         scenario: {
           product_name: product,
           description,
-          price_usd: price === "" ? null : Number(price),
+          price_usd: template === "pricing" || price === "" ? null : Number(price),
           category: category || null,
         },
+        headlines: headlineList,
+        prices: priceList,
+        design,
         repeats: Number(repeats),
         seed: Number(seed),
       });
@@ -154,14 +173,39 @@ export function Wizard() {
       {step === 2 && (
         <Panel title="3. What are they shown?">
           <div className="flex flex-col gap-4">
+            <fieldset className="flex flex-col gap-2">
+              <legend className="text-sm font-medium">Experiment type</legend>
+              {([
+                ["product_concept", "Product concept", "How do simulated people react to one offer?"],
+                ["ad_comparison", "Ad comparison", "Compare several headlines or messages."],
+                ["pricing", "Pricing", "Compare simulated purchase interest at several prices."],
+              ] as const).map(([id, label, detail]) => (
+                <label key={id} className="flex min-h-11 items-start gap-3">
+                  <input type="radio" name="template" className="mt-1 size-5 accent-primary" checked={template === id} onChange={() => setTemplate(id)} />
+                  <span><span className="font-medium">{label}</span><span className="block text-xs text-muted-foreground">{detail}</span></span>
+                </label>
+              ))}
+            </fieldset>
             <Field label="Product name"><Input value={product} maxLength={120} onChange={(e) => setProduct(e.target.value)} /></Field>
             <Field label="Description" hint="At least a sentence. Describe what it is and what it does.">
               <textarea className="min-h-24 rounded-lg border border-input bg-muted p-2 text-sm" maxLength={1500} value={description} onChange={(e) => setDescription(e.target.value)} />
             </Field>
             <div className="grid gap-4 md:grid-cols-2">
-              <Field label="Price in USD (optional)"><Input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} /></Field>
+              {template !== "pricing" && (
+                <Field label="Price in USD (optional)"><Input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} /></Field>
+              )}
               <Field label="Category (optional)"><Input value={category} maxLength={80} onChange={(e) => setCategory(e.target.value)} /></Field>
             </div>
+            {template === "ad_comparison" && (
+              <Field label="Headlines to compare (one per line, 2 to 12)" hint="Each persona sees one headline, assigned at random.">
+                <textarea className="min-h-24 rounded-lg border border-input bg-muted p-2 text-sm" value={headlines} onChange={(e) => setHeadlines(e.target.value)} />
+              </Field>
+            )}
+            {template === "pricing" && (
+              <Field label="Prices to compare in USD (comma separated, 2 to 12)" hint="Example: 49, 79, 129. Each persona sees one price, assigned at random.">
+                <Input value={prices} onChange={(e) => setPrices(e.target.value)} />
+              </Field>
+            )}
           </div>
         </Panel>
       )}
@@ -184,6 +228,16 @@ export function Wizard() {
                 <Field label="Repeats per persona" hint="More repeats measure run-to-run variation."><Input type="number" min={1} max={20} value={repeats} onChange={(e) => setRepeats(e.target.value)} /></Field>
                 <Field label="Seed"><Input type="number" value={seed} onChange={(e) => setSeed(e.target.value)} /></Field>
               </div>
+              {arms > 1 && (
+                <div className="mt-4">
+                  <Field label="Design" hint="Between: faster and avoids one persona seeing several versions. Within: every persona sees every version (paired analysis).">
+                    <select className="h-10 rounded-lg border border-input bg-card px-2" value={design} onChange={(e) => setDesign(e.target.value as "between" | "within")}>
+                      <option value="between">Each persona sees one version (random assignment)</option>
+                      <option value="within">Each persona sees every version</option>
+                    </select>
+                  </Field>
+                </div>
+              )}
             </>
           )}
         </Panel>

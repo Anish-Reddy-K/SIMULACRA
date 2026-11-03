@@ -1,0 +1,3412 @@
+{
+  "title": "WarmMug pricing test",
+  "generated_at": "2026-11-03T01:03:32.893062+00:00",
+  "research_question": "How does the price of a self-heating smart mug change simulated purchase interest?",
+  "hypothesis": "Interest should fall as price rises; a $129 price should be clearly less attractive than $49.",
+  "summary": [
+    "300 of 300 simulated responses were valid (100% valid output).",
+    "$49: 9% (8 of 93) of simulated respondents said probably or definitely (sampling variation 4% to 16%); mean appeal 2.5 of 5.",
+    "$79: 16% (16 of 101) of simulated respondents said probably or definitely (sampling variation 10% to 24%); mean appeal 2.6 of 5.",
+    "$129: 11% (12 of 106) of simulated respondents said probably or definitely (sampling variation 7% to 19%); mean appeal 2.6 of 5.",
+    "$79 versus $49: top-2-box differs by +7 points (sampling variation -2 to +17 points where available; Holm-adjusted p = 0.269), no statistically detectable difference between simulated responses.",
+    "$129 versus $49: top-2-box differs by +3 points (sampling variation -6 to +11 points where available; Holm-adjusted p = 0.639), no statistically detectable difference between simulated responses.",
+    "The most common objection was 'price' (84% of valid responses).",
+    "The most common perceived benefit was 'saves money' (48%)."
+  ],
+  "analysis": {
+    "run_id": 2,
+    "totals": {
+      "trials": 300,
+      "valid": 300,
+      "by_status": {
+        "valid": 300
+      },
+      "invalid_rate": 0.0,
+      "planned": 300
+    },
+    "treatments": [
+      {
+        "idx": 0,
+        "label": "$49",
+        "n_trials": 93,
+        "n_valid": 93,
+        "intent": [
+          {
+            "code": "definitely",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "probably",
+            "n": 8,
+            "share": 0.08602150537634409
+          },
+          {
+            "code": "unsure",
+            "n": 14,
+            "share": 0.15053763440860216
+          },
+          {
+            "code": "probably_not",
+            "n": 71,
+            "share": 0.7634408602150538
+          },
+          {
+            "code": "definitely_not",
+            "n": 0,
+            "share": 0.0
+          }
+        ],
+        "top2box": {
+          "n": 8,
+          "of": 93,
+          "share": 0.08602150537634409,
+          "ci_low": 0.044232537486392685,
+          "ci_high": 0.1606546184465948
+        },
+        "bottom2box": {
+          "n": 71,
+          "of": 93,
+          "share": 0.7634408602150538,
+          "ci_low": 0.6677063852527946,
+          "ci_high": 0.8382745155171224
+        },
+        "appeal": {
+          "mean": 2.4731182795698925,
+          "sd": 0.5406367780635069,
+          "n": 93
+        },
+        "benefits": [
+          {
+            "code": "convenience",
+            "n": 19,
+            "share": 0.20430107526881722
+          },
+          {
+            "code": "saves_money",
+            "n": 50,
+            "share": 0.5376344086021505
+          },
+          {
+            "code": "saves_time",
+            "n": 24,
+            "share": 0.25806451612903225
+          }
+        ],
+        "objections": [
+          {
+            "code": "price",
+            "n": 76,
+            "share": 0.8172043010752689
+          },
+          {
+            "code": "trust",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "need",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "complexity",
+            "n": 11,
+            "share": 0.11827956989247312
+          },
+          {
+            "code": "privacy",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "already_have_alternative",
+            "n": 3,
+            "share": 0.03225806451612903
+          },
+          {
+            "code": "none",
+            "n": 3,
+            "share": 0.03225806451612903
+          },
+          {
+            "code": "other",
+            "n": 0,
+            "share": 0.0
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "label": "$79",
+        "n_trials": 101,
+        "n_valid": 101,
+        "intent": [
+          {
+            "code": "definitely",
+            "n": 4,
+            "share": 0.039603960396039604
+          },
+          {
+            "code": "probably",
+            "n": 12,
+            "share": 0.1188118811881188
+          },
+          {
+            "code": "unsure",
+            "n": 7,
+            "share": 0.06930693069306931
+          },
+          {
+            "code": "probably_not",
+            "n": 77,
+            "share": 0.7623762376237624
+          },
+          {
+            "code": "definitely_not",
+            "n": 1,
+            "share": 0.009900990099009901
+          }
+        ],
+        "top2box": {
+          "n": 16,
+          "of": 101,
+          "share": 0.15841584158415842,
+          "ci_low": 0.0999267161245613,
+          "ci_high": 0.24193758201663454
+        },
+        "bottom2box": {
+          "n": 78,
+          "of": 101,
+          "share": 0.7722772277227723,
+          "ci_low": 0.681408091811231,
+          "ci_high": 0.8431928299602797
+        },
+        "appeal": {
+          "mean": 2.6435643564356437,
+          "sd": 0.5900857198317362,
+          "n": 101
+        },
+        "benefits": [
+          {
+            "code": "convenience",
+            "n": 18,
+            "share": 0.1782178217821782
+          },
+          {
+            "code": "saves_money",
+            "n": 42,
+            "share": 0.4158415841584158
+          },
+          {
+            "code": "saves_time",
+            "n": 41,
+            "share": 0.40594059405940597
+          }
+        ],
+        "objections": [
+          {
+            "code": "price",
+            "n": 86,
+            "share": 0.8514851485148515
+          },
+          {
+            "code": "trust",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "need",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "complexity",
+            "n": 3,
+            "share": 0.0297029702970297
+          },
+          {
+            "code": "privacy",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "already_have_alternative",
+            "n": 2,
+            "share": 0.019801980198019802
+          },
+          {
+            "code": "none",
+            "n": 10,
+            "share": 0.09900990099009901
+          },
+          {
+            "code": "other",
+            "n": 0,
+            "share": 0.0
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "label": "$129",
+        "n_trials": 106,
+        "n_valid": 106,
+        "intent": [
+          {
+            "code": "definitely",
+            "n": 7,
+            "share": 0.0660377358490566
+          },
+          {
+            "code": "probably",
+            "n": 5,
+            "share": 0.04716981132075472
+          },
+          {
+            "code": "unsure",
+            "n": 8,
+            "share": 0.07547169811320754
+          },
+          {
+            "code": "probably_not",
+            "n": 85,
+            "share": 0.8018867924528302
+          },
+          {
+            "code": "definitely_not",
+            "n": 1,
+            "share": 0.009433962264150943
+          }
+        ],
+        "top2box": {
+          "n": 12,
+          "of": 106,
+          "share": 0.11320754716981132,
+          "ci_low": 0.06595616916206086,
+          "ci_high": 0.18751428283426835
+        },
+        "bottom2box": {
+          "n": 86,
+          "of": 106,
+          "share": 0.8113207547169812,
+          "ci_low": 0.7264572909225124,
+          "ci_high": 0.8744079550316617
+        },
+        "appeal": {
+          "mean": 2.5943396226415096,
+          "sd": 0.6108809272664935,
+          "n": 106
+        },
+        "benefits": [
+          {
+            "code": "convenience",
+            "n": 23,
+            "share": 0.2169811320754717
+          },
+          {
+            "code": "saves_money",
+            "n": 52,
+            "share": 0.49056603773584906
+          },
+          {
+            "code": "saves_time",
+            "n": 31,
+            "share": 0.29245283018867924
+          }
+        ],
+        "objections": [
+          {
+            "code": "price",
+            "n": 91,
+            "share": 0.8584905660377359
+          },
+          {
+            "code": "trust",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "need",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "complexity",
+            "n": 3,
+            "share": 0.02830188679245283
+          },
+          {
+            "code": "privacy",
+            "n": 0,
+            "share": 0.0
+          },
+          {
+            "code": "already_have_alternative",
+            "n": 3,
+            "share": 0.02830188679245283
+          },
+          {
+            "code": "none",
+            "n": 9,
+            "share": 0.08490566037735849
+          },
+          {
+            "code": "other",
+            "n": 0,
+            "share": 0.0
+          }
+        ]
+      }
+    ],
+    "segments": [
+      {
+        "attribute": "age_band",
+        "value": "18-29",
+        "treatment_idx": 0,
+        "n": 16,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 16,
+          "share": 0.0625,
+          "ci_low": 0.01111905730833121,
+          "ci_high": 0.2832926836802987
+        },
+        "appeal_mean": 2.5
+      },
+      {
+        "attribute": "age_band",
+        "value": "18-29",
+        "treatment_idx": 1,
+        "n": 15,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 15,
+          "share": 0.06666666666666667,
+          "ci_low": 0.011866588606194856,
+          "ci_high": 0.2981707755242399
+        },
+        "appeal_mean": 2.6666666666666665
+      },
+      {
+        "attribute": "age_band",
+        "value": "18-29",
+        "treatment_idx": 2,
+        "n": 20,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 20,
+          "share": 0.15,
+          "ci_low": 0.05236779195949584,
+          "ci_high": 0.36042329588695743
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "age_band",
+        "value": "30-44",
+        "treatment_idx": 0,
+        "n": 18,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 18,
+          "share": 0.05555555555555555,
+          "ci_low": 0.009874935830924525,
+          "ci_high": 0.2575779980200754
+        },
+        "appeal_mean": 2.388888888888889
+      },
+      {
+        "attribute": "age_band",
+        "value": "30-44",
+        "treatment_idx": 1,
+        "n": 23,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 23,
+          "share": 0.2608695652173913,
+          "ci_low": 0.1254844588924897,
+          "ci_high": 0.4647039054375056
+        },
+        "appeal_mean": 2.652173913043478
+      },
+      {
+        "attribute": "age_band",
+        "value": "30-44",
+        "treatment_idx": 2,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 25,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13319649395317873
+        },
+        "appeal_mean": 2.52
+      },
+      {
+        "attribute": "age_band",
+        "value": "45-59",
+        "treatment_idx": 0,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 29,
+          "share": 0.06896551724137931,
+          "ci_low": 0.019120864097994433,
+          "ci_high": 0.21964947595851925
+        },
+        "appeal_mean": 2.5172413793103448
+      },
+      {
+        "attribute": "age_band",
+        "value": "45-59",
+        "treatment_idx": 1,
+        "n": 36,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 36,
+          "share": 0.16666666666666666,
+          "ci_low": 0.07870340628564097,
+          "ci_high": 0.3189111473467432
+        },
+        "appeal_mean": 2.6944444444444446
+      },
+      {
+        "attribute": "age_band",
+        "value": "45-59",
+        "treatment_idx": 2,
+        "n": 34,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 34,
+          "share": 0.17647058823529413,
+          "ci_low": 0.08348855603569685,
+          "ci_high": 0.33514067740052156
+        },
+        "appeal_mean": 2.676470588235294
+      },
+      {
+        "attribute": "age_band",
+        "value": "60+",
+        "treatment_idx": 0,
+        "n": 30,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 30,
+          "share": 0.13333333333333333,
+          "ci_low": 0.05309569424218104,
+          "ci_high": 0.2968168394441695
+        },
+        "appeal_mean": 2.466666666666667
+      },
+      {
+        "attribute": "age_band",
+        "value": "60+",
+        "treatment_idx": 1,
+        "n": 27,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 27,
+          "share": 0.1111111111111111,
+          "ci_low": 0.03851964789498724,
+          "ci_high": 0.2805818254397295
+        },
+        "appeal_mean": 2.5555555555555554
+      },
+      {
+        "attribute": "age_band",
+        "value": "60+",
+        "treatment_idx": 2,
+        "n": 27,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 27,
+          "share": 0.1111111111111111,
+          "ci_low": 0.03851964789498724,
+          "ci_high": 0.2805818254397295
+        },
+        "appeal_mean": 2.5555555555555554
+      },
+      {
+        "attribute": "education",
+        "value": "bachelor",
+        "treatment_idx": 0,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 26,
+          "share": 0.038461538461538464,
+          "ci_low": 0.0068218089769898765,
+          "ci_high": 0.18893176991958405
+        },
+        "appeal_mean": 2.6153846153846154
+      },
+      {
+        "attribute": "education",
+        "value": "bachelor",
+        "treatment_idx": 1,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 29,
+          "share": 0.20689655172413793,
+          "ci_low": 0.09845936515585207,
+          "ci_high": 0.3839044660825772
+        },
+        "appeal_mean": 2.7241379310344827
+      },
+      {
+        "attribute": "education",
+        "value": "bachelor",
+        "treatment_idx": 2,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 29,
+          "share": 0.1724137931034483,
+          "ci_low": 0.07597745271479928,
+          "ci_high": 0.34548800572815114
+        },
+        "appeal_mean": 2.6551724137931036
+      },
+      {
+        "attribute": "education",
+        "value": "graduate",
+        "treatment_idx": 0,
+        "n": 11,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 11,
+          "share": 0.2727272727272727,
+          "ci_low": 0.09745880573921467,
+          "ci_high": 0.5656502930102463
+        },
+        "appeal_mean": 2.4545454545454546
+      },
+      {
+        "attribute": "education",
+        "value": "graduate",
+        "treatment_idx": 1,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 13,
+          "share": 0.07692307692307693,
+          "ci_low": 0.013710066379696323,
+          "ci_high": 0.3331453392824736
+        },
+        "appeal_mean": 2.769230769230769
+      },
+      {
+        "attribute": "education",
+        "value": "graduate",
+        "treatment_idx": 2,
+        "n": 17,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 17,
+          "share": 0.17647058823529413,
+          "ci_low": 0.0619101371254899,
+          "ci_high": 0.41029929017375777
+        },
+        "appeal_mean": 2.7058823529411766
+      },
+      {
+        "attribute": "education",
+        "value": "high_school",
+        "treatment_idx": 0,
+        "n": 29,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 29,
+          "share": 0.06896551724137931,
+          "ci_low": 0.019120864097994433,
+          "ci_high": 0.21964947595851925
+        },
+        "appeal_mean": 2.4827586206896552
+      },
+      {
+        "attribute": "education",
+        "value": "high_school",
+        "treatment_idx": 1,
+        "n": 30,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 30,
+          "share": 0.16666666666666666,
+          "ci_low": 0.07336434240351683,
+          "ci_high": 0.33564705185680177
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "education",
+        "value": "high_school",
+        "treatment_idx": 2,
+        "n": 27,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 27,
+          "share": 0.037037037037037035,
+          "ci_low": 0.006567976533097597,
+          "ci_high": 0.1828385393415652
+        },
+        "appeal_mean": 2.5925925925925926
+      },
+      {
+        "attribute": "education",
+        "value": "no_degree",
+        "treatment_idx": 0,
+        "n": 7,
+        "suppressed": true
+      },
+      {
+        "attribute": "education",
+        "value": "no_degree",
+        "treatment_idx": 1,
+        "n": 3,
+        "suppressed": true
+      },
+      {
+        "attribute": "education",
+        "value": "no_degree",
+        "treatment_idx": 2,
+        "n": 5,
+        "suppressed": true
+      },
+      {
+        "attribute": "education",
+        "value": "some_college",
+        "treatment_idx": 0,
+        "n": 20,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 20,
+          "share": 0.1,
+          "ci_low": 0.027865893984153206,
+          "ci_high": 0.30103820641179335
+        },
+        "appeal_mean": 2.45
+      },
+      {
+        "attribute": "education",
+        "value": "some_college",
+        "treatment_idx": 1,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 26,
+          "share": 0.15384615384615385,
+          "ci_low": 0.06149933998929477,
+          "ci_high": 0.33531584418313565
+        },
+        "appeal_mean": 2.5384615384615383
+      },
+      {
+        "attribute": "education",
+        "value": "some_college",
+        "treatment_idx": 2,
+        "n": 28,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 28,
+          "share": 0.07142857142857142,
+          "ci_low": 0.019811647447770794,
+          "ci_high": 0.2264573842591786
+        },
+        "appeal_mean": 2.4642857142857144
+      },
+      {
+        "attribute": "employment",
+        "value": "full_time",
+        "treatment_idx": 0,
+        "n": 54,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 54,
+          "share": 0.1111111111111111,
+          "ci_low": 0.05192951817556753,
+          "ci_high": 0.2219494893207673
+        },
+        "appeal_mean": 2.425925925925926
+      },
+      {
+        "attribute": "employment",
+        "value": "full_time",
+        "treatment_idx": 1,
+        "n": 58,
+        "suppressed": false,
+        "top2box": {
+          "n": 8,
+          "of": 58,
+          "share": 0.13793103448275862,
+          "ci_low": 0.07158401626482185,
+          "ci_high": 0.24926149872832187
+        },
+        "appeal_mean": 2.5517241379310347
+      },
+      {
+        "attribute": "employment",
+        "value": "full_time",
+        "treatment_idx": 2,
+        "n": 68,
+        "suppressed": false,
+        "top2box": {
+          "n": 9,
+          "of": 68,
+          "share": 0.1323529411764706,
+          "ci_low": 0.07122163958543325,
+          "ci_high": 0.2328027696704853
+        },
+        "appeal_mean": 2.573529411764706
+      },
+      {
+        "attribute": "employment",
+        "value": "part_time",
+        "treatment_idx": 0,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 13,
+          "share": 0.07692307692307693,
+          "ci_low": 0.013710066379696323,
+          "ci_high": 0.3331453392824736
+        },
+        "appeal_mean": 2.5384615384615383
+      },
+      {
+        "attribute": "employment",
+        "value": "part_time",
+        "treatment_idx": 1,
+        "n": 21,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 21,
+          "share": 0.2857142857142857,
+          "ci_low": 0.13813675745628204,
+          "ci_high": 0.49956773822837586
+        },
+        "appeal_mean": 2.857142857142857
+      },
+      {
+        "attribute": "employment",
+        "value": "part_time",
+        "treatment_idx": 2,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 13,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.22810184305529166
+        },
+        "appeal_mean": 2.6153846153846154
+      },
+      {
+        "attribute": "employment",
+        "value": "retired",
+        "treatment_idx": 0,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 10,
+          "share": 0.1,
+          "ci_low": 0.01787574951572113,
+          "ci_high": 0.4041563854975721
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "employment",
+        "value": "retired",
+        "treatment_idx": 1,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 10,
+          "share": 0.1,
+          "ci_low": 0.01787574951572113,
+          "ci_high": 0.4041563854975721
+        },
+        "appeal_mean": 2.7
+      },
+      {
+        "attribute": "employment",
+        "value": "retired",
+        "treatment_idx": 2,
+        "n": 5,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "self_employed",
+        "treatment_idx": 0,
+        "n": 9,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "self_employed",
+        "treatment_idx": 1,
+        "n": 7,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "self_employed",
+        "treatment_idx": 2,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 12,
+          "share": 0.08333333333333333,
+          "ci_low": 0.014864709450773478,
+          "ci_high": 0.35388592179859524
+        },
+        "appeal_mean": 2.6666666666666665
+      },
+      {
+        "attribute": "employment",
+        "value": "student",
+        "treatment_idx": 0,
+        "n": 3,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "student",
+        "treatment_idx": 1,
+        "n": 3,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "student",
+        "treatment_idx": 2,
+        "n": 4,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "unemployed",
+        "treatment_idx": 0,
+        "n": 4,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "unemployed",
+        "treatment_idx": 1,
+        "n": 2,
+        "suppressed": true
+      },
+      {
+        "attribute": "employment",
+        "value": "unemployed",
+        "treatment_idx": 2,
+        "n": 4,
+        "suppressed": true
+      },
+      {
+        "attribute": "gender",
+        "value": "man",
+        "treatment_idx": 0,
+        "n": 37,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 37,
+          "share": 0.10810810810810811,
+          "ci_low": 0.04285120520506268,
+          "ci_high": 0.24708846415167163
+        },
+        "appeal_mean": 2.4054054054054053
+      },
+      {
+        "attribute": "gender",
+        "value": "man",
+        "treatment_idx": 1,
+        "n": 44,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 44,
+          "share": 0.11363636363636363,
+          "ci_low": 0.04952707589567494,
+          "ci_high": 0.23979435148133582
+        },
+        "appeal_mean": 2.590909090909091
+      },
+      {
+        "attribute": "gender",
+        "value": "man",
+        "treatment_idx": 2,
+        "n": 60,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 60,
+          "share": 0.1,
+          "ci_low": 0.04664219945723587,
+          "ci_high": 0.20149694492511044
+        },
+        "appeal_mean": 2.5166666666666666
+      },
+      {
+        "attribute": "gender",
+        "value": "non_binary",
+        "treatment_idx": 0,
+        "n": 1,
+        "suppressed": true
+      },
+      {
+        "attribute": "gender",
+        "value": "non_binary",
+        "treatment_idx": 1,
+        "n": 1,
+        "suppressed": true
+      },
+      {
+        "attribute": "gender",
+        "value": "woman",
+        "treatment_idx": 0,
+        "n": 55,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 55,
+          "share": 0.07272727272727272,
+          "ci_low": 0.028643596503688543,
+          "ci_high": 0.17260178091636796
+        },
+        "appeal_mean": 2.5090909090909093
+      },
+      {
+        "attribute": "gender",
+        "value": "woman",
+        "treatment_idx": 1,
+        "n": 56,
+        "suppressed": false,
+        "top2box": {
+          "n": 11,
+          "of": 56,
+          "share": 0.19642857142857142,
+          "ci_low": 0.11338480016444107,
+          "ci_high": 0.3184485732747718
+        },
+        "appeal_mean": 2.6964285714285716
+      },
+      {
+        "attribute": "gender",
+        "value": "woman",
+        "treatment_idx": 2,
+        "n": 46,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 46,
+          "share": 0.13043478260869565,
+          "ci_low": 0.06117757137492025,
+          "ci_high": 0.2566613423036133
+        },
+        "appeal_mean": 2.6956521739130435
+      },
+      {
+        "attribute": "household",
+        "value": "couple",
+        "treatment_idx": 0,
+        "n": 30,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 30,
+          "share": 0.06666666666666667,
+          "ci_low": 0.01847663532769335,
+          "ci_high": 0.21323817721072091
+        },
+        "appeal_mean": 2.566666666666667
+      },
+      {
+        "attribute": "household",
+        "value": "couple",
+        "treatment_idx": 1,
+        "n": 28,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 28,
+          "share": 0.17857142857142858,
+          "ci_low": 0.0787838582943011,
+          "ci_high": 0.355917915485911
+        },
+        "appeal_mean": 2.6785714285714284
+      },
+      {
+        "attribute": "household",
+        "value": "couple",
+        "treatment_idx": 2,
+        "n": 23,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 23,
+          "share": 0.13043478260869565,
+          "ci_low": 0.04537576514344702,
+          "ci_high": 0.32127897973018194
+        },
+        "appeal_mean": 2.4782608695652173
+      },
+      {
+        "attribute": "household",
+        "value": "family_with_children",
+        "treatment_idx": 0,
+        "n": 30,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 30,
+          "share": 0.1,
+          "ci_low": 0.03459925995971615,
+          "ci_high": 0.25621441315266624
+        },
+        "appeal_mean": 2.433333333333333
+      },
+      {
+        "attribute": "household",
+        "value": "family_with_children",
+        "treatment_idx": 1,
+        "n": 33,
+        "suppressed": false,
+        "top2box": {
+          "n": 8,
+          "of": 33,
+          "share": 0.24242424242424243,
+          "ci_low": 0.12831561346647294,
+          "ci_high": 0.4102494868549029
+        },
+        "appeal_mean": 2.6363636363636362
+      },
+      {
+        "attribute": "household",
+        "value": "family_with_children",
+        "treatment_idx": 2,
+        "n": 40,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 40,
+          "share": 0.125,
+          "ci_low": 0.05459419773541284,
+          "ci_high": 0.26112420670238146
+        },
+        "appeal_mean": 2.675
+      },
+      {
+        "attribute": "household",
+        "value": "lives_alone",
+        "treatment_idx": 0,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 12,
+          "share": 0.16666666666666666,
+          "ci_low": 0.04696414761482223,
+          "ci_high": 0.44803635738467273
+        },
+        "appeal_mean": 2.6666666666666665
+      },
+      {
+        "attribute": "household",
+        "value": "lives_alone",
+        "treatment_idx": 1,
+        "n": 22,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 22,
+          "share": 0.045454545454545456,
+          "ci_low": 0.008069219301147859,
+          "ci_high": 0.21798489499518053
+        },
+        "appeal_mean": 2.772727272727273
+      },
+      {
+        "attribute": "household",
+        "value": "lives_alone",
+        "treatment_idx": 2,
+        "n": 20,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 20,
+          "share": 0.05,
+          "ci_low": 0.008881219432873136,
+          "ci_high": 0.23613589351256675
+        },
+        "appeal_mean": 2.55
+      },
+      {
+        "attribute": "household",
+        "value": "multigenerational",
+        "treatment_idx": 0,
+        "n": 9,
+        "suppressed": true
+      },
+      {
+        "attribute": "household",
+        "value": "multigenerational",
+        "treatment_idx": 1,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 12,
+          "share": 0.16666666666666666,
+          "ci_low": 0.04696414761482223,
+          "ci_high": 0.44803635738467273
+        },
+        "appeal_mean": 2.5
+      },
+      {
+        "attribute": "household",
+        "value": "multigenerational",
+        "treatment_idx": 2,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 10,
+          "share": 0.2,
+          "ci_low": 0.056680947980693314,
+          "ci_high": 0.5098431532792765
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "household",
+        "value": "shared_housing",
+        "treatment_idx": 0,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 12,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2425007574992425
+        },
+        "appeal_mean": 2.25
+      },
+      {
+        "attribute": "household",
+        "value": "shared_housing",
+        "treatment_idx": 1,
+        "n": 6,
+        "suppressed": true
+      },
+      {
+        "attribute": "household",
+        "value": "shared_housing",
+        "treatment_idx": 2,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 13,
+          "share": 0.07692307692307693,
+          "ci_low": 0.013710066379696323,
+          "ci_high": 0.3331453392824736
+        },
+        "appeal_mean": 2.6153846153846154
+      },
+      {
+        "attribute": "income_band",
+        "value": "high",
+        "treatment_idx": 0,
+        "n": 7,
+        "suppressed": true
+      },
+      {
+        "attribute": "income_band",
+        "value": "high",
+        "treatment_idx": 1,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 10,
+          "share": 0.4,
+          "ci_low": 0.16817758120350967,
+          "ci_high": 0.6873304525498135
+        },
+        "appeal_mean": 3.0
+      },
+      {
+        "attribute": "income_band",
+        "value": "high",
+        "treatment_idx": 2,
+        "n": 11,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 11,
+          "share": 0.36363636363636365,
+          "ci_low": 0.15166223614131383,
+          "ci_high": 0.6462032231083628
+        },
+        "appeal_mean": 2.909090909090909
+      },
+      {
+        "attribute": "income_band",
+        "value": "low",
+        "treatment_idx": 0,
+        "n": 21,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 21,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.15464382326420195
+        },
+        "appeal_mean": 2.3333333333333335
+      },
+      {
+        "attribute": "income_band",
+        "value": "low",
+        "treatment_idx": 1,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 24,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13798057582897535
+        },
+        "appeal_mean": 2.5416666666666665
+      },
+      {
+        "attribute": "income_band",
+        "value": "low",
+        "treatment_idx": 2,
+        "n": 28,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 28,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.12064720365810762
+        },
+        "appeal_mean": 2.392857142857143
+      },
+      {
+        "attribute": "income_band",
+        "value": "middle",
+        "treatment_idx": 0,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 24,
+          "share": 0.08333333333333333,
+          "ci_low": 0.023158327842973503,
+          "ci_high": 0.258492152014506
+        },
+        "appeal_mean": 2.5416666666666665
+      },
+      {
+        "attribute": "income_band",
+        "value": "middle",
+        "treatment_idx": 1,
+        "n": 34,
+        "suppressed": false,
+        "top2box": {
+          "n": 7,
+          "of": 34,
+          "share": 0.20588235294117646,
+          "ci_low": 0.1034939602235132,
+          "ci_high": 0.3679871610821398
+        },
+        "appeal_mean": 2.7058823529411766
+      },
+      {
+        "attribute": "income_band",
+        "value": "middle",
+        "treatment_idx": 2,
+        "n": 35,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 35,
+          "share": 0.14285714285714285,
+          "ci_low": 0.06260138804853496,
+          "ci_high": 0.2937588030867426
+        },
+        "appeal_mean": 2.6285714285714286
+      },
+      {
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "treatment_idx": 0,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 25,
+          "share": 0.2,
+          "ci_low": 0.08860454100652487,
+          "ci_high": 0.3913133553653824
+        },
+        "appeal_mean": 2.6
+      },
+      {
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "treatment_idx": 1,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 25,
+          "share": 0.2,
+          "ci_low": 0.08860454100652487,
+          "ci_high": 0.3913133553653824
+        },
+        "appeal_mean": 2.64
+      },
+      {
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "treatment_idx": 2,
+        "n": 20,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 20,
+          "share": 0.15,
+          "ci_low": 0.05236779195949584,
+          "ci_high": 0.36042329588695743
+        },
+        "appeal_mean": 2.65
+      },
+      {
+        "attribute": "income_band",
+        "value": "very_low",
+        "treatment_idx": 0,
+        "n": 16,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 16,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.19361341827271994
+        },
+        "appeal_mean": 2.25
+      },
+      {
+        "attribute": "income_band",
+        "value": "very_low",
+        "treatment_idx": 1,
+        "n": 8,
+        "suppressed": true
+      },
+      {
+        "attribute": "income_band",
+        "value": "very_low",
+        "treatment_idx": 2,
+        "n": 12,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 12,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.2425007574992425
+        },
+        "appeal_mean": 2.5833333333333335
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "treatment_idx": 0,
+        "n": 44,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 44,
+          "share": 0.045454545454545456,
+          "ci_low": 0.012554846366981079,
+          "ci_high": 0.15135271525303162
+        },
+        "appeal_mean": 2.3863636363636362
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "treatment_idx": 1,
+        "n": 36,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 36,
+          "share": 0.027777777777777776,
+          "ci_low": 0.004920280295569679,
+          "ci_high": 0.141700337350308
+        },
+        "appeal_mean": 2.3333333333333335
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "treatment_idx": 2,
+        "n": 37,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 37,
+          "share": 0.05405405405405406,
+          "ci_low": 0.01495066277053994,
+          "ci_high": 0.1770496506353991
+        },
+        "appeal_mean": 2.5675675675675675
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "treatment_idx": 0,
+        "n": 15,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 15,
+          "share": 0.13333333333333333,
+          "ci_low": 0.0373604698913593,
+          "ci_high": 0.3788249920651624
+        },
+        "appeal_mean": 2.533333333333333
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "treatment_idx": 1,
+        "n": 18,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 18,
+          "share": 0.3333333333333333,
+          "ci_low": 0.1627855436366286,
+          "ci_high": 0.5625093065574964
+        },
+        "appeal_mean": 2.7777777777777777
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "treatment_idx": 2,
+        "n": 20,
+        "suppressed": false,
+        "top2box": {
+          "n": 7,
+          "of": 20,
+          "share": 0.35,
+          "ci_low": 0.18118954786794464,
+          "ci_high": 0.5671494897805354
+        },
+        "appeal_mean": 2.9
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "treatment_idx": 0,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 25,
+          "share": 0.16,
+          "ci_low": 0.06403347608577989,
+          "ci_high": 0.34654013980238163
+        },
+        "appeal_mean": 2.68
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "treatment_idx": 1,
+        "n": 32,
+        "suppressed": false,
+        "top2box": {
+          "n": 8,
+          "of": 32,
+          "share": 0.25,
+          "ci_low": 0.1325224398262155,
+          "ci_high": 0.42106891770246624
+        },
+        "appeal_mean": 2.90625
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "treatment_idx": 2,
+        "n": 26,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 26,
+          "share": 0.11538461538461539,
+          "ci_low": 0.04003171821149494,
+          "ci_high": 0.28976293086898336
+        },
+        "appeal_mean": 2.6538461538461537
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "very_high",
+        "treatment_idx": 0,
+        "n": 9,
+        "suppressed": true
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "very_high",
+        "treatment_idx": 1,
+        "n": 15,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 15,
+          "share": 0.06666666666666667,
+          "ci_low": 0.011866588606194856,
+          "ci_high": 0.2981707755242399
+        },
+        "appeal_mean": 2.6666666666666665
+      },
+      {
+        "attribute": "price_sensitivity",
+        "value": "very_high",
+        "treatment_idx": 2,
+        "n": 23,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 23,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.14312112541726274
+        },
+        "appeal_mean": 2.3043478260869565
+      },
+      {
+        "attribute": "region",
+        "value": "midwest",
+        "treatment_idx": 0,
+        "n": 16,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 16,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.19361341827271994
+        },
+        "appeal_mean": 2.3125
+      },
+      {
+        "attribute": "region",
+        "value": "midwest",
+        "treatment_idx": 1,
+        "n": 22,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 22,
+          "share": 0.18181818181818182,
+          "ci_low": 0.07306766024105121,
+          "ci_high": 0.38517021976637866
+        },
+        "appeal_mean": 2.590909090909091
+      },
+      {
+        "attribute": "region",
+        "value": "midwest",
+        "treatment_idx": 2,
+        "n": 25,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 25,
+          "share": 0.08,
+          "ci_low": 0.02221993369109193,
+          "ci_high": 0.24966512122957818
+        },
+        "appeal_mean": 2.4
+      },
+      {
+        "attribute": "region",
+        "value": "northeast",
+        "treatment_idx": 0,
+        "n": 17,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 17,
+          "share": 0.058823529411764705,
+          "ci_low": 0.01046013064516424,
+          "ci_high": 0.269825452035628
+        },
+        "appeal_mean": 2.4705882352941178
+      },
+      {
+        "attribute": "region",
+        "value": "northeast",
+        "treatment_idx": 1,
+        "n": 16,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 16,
+          "share": 0.0625,
+          "ci_low": 0.01111905730833121,
+          "ci_high": 0.2832926836802987
+        },
+        "appeal_mean": 2.5625
+      },
+      {
+        "attribute": "region",
+        "value": "northeast",
+        "treatment_idx": 2,
+        "n": 18,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 18,
+          "share": 0.16666666666666666,
+          "ci_low": 0.05836470400465757,
+          "ci_high": 0.39222499638359243
+        },
+        "appeal_mean": 2.888888888888889
+      },
+      {
+        "attribute": "region",
+        "value": "south",
+        "treatment_idx": 0,
+        "n": 37,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 37,
+          "share": 0.08108108108108109,
+          "ci_low": 0.027960066396321384,
+          "ci_high": 0.2130099249850153
+        },
+        "appeal_mean": 2.5405405405405403
+      },
+      {
+        "attribute": "region",
+        "value": "south",
+        "treatment_idx": 1,
+        "n": 42,
+        "suppressed": false,
+        "top2box": {
+          "n": 8,
+          "of": 42,
+          "share": 0.19047619047619047,
+          "ci_low": 0.09981889609856436,
+          "ci_high": 0.33301067354996444
+        },
+        "appeal_mean": 2.642857142857143
+      },
+      {
+        "attribute": "region",
+        "value": "south",
+        "treatment_idx": 2,
+        "n": 35,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 35,
+          "share": 0.05714285714285714,
+          "ci_low": 0.015812829614043955,
+          "ci_high": 0.1860738073937003
+        },
+        "appeal_mean": 2.4
+      },
+      {
+        "attribute": "region",
+        "value": "west",
+        "treatment_idx": 0,
+        "n": 23,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 23,
+          "share": 0.17391304347826086,
+          "ci_low": 0.06978540350612772,
+          "ci_high": 0.37138054785295666
+        },
+        "appeal_mean": 2.4782608695652173
+      },
+      {
+        "attribute": "region",
+        "value": "west",
+        "treatment_idx": 1,
+        "n": 21,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 21,
+          "share": 0.14285714285714285,
+          "ci_low": 0.04980921798213492,
+          "ci_high": 0.346364941492295
+        },
+        "appeal_mean": 2.761904761904762
+      },
+      {
+        "attribute": "region",
+        "value": "west",
+        "treatment_idx": 2,
+        "n": 28,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 28,
+          "share": 0.17857142857142858,
+          "ci_low": 0.0787838582943011,
+          "ci_high": 0.355917915485911
+        },
+        "appeal_mean": 2.8214285714285716
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "treatment_idx": 0,
+        "n": 16,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 16,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.19361341827271994
+        },
+        "appeal_mean": 2.6875
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "treatment_idx": 1,
+        "n": 14,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 14,
+          "share": 0.07142857142857142,
+          "ci_low": 0.012721886112291636,
+          "ci_high": 0.3146926955395781
+        },
+        "appeal_mean": 2.7857142857142856
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "treatment_idx": 2,
+        "n": 17,
+        "suppressed": false,
+        "top2box": {
+          "n": 3,
+          "of": 17,
+          "share": 0.17647058823529413,
+          "ci_low": 0.0619101371254899,
+          "ci_high": 0.41029929017375777
+        },
+        "appeal_mean": 2.8823529411764706
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "treatment_idx": 0,
+        "n": 19,
+        "suppressed": false,
+        "top2box": {
+          "n": 4,
+          "of": 19,
+          "share": 0.21052631578947367,
+          "ci_low": 0.08507538491591576,
+          "ci_high": 0.43334714240266087
+        },
+        "appeal_mean": 2.736842105263158
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "treatment_idx": 1,
+        "n": 45,
+        "suppressed": false,
+        "top2box": {
+          "n": 9,
+          "of": 45,
+          "share": 0.2,
+          "ci_low": 0.10896004402509006,
+          "ci_high": 0.3382325131392944
+        },
+        "appeal_mean": 2.8666666666666667
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "treatment_idx": 2,
+        "n": 41,
+        "suppressed": false,
+        "top2box": {
+          "n": 6,
+          "of": 41,
+          "share": 0.14634146341463414,
+          "ci_low": 0.0688415452945541,
+          "ci_high": 0.2844375526858926
+        },
+        "appeal_mean": 2.7560975609756095
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "innovator",
+        "treatment_idx": 0,
+        "n": 9,
+        "suppressed": true
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "innovator",
+        "treatment_idx": 1,
+        "n": 7,
+        "suppressed": true
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "innovator",
+        "treatment_idx": 2,
+        "n": 10,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 10,
+          "share": 0.2,
+          "ci_low": 0.056680947980693314,
+          "ci_high": 0.5098431532792765
+        },
+        "appeal_mean": 2.9
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "treatment_idx": 0,
+        "n": 22,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 22,
+          "share": 0.045454545454545456,
+          "ci_low": 0.008069219301147859,
+          "ci_high": 0.21798489499518053
+        },
+        "appeal_mean": 1.9545454545454546
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "treatment_idx": 1,
+        "n": 13,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 13,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.22810184305529166
+        },
+        "appeal_mean": 1.9230769230769231
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "treatment_idx": 2,
+        "n": 14,
+        "suppressed": false,
+        "top2box": {
+          "n": 0,
+          "of": 14,
+          "share": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.21531701192718142
+        },
+        "appeal_mean": 2.0
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "treatment_idx": 0,
+        "n": 27,
+        "suppressed": false,
+        "top2box": {
+          "n": 2,
+          "of": 27,
+          "share": 0.07407407407407407,
+          "ci_low": 0.020554221697383523,
+          "ci_high": 0.2336997729073062
+        },
+        "appeal_mean": 2.4814814814814814
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "treatment_idx": 1,
+        "n": 22,
+        "suppressed": false,
+        "top2box": {
+          "n": 5,
+          "of": 22,
+          "share": 0.22727272727272727,
+          "ci_low": 0.10122890794820358,
+          "ci_high": 0.4344035606295935
+        },
+        "appeal_mean": 2.590909090909091
+      },
+      {
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "treatment_idx": 2,
+        "n": 24,
+        "suppressed": false,
+        "top2box": {
+          "n": 1,
+          "of": 24,
+          "share": 0.041666666666666664,
+          "ci_low": 0.007393265354805126,
+          "ci_high": 0.20242226248842232
+        },
+        "appeal_mean": 2.3333333333333335
+      }
+    ],
+    "objections": [
+      {
+        "code": "price",
+        "n": 253,
+        "share": 0.8433333333333334
+      },
+      {
+        "code": "complexity",
+        "n": 17,
+        "share": 0.056666666666666664
+      },
+      {
+        "code": "already_have_alternative",
+        "n": 8,
+        "share": 0.02666666666666667
+      }
+    ],
+    "benefits": [
+      {
+        "code": "saves_money",
+        "n": 144,
+        "share": 0.48
+      },
+      {
+        "code": "saves_time",
+        "n": 96,
+        "share": 0.32
+      },
+      {
+        "code": "convenience",
+        "n": 60,
+        "share": 0.2
+      }
+    ],
+    "quotes": [
+      {
+        "kind": "top_objection",
+        "code": "price",
+        "trial_id": 101,
+        "persona_id": "P4-00002",
+        "treatment_idx": 1,
+        "text": "I can't afford a fancy mug that costs more than a decent dinner out."
+      },
+      {
+        "kind": "top_objection",
+        "code": "price",
+        "trial_id": 102,
+        "persona_id": "P4-00004",
+        "treatment_idx": 1,
+        "text": "I'm a tight budget and this mug is way overpriced for what it does."
+      },
+      {
+        "kind": "top_objection",
+        "code": "complexity",
+        "trial_id": 134,
+        "persona_id": "P4-00032",
+        "treatment_idx": 1,
+        "text": "I'm not tech-savvy and I prefer simple, familiar products, so this smart mug with all the tech seems too complicated for me."
+      },
+      {
+        "kind": "top_objection",
+        "code": "complexity",
+        "trial_id": 138,
+        "persona_id": "P4-00038",
+        "treatment_idx": 1,
+        "text": "I'm not tech-savvy and I doubt this smart mug would be worth the extra cost for simple coffee or tea."
+      },
+      {
+        "kind": "top_objection",
+        "code": "already_have_alternative",
+        "trial_id": 112,
+        "persona_id": "P4-00014",
+        "treatment_idx": 2,
+        "text": "I already have a trusty old mug that keeps my drinks warm without needing any fancy technology."
+      },
+      {
+        "kind": "top_objection",
+        "code": "already_have_alternative",
+        "trial_id": 249,
+        "persona_id": "P4-00150",
+        "treatment_idx": 1,
+        "text": "I've got a decent kettle, can't imagine needing a smart mug."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_money",
+        "trial_id": 102,
+        "persona_id": "P4-00004",
+        "treatment_idx": 1,
+        "text": "I'm a tight budget and this mug is way overpriced for what it does."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_money",
+        "trial_id": 105,
+        "persona_id": "P4-00006",
+        "treatment_idx": 2,
+        "text": "I can barely afford tuition and living expenses, this mug would be a luxury item."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_time",
+        "trial_id": 101,
+        "persona_id": "P4-00002",
+        "treatment_idx": 1,
+        "text": "I can't afford a fancy mug that costs more than a decent dinner out."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "saves_time",
+        "trial_id": 103,
+        "persona_id": "P4-00001",
+        "treatment_idx": 0,
+        "text": "I've already got a good coffee maker, and the mug is just a waste of money."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "convenience",
+        "trial_id": 110,
+        "persona_id": "P4-00010",
+        "treatment_idx": 2,
+        "text": "I don't mind the convenience of a self-heating mug, but $129 is a lot for something that seems like it should be more affordable."
+      },
+      {
+        "kind": "top_benefit",
+        "code": "convenience",
+        "trial_id": 116,
+        "persona_id": "P4-00017",
+        "treatment_idx": 1,
+        "text": "I can't justify spending so much on a mug when there are cheaper alternatives that serve my needs."
+      }
+    ],
+    "contradictions": [
+      {
+        "kind": "diverging_segment",
+        "treatment_idx": 1,
+        "attribute": "income_band",
+        "value": "high",
+        "n": 10,
+        "gap_points": 24.158415841584162,
+        "description": "income_band=high differs from the overall top-2-box share by +24 points"
+      },
+      {
+        "kind": "diverging_segment",
+        "treatment_idx": 2,
+        "attribute": "income_band",
+        "value": "high",
+        "n": 11,
+        "gap_points": 25.042881646655236,
+        "description": "income_band=high differs from the overall top-2-box share by +25 points"
+      },
+      {
+        "kind": "diverging_segment",
+        "treatment_idx": 2,
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "n": 20,
+        "gap_points": 23.679245283018865,
+        "description": "price_sensitivity=low differs from the overall top-2-box share by +24 points"
+      }
+    ],
+    "repeat_stability": null,
+    "notes": [
+      "Intervals describe sampling variation of this simulation, not uncertainty about real people.",
+      "Segments with fewer than 10 valid responses are suppressed."
+    ]
+  },
+  "comparison": {
+    "run_id": 2,
+    "design": "between",
+    "baseline_idx": 0,
+    "pairs": [
+      {
+        "n_treatment": 101,
+        "n_baseline": 93,
+        "top2_treatment": 0.15841584158415842,
+        "top2_baseline": 0.08602150537634409,
+        "diff": 0.07239433620781432,
+        "diff_ci_low": -0.022426966059056683,
+        "diff_ci_high": 0.16578704985388687,
+        "p": 0.1343207837819581,
+        "cohens_h": 0.2233622539384824,
+        "relative_lift": 0.8415841584158414,
+        "appeal": {
+          "diff": 0.1704460768657512,
+          "t": 2.0887221031891117,
+          "p": 0.03805120145332267,
+          "d": 0.29909938526699936
+        },
+        "treatment_idx": 1,
+        "label": "$79",
+        "vs": "$49",
+        "p_holm": 0.2686415675639162,
+        "significant": false
+      },
+      {
+        "n_treatment": 106,
+        "n_baseline": 93,
+        "top2_treatment": 0.11320754716981132,
+        "top2_baseline": 0.08602150537634409,
+        "diff": 0.02718604179346723,
+        "diff_ci_low": -0.06114738500629045,
+        "diff_ci_high": 0.1124374863701715,
+        "p": 0.6386639404185515,
+        "cohens_h": 0.0909757934486487,
+        "relative_lift": 0.31603773584905653,
+        "appeal": {
+          "diff": 0.12122134307161714,
+          "t": 1.4775294887891357,
+          "p": 0.1411308317916561,
+          "d": 0.2082672858360462
+        },
+        "treatment_idx": 2,
+        "label": "$129",
+        "vs": "$49",
+        "p_holm": 0.6386639404185515,
+        "significant": false
+      }
+    ],
+    "segments": [
+      {
+        "treatment_idx": 1,
+        "attribute": "age_band",
+        "value": "18-29",
+        "n_treatment": 15,
+        "n_baseline": 16,
+        "diff": 0.004166666666666666,
+        "diff_ci_low": -0.22332499850413084,
+        "diff_ci_high": 0.24130408187106595,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "age_band",
+        "value": "30-44",
+        "n_treatment": 23,
+        "n_baseline": 18,
+        "diff": 0.20531400966183574,
+        "diff_ci_low": -0.0378776725025326,
+        "diff_ci_high": 0.4142043092724105,
+        "p": 0.1121344065503244,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "age_band",
+        "value": "45-59",
+        "n_treatment": 36,
+        "n_baseline": 29,
+        "diff": 0.09770114942528735,
+        "diff_ci_low": -0.07677862187078255,
+        "diff_ci_high": 0.25789750189478194,
+        "p": 0.28190645388814234,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "age_band",
+        "value": "60+",
+        "n_treatment": 27,
+        "n_baseline": 30,
+        "diff": -0.022222222222222227,
+        "diff_ci_low": -0.20109753438728784,
+        "diff_ci_high": 0.1652835156685799,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "income_band",
+        "value": "low",
+        "n_treatment": 24,
+        "n_baseline": 21,
+        "diff": 0.0,
+        "diff_ci_low": -0.15464382326420195,
+        "diff_ci_high": 0.13798057582897535,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "income_band",
+        "value": "middle",
+        "n_treatment": 34,
+        "n_baseline": 24,
+        "diff": 0.12254901960784313,
+        "diff_ci_low": -0.0803400996792452,
+        "diff_ci_high": 0.2954622929797372,
+        "p": 0.2816142352778999,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "n_treatment": 25,
+        "n_baseline": 25,
+        "diff": 0.0,
+        "diff_ci_low": -0.2213814541137719,
+        "diff_ci_high": 0.2213814541137719,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "region",
+        "value": "midwest",
+        "n_treatment": 22,
+        "n_baseline": 16,
+        "diff": 0.18181818181818182,
+        "diff_ci_low": -0.040246744900436116,
+        "diff_ci_high": 0.38517021976637866,
+        "p": 0.12375533428165007,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "region",
+        "value": "northeast",
+        "n_treatment": 16,
+        "n_baseline": 17,
+        "diff": 0.003676470588235295,
+        "diff_ci_low": -0.21349123562714872,
+        "diff_ci_high": 0.22970396340051608,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "region",
+        "value": "south",
+        "n_treatment": 42,
+        "n_baseline": 37,
+        "diff": 0.10939510939510938,
+        "diff_ci_low": -0.05067976332918861,
+        "diff_ci_high": 0.26150665092383896,
+        "p": 0.2034524285886713,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "region",
+        "value": "west",
+        "n_treatment": 21,
+        "n_baseline": 23,
+        "diff": -0.031055900621118016,
+        "diff_ci_low": -0.24934775023423486,
+        "diff_ci_high": 0.1975441639271927,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "gender",
+        "value": "man",
+        "n_treatment": 44,
+        "n_baseline": 37,
+        "diff": 0.0055282555282555185,
+        "diff_ci_low": -0.14752578767418362,
+        "diff_ci_high": 0.1475645229869213,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "gender",
+        "value": "woman",
+        "n_treatment": 56,
+        "n_baseline": 55,
+        "diff": 0.1237012987012987,
+        "diff_ci_low": -0.006187828371689408,
+        "diff_ci_high": 0.2534404653393365,
+        "p": 0.09354713007966198,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "education",
+        "value": "bachelor",
+        "n_treatment": 29,
+        "n_baseline": 26,
+        "diff": 0.16843501326259946,
+        "diff_ci_low": -0.01703712476865052,
+        "diff_ci_high": 0.34824845610650923,
+        "p": 0.10469624098924873,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "education",
+        "value": "graduate",
+        "n_treatment": 13,
+        "n_baseline": 11,
+        "diff": -0.19580419580419578,
+        "diff_ci_low": -0.49547031086169924,
+        "diff_ci_high": 0.11462918392310012,
+        "p": 0.3002070393374741,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "education",
+        "value": "high_school",
+        "n_treatment": 30,
+        "n_baseline": 29,
+        "diff": 0.09770114942528735,
+        "diff_ci_low": -0.07953027873454749,
+        "diff_ci_high": 0.2738796385378654,
+        "p": 0.42380990998296975,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "education",
+        "value": "some_college",
+        "n_treatment": 26,
+        "n_baseline": 20,
+        "diff": 0.05384615384615385,
+        "diff_ci_low": -0.16738742061031106,
+        "diff_ci_high": 0.24912692033816017,
+        "p": 0.6835638651713029,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "employment",
+        "value": "full_time",
+        "n_treatment": 58,
+        "n_baseline": 54,
+        "diff": 0.026819923371647514,
+        "diff_ci_low": -0.10235853036796813,
+        "diff_ci_high": 0.15290296430706046,
+        "p": 0.7783671645297097,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "employment",
+        "value": "part_time",
+        "n_treatment": 21,
+        "n_baseline": 13,
+        "diff": 0.20879120879120877,
+        "diff_ci_low": -0.08689270111142589,
+        "diff_ci_high": 0.43179162101987206,
+        "p": 0.21000272138383108,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "employment",
+        "value": "retired",
+        "n_treatment": 10,
+        "n_baseline": 10,
+        "diff": 0.0,
+        "diff_ci_low": -0.3150484079574951,
+        "diff_ci_high": 0.3150484079574951,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "household",
+        "value": "couple",
+        "n_treatment": 28,
+        "n_baseline": 30,
+        "diff": 0.11190476190476191,
+        "diff_ci_low": -0.06541068267065704,
+        "diff_ci_high": 0.2956819518423598,
+        "p": 0.2457795431976167,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "household",
+        "value": "family_with_children",
+        "n_treatment": 33,
+        "n_baseline": 30,
+        "diff": 0.14242424242424243,
+        "diff_ci_low": -0.051027875887379615,
+        "diff_ci_high": 0.3225424521256153,
+        "p": 0.18943231933682492,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "household",
+        "value": "lives_alone",
+        "n_treatment": 22,
+        "n_baseline": 12,
+        "diff": -0.1212121212121212,
+        "diff_ci_low": -0.4050546223749005,
+        "diff_ci_high": 0.08877696083732937,
+        "p": 0.2794117647058823,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "n_treatment": 14,
+        "n_baseline": 16,
+        "diff": 0.07142857142857142,
+        "diff_ci_low": -0.13088957070423857,
+        "diff_ci_high": 0.3146926955395781,
+        "p": 0.4666666666666667,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "n_treatment": 45,
+        "n_baseline": 19,
+        "diff": -0.010526315789473661,
+        "diff_ci_low": -0.25122819437893873,
+        "diff_ci_high": 0.17614495609200095,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "n_treatment": 13,
+        "n_baseline": 22,
+        "diff": -0.045454545454545456,
+        "diff_ci_low": -0.21798489499518053,
+        "diff_ci_high": 0.18569067603362815,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "n_treatment": 22,
+        "n_baseline": 27,
+        "diff": 0.1531986531986532,
+        "diff_ci_low": -0.05019114034544503,
+        "diff_ci_high": 0.36713218662792335,
+        "p": 0.21919034915990793,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "n_treatment": 36,
+        "n_baseline": 44,
+        "diff": -0.01767676767676768,
+        "diff_ci_low": -0.1260136845510177,
+        "diff_ci_high": 0.10090122260645891,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "n_treatment": 18,
+        "n_baseline": 15,
+        "diff": 0.19999999999999998,
+        "diff_ci_low": -0.09891922500457587,
+        "diff_ci_high": 0.4484600918064994,
+        "p": 0.2418849226413186,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 1,
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "n_treatment": 32,
+        "n_baseline": 25,
+        "diff": 0.09,
+        "diff_ci_low": -0.13044999637531693,
+        "diff_ci_high": 0.28614828145072224,
+        "p": 0.5202580547071488,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "age_band",
+        "value": "18-29",
+        "n_treatment": 20,
+        "n_baseline": 16,
+        "diff": 0.0875,
+        "diff_ci_low": -0.15391552811203493,
+        "diff_ci_high": 0.3041055509995406,
+        "p": 0.6129360835243187,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "age_band",
+        "value": "30-44",
+        "n_treatment": 25,
+        "n_baseline": 18,
+        "diff": -0.05555555555555555,
+        "diff_ci_low": -0.2575779980200754,
+        "diff_ci_high": 0.08525646459842678,
+        "p": 0.4186046511627907,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "age_band",
+        "value": "45-59",
+        "n_treatment": 34,
+        "n_baseline": 29,
+        "diff": 0.10750507099391482,
+        "diff_ci_low": -0.06955795091251168,
+        "diff_ci_high": 0.27382009329402324,
+        "p": 0.26957639148018386,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "age_band",
+        "value": "60+",
+        "n_treatment": 27,
+        "n_baseline": 30,
+        "diff": -0.022222222222222227,
+        "diff_ci_low": -0.20109753438728784,
+        "diff_ci_high": 0.1652835156685799,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "income_band",
+        "value": "low",
+        "n_treatment": 28,
+        "n_baseline": 21,
+        "diff": 0.0,
+        "diff_ci_low": -0.15464382326420195,
+        "diff_ci_high": 0.12064720365810762,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "income_band",
+        "value": "middle",
+        "n_treatment": 35,
+        "n_baseline": 24,
+        "diff": 0.05952380952380952,
+        "diff_ci_low": -0.1331458506245473,
+        "diff_ci_high": 0.22198101110568585,
+        "p": 0.6893542075398826,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "income_band",
+        "value": "upper_middle",
+        "n_treatment": 20,
+        "n_baseline": 25,
+        "diff": -0.05000000000000002,
+        "diff_ci_low": -0.26478558608068975,
+        "diff_ci_high": 0.18809013363912633,
+        "p": 0.7156653140771121,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "income_band",
+        "value": "very_low",
+        "n_treatment": 12,
+        "n_baseline": 16,
+        "diff": 0.0,
+        "diff_ci_low": -0.19361341827271994,
+        "diff_ci_high": 0.2425007574992425,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "region",
+        "value": "midwest",
+        "n_treatment": 25,
+        "n_baseline": 16,
+        "diff": 0.08,
+        "diff_ci_low": -0.12205121083009877,
+        "diff_ci_high": 0.24966512122957818,
+        "p": 0.5121951219512195,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "region",
+        "value": "northeast",
+        "n_treatment": 18,
+        "n_baseline": 17,
+        "diff": 0.10784313725490195,
+        "diff_ci_low": -0.12933006204765418,
+        "diff_ci_high": 0.3385281572387462,
+        "p": 0.6025974025974026,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "region",
+        "value": "south",
+        "n_treatment": 35,
+        "n_baseline": 37,
+        "diff": -0.023938223938223945,
+        "diff_ci_low": -0.16218941210440607,
+        "diff_ci_high": 0.11550722107065345,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "region",
+        "value": "west",
+        "n_treatment": 28,
+        "n_baseline": 23,
+        "diff": 0.004658385093167711,
+        "diff_ci_low": -0.2165902860119559,
+        "diff_ci_high": 0.21031426715608093,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "gender",
+        "value": "man",
+        "n_treatment": 60,
+        "n_baseline": 37,
+        "diff": -0.008108108108108109,
+        "diff_ci_low": -0.15697917394951694,
+        "diff_ci_high": 0.11255710314032256,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "gender",
+        "value": "woman",
+        "n_treatment": 46,
+        "n_baseline": 55,
+        "diff": 0.057707509881422925,
+        "diff_ci_low": -0.06383046234904272,
+        "diff_ci_high": 0.19141059466932306,
+        "p": 0.5055726600804723,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "education",
+        "value": "bachelor",
+        "n_treatment": 29,
+        "n_baseline": 26,
+        "diff": 0.13395225464190982,
+        "diff_ci_low": -0.04476892010409833,
+        "diff_ci_high": 0.3098947326212661,
+        "p": 0.19663897577327094,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "education",
+        "value": "graduate",
+        "n_treatment": 17,
+        "n_baseline": 11,
+        "diff": -0.09625668449197858,
+        "diff_ci_low": -0.4107848911288098,
+        "diff_ci_high": 0.19596736888243285,
+        "p": 0.6525455221107396,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "education",
+        "value": "high_school",
+        "n_treatment": 27,
+        "n_baseline": 29,
+        "diff": -0.031928480204342274,
+        "diff_ci_low": -0.1856620779071914,
+        "diff_ci_high": 0.12215775383764371,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "education",
+        "value": "some_college",
+        "n_treatment": 28,
+        "n_baseline": 20,
+        "diff": -0.02857142857142858,
+        "diff_ci_low": -0.23613025704786458,
+        "diff_ci_high": 0.1424176414253781,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "employment",
+        "value": "full_time",
+        "n_treatment": 68,
+        "n_baseline": 54,
+        "diff": 0.021241830065359485,
+        "diff_ci_low": -0.1053369284937335,
+        "diff_ci_high": 0.13782926072092094,
+        "p": 0.7873733309281843,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "employment",
+        "value": "part_time",
+        "n_treatment": 13,
+        "n_baseline": 13,
+        "diff": -0.07692307692307693,
+        "diff_ci_low": -0.3331453392824736,
+        "diff_ci_high": 0.15977575177528916,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "household",
+        "value": "couple",
+        "n_treatment": 23,
+        "n_baseline": 30,
+        "diff": 0.06376811594202898,
+        "diff_ci_low": -0.10569646488629421,
+        "diff_ci_high": 0.2606025303501704,
+        "p": 0.6420582746886854,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "household",
+        "value": "family_with_children",
+        "n_treatment": 40,
+        "n_baseline": 30,
+        "diff": 0.024999999999999994,
+        "diff_ci_low": -0.1463473660992548,
+        "diff_ci_high": 0.1760200531325872,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "household",
+        "value": "lives_alone",
+        "n_treatment": 20,
+        "n_baseline": 12,
+        "diff": -0.11666666666666665,
+        "diff_ci_low": -0.4010249916196631,
+        "diff_ci_high": 0.10463688938492229,
+        "p": 0.5403225806451613,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "household",
+        "value": "shared_housing",
+        "n_treatment": 13,
+        "n_baseline": 12,
+        "diff": 0.07692307692307693,
+        "diff_ci_low": -0.1736811969623937,
+        "diff_ci_high": 0.3331453392824736,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "tech_adoption",
+        "value": "early_adopter",
+        "n_treatment": 17,
+        "n_baseline": 16,
+        "diff": 0.17647058823529413,
+        "diff_ci_low": -0.048496637585999786,
+        "diff_ci_high": 0.41029929017375777,
+        "p": 0.2272727272727273,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "tech_adoption",
+        "value": "early_majority",
+        "n_treatment": 41,
+        "n_baseline": 19,
+        "diff": -0.06418485237483953,
+        "diff_ci_low": -0.300098730900888,
+        "diff_ci_high": 0.12238541837872288,
+        "p": 0.7110513847939828,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "tech_adoption",
+        "value": "laggard",
+        "n_treatment": 14,
+        "n_baseline": 22,
+        "diff": -0.045454545454545456,
+        "diff_ci_low": -0.21798489499518053,
+        "diff_ci_high": 0.1730839597038039,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "tech_adoption",
+        "value": "late_majority",
+        "n_treatment": 24,
+        "n_baseline": 27,
+        "diff": -0.032407407407407406,
+        "diff_ci_low": -0.19567108911733835,
+        "diff_ci_high": 0.13702321611275325,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "price_sensitivity",
+        "value": "high",
+        "n_treatment": 37,
+        "n_baseline": 44,
+        "diff": 0.008599508599508601,
+        "diff_ci_low": -0.10428759241978684,
+        "diff_ci_high": 0.13591921241024352,
+        "p": 1.0,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "price_sensitivity",
+        "value": "low",
+        "n_treatment": 20,
+        "n_baseline": 15,
+        "diff": 0.21666666666666665,
+        "diff_ci_low": -0.08126474029797978,
+        "diff_ci_high": 0.4540791588173507,
+        "p": 0.24443826473859842,
+        "p_holm": 1.0,
+        "significant": false
+      },
+      {
+        "treatment_idx": 2,
+        "attribute": "price_sensitivity",
+        "value": "moderate",
+        "n_treatment": 26,
+        "n_baseline": 25,
+        "diff": -0.04461538461538461,
+        "diff_ci_low": -0.24580008301433082,
+        "diff_ci_high": 0.15442574335404874,
+        "p": 0.7030017680831198,
+        "p_holm": 1.0,
+        "significant": false
+      }
+    ],
+    "balance": {
+      "arm_sizes": {
+        "0": 93,
+        "1": 101,
+        "2": 106
+      },
+      "checks": [
+        {
+          "attribute": "age_band",
+          "p": 0.9029377472594077,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "income_band",
+          "p": 0.5346464373512507,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "region",
+          "p": 0.8092264874496986,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "gender",
+          "p": 0.13121298973169476,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "education",
+          "p": 0.860726696624493,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "employment",
+          "p": 0.6481462504381741,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "household",
+          "p": 0.4297208118746298,
+          "p_holm": 1.0
+        },
+        {
+          "attribute": "tech_adoption",
+          "p": 0.05456155358950784,
+          "p_holm": 0.4910539823055705
+        },
+        {
+          "attribute": "price_sensitivity",
+          "p": 0.22188520018367738,
+          "p_holm": 1.0
+        }
+      ],
+      "min_p_holm": 0.4910539823055705,
+      "imbalanced": false
+    },
+    "pricing": {
+      "curve": [
+        {
+          "treatment_idx": 0,
+          "label": "$49",
+          "price_usd": 49.0,
+          "n": 93,
+          "top2": 0.08602150537634409,
+          "ci_low": 0.044232537486392685,
+          "ci_high": 0.1606546184465948
+        },
+        {
+          "treatment_idx": 1,
+          "label": "$79",
+          "price_usd": 79.0,
+          "n": 101,
+          "top2": 0.15841584158415842,
+          "ci_low": 0.0999267161245613,
+          "ci_high": 0.24193758201663454
+        },
+        {
+          "treatment_idx": 2,
+          "label": "$129",
+          "price_usd": 129.0,
+          "n": 106,
+          "top2": 0.11320754716981132,
+          "ci_low": 0.06595616916206086,
+          "ci_high": 0.18751428283426835
+        }
+      ],
+      "monotone_violations": [],
+      "note": "Simulated purchase interest by price. This is not real demand and not a price elasticity."
+    },
+    "notes": [
+      "Segment comparisons are exploratory, require at least 10 valid responses in each arm, and are Holm-adjusted across all 61 tests.",
+      "Differences are differences between simulated responses. A significant result means the model responded differently, not that real people would."
+    ]
+  },
+  "population": {
+    "name": {
+      "version_id": 4,
+      "version": 1,
+      "size": 300,
+      "seed": 21,
+      "source": "generated",
+      "spec_sha256_16": "6bff903f6afc66db"
+    },
+    "marginals": [
+      {
+        "attribute": "age",
+        "target": {
+          "18-25": 0.12,
+          "25-35": 0.18,
+          "35-50": 0.26,
+          "50-65": 0.24,
+          "65-85": 0.2
+        },
+        "realized": {
+          "18-25": 0.07,
+          "25-35": 0.18,
+          "35-50": 0.23333333333333334,
+          "50-65": 0.33,
+          "65-85": 0.18666666666666668
+        },
+        "max_abs_diff": 0.09000000000000002
+      },
+      {
+        "attribute": "education",
+        "target": {
+          "no_degree": 0.08,
+          "high_school": 0.28,
+          "some_college": 0.22,
+          "bachelor": 0.26,
+          "graduate": 0.16
+        },
+        "realized": {
+          "no_degree": 0.05,
+          "high_school": 0.2866666666666667,
+          "some_college": 0.24666666666666667,
+          "bachelor": 0.28,
+          "graduate": 0.13666666666666666
+        },
+        "max_abs_diff": 0.03
+      },
+      {
+        "attribute": "income_band",
+        "target": {
+          "very_low": 0.14,
+          "low": 0.24,
+          "middle": 0.3,
+          "upper_middle": 0.2,
+          "high": 0.12
+        },
+        "realized": {
+          "very_low": 0.12,
+          "low": 0.24333333333333335,
+          "middle": 0.31,
+          "upper_middle": 0.23333333333333334,
+          "high": 0.09333333333333334
+        },
+        "max_abs_diff": 0.033333333333333326
+      },
+      {
+        "attribute": "tech_adoption",
+        "target": {
+          "laggard": 0.14,
+          "late_majority": 0.28,
+          "early_majority": 0.34,
+          "early_adopter": 0.18,
+          "innovator": 0.06
+        },
+        "realized": {
+          "laggard": 0.16333333333333333,
+          "late_majority": 0.24333333333333335,
+          "early_majority": 0.35,
+          "early_adopter": 0.15666666666666668,
+          "innovator": 0.08666666666666667
+        },
+        "max_abs_diff": 0.03666666666666668
+      },
+      {
+        "attribute": "price_sensitivity",
+        "target": {
+          "low": 0.15,
+          "moderate": 0.35,
+          "high": 0.35,
+          "very_high": 0.15
+        },
+        "realized": {
+          "low": 0.17666666666666667,
+          "moderate": 0.27666666666666667,
+          "high": 0.39,
+          "very_high": 0.15666666666666668
+        },
+        "max_abs_diff": 0.0733333333333333
+      },
+      {
+        "attribute": "gender",
+        "target": {
+          "woman": 0.5,
+          "man": 0.49,
+          "non_binary": 0.01
+        },
+        "realized": {
+          "woman": 0.5233333333333333,
+          "man": 0.47,
+          "non_binary": 0.006666666666666667
+        },
+        "max_abs_diff": 0.023333333333333317
+      },
+      {
+        "attribute": "region",
+        "target": {
+          "northeast": 0.17,
+          "midwest": 0.21,
+          "south": 0.38,
+          "west": 0.24
+        },
+        "realized": {
+          "northeast": 0.17,
+          "midwest": 0.21,
+          "south": 0.38,
+          "west": 0.24
+        },
+        "max_abs_diff": 0.0
+      },
+      {
+        "attribute": "employment",
+        "target": {
+          "full_time": 0.48,
+          "part_time": 0.12,
+          "self_employed": 0.08,
+          "student": 0.06,
+          "unemployed": 0.05,
+          "retired": 0.21
+        },
+        "realized": {
+          "full_time": 0.6,
+          "part_time": 0.15666666666666668,
+          "self_employed": 0.09333333333333334,
+          "student": 0.03333333333333333,
+          "unemployed": 0.03333333333333333,
+          "retired": 0.08333333333333333
+        },
+        "max_abs_diff": 0.12666666666666665
+      },
+      {
+        "attribute": "household",
+        "target": {
+          "lives_alone": 0.2,
+          "couple": 0.28,
+          "family_with_children": 0.32,
+          "shared_housing": 0.12,
+          "multigenerational": 0.08
+        },
+        "realized": {
+          "lives_alone": 0.18,
+          "couple": 0.27,
+          "family_with_children": 0.3433333333333333,
+          "shared_housing": 0.10333333333333333,
+          "multigenerational": 0.10333333333333333
+        },
+        "max_abs_diff": 0.02333333333333333
+      }
+    ],
+    "notes": "Population shares are generated from an assumed distribution."
+  },
+  "manifest": {
+    "simulacra_version": "0.1.0",
+    "experiment": {
+      "id": 2,
+      "name": "WarmMug pricing test",
+      "kind": "pricing",
+      "research_question": "How does the price of a self-heating smart mug change simulated purchase interest?",
+      "hypothesis": "Interest should fall as price rises; a $129 price should be clearly less attractive than $49.",
+      "scenario": {
+        "product_name": "WarmMug",
+        "description": "A self-heating smart mug that keeps coffee or tea at your chosen temperature for up to 6 hours, with a charging coaster and a phone app.",
+        "price_usd": null,
+        "category": "kitchen gadgets",
+        "headline": null
+      },
+      "config": {
+        "design": "between",
+        "repeats": 1,
+        "seed": 3
+      },
+      "treatments": [
+        {
+          "idx": 0,
+          "label": "$49",
+          "params": {
+            "price_usd": 49.0
+          }
+        },
+        {
+          "idx": 1,
+          "label": "$79",
+          "params": {
+            "price_usd": 79.0
+          }
+        },
+        {
+          "idx": 2,
+          "label": "$129",
+          "params": {
+            "price_usd": 129.0
+          }
+        }
+      ]
+    },
+    "population": {
+      "version_id": 4,
+      "version": 1,
+      "size": 300,
+      "seed": 21,
+      "source": "generated",
+      "spec_sha256_16": "6bff903f6afc66db"
+    },
+    "inference": {
+      "runtime": "llama.cpp",
+      "runtime_version": "b11960-8642541b2",
+      "base_url": "http://127.0.0.1:8080",
+      "model": "qwen2.5-3b",
+      "model_digest": null,
+      "quantization": null,
+      "structured_mode": "constrained",
+      "temperature": 0.7,
+      "max_tokens": 220,
+      "concurrency": 4,
+      "seed": 3
+    },
+    "prompt": {
+      "version": "concept-v1",
+      "sha256_12": "33cb8835fdc8"
+    },
+    "trials_planned": 300,
+    "hardware": {
+      "captured_at": "2026-11-03T00:57:32.090666Z",
+      "os": "Darwin",
+      "os_version": "26.5.2",
+      "arch": "arm64",
+      "chip": "Apple M4",
+      "apple_silicon": true,
+      "cpu_cores_total": 10,
+      "cpu_cores_performance": 4,
+      "ram_total_mb": 16384,
+      "ram_available_mb": 3646,
+      "swap_used_mb": 7394,
+      "disk_free_mb": 12560,
+      "disk_total_mb": 233752,
+      "metal": "Metal 4",
+      "on_battery": false,
+      "low_power_mode": false,
+      "sleep_prevented": true,
+      "notes": []
+    }
+  },
+  "limitations": [
+    "These are simulated opinions from model-generated personas. They are not observed human behavior and not validated predictions.",
+    "Personas follow an assumed distribution, not a representative sample of any real population.",
+    "Small local language models tend to agree with offers, give generic reasons and under-represent real variation in opinion; results can depend strongly on prompt wording and on the model.",
+    "Intervals describe sampling variation of this simulation only. They are not confidence in real-world behavior.",
+    "Stated purchase intent is not purchase behavior, even among real people."
+  ],
+  "follow_up": [
+    "Treat the objections and segment differences as hypotheses and check them with real customer interviews or a small real survey.",
+    "If a treatment difference matters to a decision, test it with real traffic (for example an A/B test on a landing page) before acting.",
+    "Re-run with a different model and prompt wording; findings that change are artifacts, not insights."
+  ],
+  "run": {
+    "id": 2,
+    "state": "completed",
+    "done_units": 300,
+    "total_units": 300
+  }
+}

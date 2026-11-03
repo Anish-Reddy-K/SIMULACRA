@@ -7,6 +7,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
+from simulacra.analysis import compare as compare_mod
 from simulacra.analysis import concept
 from simulacra.persistence.models import PopulationVersion, Run
 
@@ -34,7 +35,7 @@ def pct(x: float | None) -> str:
     return "n/a" if x is None else f"{x * 100:.0f}%"
 
 
-def summary_points(a: dict[str, Any]) -> list[str]:
+def summary_points(a: dict[str, Any], comparison: dict[str, Any] | None = None) -> list[str]:
     pts: list[str] = []
     t = a["totals"]
     pts.append(
@@ -49,6 +50,19 @@ def summary_points(a: dict[str, Any]) -> list[str]:
                 f"said probably or definitely (sampling variation {pct(top['ci_low'])} to "
                 f"{pct(top['ci_high'])}); mean appeal {tr['appeal']['mean']:.1f} of 5."
             )
+    for pair in (comparison or {}).get("pairs", []):
+        if pair.get("diff") is None:
+            continue
+        verdict = (
+            "a statistically detectable difference"
+            if pair.get("significant")
+            else "no statistically detectable difference"
+        )
+        pts.append(
+            f"{pair['label']} versus {pair['vs']}: top-2-box differs by {pair['diff'] * 100:+.0f} points "
+            f"(sampling variation {pair.get('diff_ci_low', 0) * 100:+.0f} to {pair.get('diff_ci_high', 0) * 100:+.0f} points where available; "
+            f"Holm-adjusted p = {pair.get('p_holm', float('nan')):.3f}), {verdict} between simulated responses."
+        )
     if a["objections"]:
         o = a["objections"][0]
         pts.append(
@@ -69,6 +83,7 @@ def build_report(
     if run is None:
         raise LookupError("no such run")
     analysis = concept.analyze(session, run_id)
+    comparison = compare_mod.compare(session, run_id)
     manifest = run.manifest_json
     version = session.get(PopulationVersion, int(run.config_json.get("population_version_id", 0)))
     population = {
@@ -81,8 +96,9 @@ def build_report(
         "generated_at": datetime.now(UTC).isoformat(),
         "research_question": manifest.get("experiment", {}).get("research_question", ""),
         "hypothesis": manifest.get("experiment", {}).get("hypothesis", ""),
-        "summary": summary_points(analysis),
+        "summary": summary_points(analysis, comparison),
         "analysis": analysis,
+        "comparison": comparison,
         "population": population,
         "manifest": manifest,
         "limitations": LIMITATIONS,
@@ -97,6 +113,42 @@ def build_report(
     if extra:
         report.update(extra)
     return report
+
+
+def _comparison_markdown(cmp: dict[str, Any]) -> list[str]:
+    out = ["## Treatment comparison", ""]
+    if not cmp.get("pairs"):
+        return [*out, "Only one treatment, so there is nothing to compare.", ""]
+    out += [
+        "| Treatment | vs | Top-2-box | Baseline | Difference | Holm p | Cohen's h |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for p in cmp["pairs"]:
+        if p.get("diff") is None:
+            continue
+        out.append(
+            f"| {p['label']} | {p['vs']} | {pct(p['top2_treatment'])} | {pct(p['top2_baseline'])} "
+            f"| {p['diff'] * 100:+.1f} pts | {p.get('p_holm', float('nan')):.3f} | {p['cohens_h']:.2f} |"
+        )
+    pricing = cmp.get("pricing")
+    if pricing:
+        out += ["", "Simulated purchase interest by price:", ""]
+        out += [f"- ${r['price_usd']:g}: {pct(r['top2'])} (n={r['n']})" for r in pricing["curve"]]
+        for v in pricing["monotone_violations"]:
+            out.append(
+                f"- Warning: interest was higher at ${v['higher_price']:g} than at ${v['lower_price']:g} "
+                f"(p={v['p']:.3f}); an implausible pattern, treat it as a model artifact."
+            )
+        out.append(f"- {pricing['note']}")
+    bal = cmp.get("balance")
+    if bal:
+        flag = " (IMBALANCED)" if bal["imbalanced"] else " (no detectable imbalance)"
+        out += [
+            "",
+            f"Randomization balance: smallest Holm-adjusted p = {bal['min_p_holm']:.3f}{flag}",
+        ]
+    out += ["", *[f"_{n}_" for n in cmp.get("notes", [])], ""]
+    return out
 
 
 def render_markdown(r: dict[str, Any]) -> str:
@@ -143,6 +195,7 @@ def render_markdown(r: dict[str, Any]) -> str:
             for i in tr["intent"]
         ]
         out += [""]
+    out += _comparison_markdown(r.get("comparison") or {})
     out += [
         "## Segment analysis",
         "",

@@ -6,8 +6,10 @@ from pydantic import BaseModel
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, sessionmaker
 
+from simulacra.analysis import compare as compare_mod
 from simulacra.analysis import concept
 from simulacra.experiments import service as svc
+from simulacra.experiments import templates
 from simulacra.persistence.models import Experiment, Report, Run, Treatment, Trial
 from simulacra.reporting import build
 
@@ -110,6 +112,89 @@ def results(run_id: int, request: Request) -> dict[str, Any]:
             return concept.analyze(s, run_id)
         except LookupError as exc:
             raise HTTPException(404, str(exc)) from exc
+
+
+@router.get("/runs/{run_id}/comparison")
+def comparison(run_id: int, request: Request) -> dict[str, Any]:
+    with _sessions(request)() as s:
+        try:
+            return compare_mod.compare(s, run_id)
+        except LookupError as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+
+@router.get("/experiment-templates")
+def experiment_templates() -> list[dict[str, Any]]:
+    return templates.TEMPLATES
+
+
+class FromTemplate(BaseModel):
+    template: Literal["product_concept", "ad_comparison", "pricing"]
+    name: str
+    research_question: str
+    hypothesis: str = ""
+    population_version_id: int
+    scenario: svc.Scenario
+    headlines: list[str] = []
+    prices: list[float] = []
+    repeats: int = 1
+    seed: int = 0
+    design: Literal["between", "within"] = "between"
+
+
+@router.post("/experiments/from-template", status_code=201)
+def from_template(body: FromTemplate, request: Request) -> ExperimentOut:
+    try:
+        if body.template == "ad_comparison":
+            arms = templates.ad_comparison(body.headlines)
+        elif body.template == "pricing":
+            arms = templates.pricing(body.prices)
+        else:
+            arms = [svc.TreatmentIn(label="Baseline")]
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    full = svc.CreateExperiment(
+        name=body.name,
+        kind=body.template,
+        research_question=body.research_question,
+        hypothesis=body.hypothesis,
+        population_version_id=body.population_version_id,
+        scenario=body.scenario,
+        treatments=arms,
+        design=body.design,
+        repeats=body.repeats,
+        seed=body.seed,
+    )
+    return create_experiment(full, request)
+
+
+@router.post("/experiments/{experiment_id}/clone", status_code=201)
+def clone_experiment(experiment_id: int, request: Request) -> ExperimentOut:
+    """Reuse an experiment's exact design (treatments, scenario, config) as a new experiment."""
+    with _sessions(request)() as s:
+        exp = s.get(Experiment, experiment_id)
+        if exp is None:
+            raise HTTPException(404, "No such experiment")
+        arms = [
+            svc.TreatmentIn(label=t.label, params=t.params_json)
+            for t in s.scalars(
+                select(Treatment).where(Treatment.experiment_id == exp.id).order_by(Treatment.idx)
+            )
+        ]
+        body = svc.CreateExperiment(
+            name=f"{exp.name} (copy)",
+            kind=exp.kind,
+            research_question=exp.research_question,
+            hypothesis=exp.hypothesis,
+            population_version_id=exp.population_version_id,
+            scenario=svc.Scenario(**exp.scenario_json),
+            treatments=arms,
+            design=exp.config_json["design"],
+            repeats=exp.config_json["repeats"],
+            seed=exp.config_json["seed"],
+        )
+        new = svc.create_experiment(s, body)
+        return _exp_out(s, new)
 
 
 @router.get("/runs/{run_id}/manifest")
